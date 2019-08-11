@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": [
+      { "model": "wabbits:block/test_block" }
+    ]
+  }
+}
