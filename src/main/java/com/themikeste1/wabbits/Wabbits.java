@@ -46,7 +46,7 @@ public class Wabbits {
 
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
-        Constants.LOGGER.info("HELLO FROM " + Constants.MOD_NAME);
+        Constants.LOGGER.info("HELLO FROM " + Constants.MOD_NAME + " " + Constants.VERSION);
     } //setup()
 
     @OnlyIn(Dist.CLIENT)

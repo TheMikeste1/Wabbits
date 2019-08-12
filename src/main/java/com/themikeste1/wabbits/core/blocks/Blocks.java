@@ -1,4 +1,4 @@
-package com.themikeste1.wabbits.blocks;
+package com.themikeste1.wabbits.core.blocks;
 
 //Minecraft
 import net.minecraft.block.Block;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
 //FalconCore
-import com.themikeste1.falconathenaeum.blocks.ModBlock;
+import com.themikeste1.falconathenaeum.core.blocks.ModBlock;
 
 //Meta
 import com.themikeste1.wabbits.core.Constants;
@@ -23,7 +23,7 @@ import com.themikeste1.wabbits.core.Constants;
  * @version 1.0
  * @since 0.0.0.0
  * @author TheMikeste1
- * @see com.themikeste1.wabbits.items.Items
+ * @see com.themikeste1.wabbits.core.items.Items
  */
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @ObjectHolder(Constants.MOD_ID)

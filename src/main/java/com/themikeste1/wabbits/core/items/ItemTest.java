@@ -1,4 +1,4 @@
-package com.themikeste1.wabbits.items;
+package com.themikeste1.wabbits.core.items;
 
 //Minecraft
 import net.minecraft.item.Item;

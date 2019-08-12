@@ -1,4 +1,4 @@
-package com.themikeste1.wabbits.items;
+package com.themikeste1.wabbits.core.items;
 
 //Minecraft
 import net.minecraft.item.Item;
@@ -19,7 +19,7 @@ import com.themikeste1.wabbits.core.Constants;
  * @version 1.0
  * @since 0.0.0.0
  * @author TheMikeste1
- * @see com.themikeste1.wabbits.blocks.Blocks
+ * @see com.themikeste1.wabbits.core.blocks.Blocks
  */
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @ObjectHolder(Constants.MOD_ID)

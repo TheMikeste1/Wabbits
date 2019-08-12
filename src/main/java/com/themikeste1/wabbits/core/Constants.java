@@ -16,7 +16,7 @@ public class Constants {
     public static final String MOD_NAME = "Wabbits";
     public static final String MOD_ID = "wabbits";
 
-    public static final String VERSION = "0.0.0.0";
+    public static final String VERSION = "1.14.4-0.0.0.0";
 
     //Logging
     public static final Logger LOGGER = LogManager.getLogger();

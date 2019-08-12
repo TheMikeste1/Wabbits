@@ -1,4 +1,4 @@
-package com.themikeste1.wabbits.blocks;
+package com.themikeste1.wabbits.core.blocks;
 
 //Minecraft
 import net.minecraft.block.material.Material;
@@ -7,7 +7,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.util.ResourceLocation;
 
 //FalconCore
-import com.themikeste1.falconathenaeum.blocks.ModBlock;
+import com.themikeste1.falconathenaeum.core.blocks.ModBlock;
 
 public class BlockTest extends ModBlock {
 
