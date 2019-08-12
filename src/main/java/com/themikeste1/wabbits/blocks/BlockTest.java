@@ -7,7 +7,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.util.ResourceLocation;
 
 //FalconCore
-import com.themikeste1.falconcore.blocks.ModBlock;
+import com.themikeste1.falconathenaeum.blocks.ModBlock;
 
 public class BlockTest extends ModBlock {
 

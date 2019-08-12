@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
 //FalconCore
-import com.themikeste1.falconcore.blocks.ModBlock;
+import com.themikeste1.falconathenaeum.blocks.ModBlock;
 
 //Meta
 import com.themikeste1.wabbits.core.Constants;
