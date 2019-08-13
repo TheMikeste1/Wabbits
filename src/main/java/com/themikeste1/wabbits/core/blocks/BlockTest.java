@@ -1,48 +1,55 @@
 package com.themikeste1.wabbits.core.blocks;
 
 //Minecraft
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 
 //FalconCore
-import com.themikeste1.falconathenaeum.core.blocks.ModBlock;
+import com.themikeste1.falconathenaeum.core.blocks.IModBlock;
 
-public class BlockTest extends ModBlock {
+//Meta
+import com.themikeste1.wabbits.core.Constants;
+
+
+public class BlockTest extends Block implements IModBlock {
 
     public BlockTest() {
-        super(ModBlock.Properties.create(Material.ROCK, MaterialColor.STONE));
+        super(Block.Properties.create(Material.ROCK, MaterialColor.STONE));
+        setup();
     } //BlockTest()
 
-    @Override
     protected void setup() {
-        setRegistryName("test_block");
+        setRegistryName(Constants.MOD_ID, "test_block");
     }
 
     @Override
-    public ModBlockItem getModBlockItem() {
+    public BlockItem getModBlockItem() {
         return new BlockItemTest();
     }
 
     /**
-     * Manages the {@link BlockItem} of {@link BlockTest}. All properties of
+     * Manages the {@link net.minecraft.item.BlockItem} of {@link BlockTest}. All properties of
      * the item can be set in the constructor. This could be done as a
      * function, but making a class allows adding custom functionality to the
-     * {@link BlockItem} (e.g. making it explode after being held for too long).
+     * {@link net.minecraft.item.BlockItem} (e.g. making it explode after being held for too long).
      *
      * @version 1.0
      * @since 0.0.0.0
      * @author TheMikeste1
      * @see BlockTest
-     * @see ModBlockItem
+     * @see BlockItem
      */
-    public class BlockItemTest extends ModBlockItem {
+    public class BlockItemTest extends BlockItem {
         public BlockItemTest() {
-            super();
-        } //BlockItemTest()
+            super(BlockTest.this,
+                    new Item.Properties());
+            setup();
+        }
 
-        @Override
         protected void setup() {
             ResourceLocation name = BlockTest.this.getRegistryName();
             assert name != null;

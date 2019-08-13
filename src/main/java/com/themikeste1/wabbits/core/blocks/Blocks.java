@@ -10,8 +10,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
-//FalconCore
-import com.themikeste1.falconathenaeum.core.blocks.ModBlock;
+//FalconAthenaeum
+import com.themikeste1.falconathenaeum.core.blocks.IModBlock;
 
 //Meta
 import com.themikeste1.wabbits.core.Constants;
@@ -28,13 +28,15 @@ import com.themikeste1.wabbits.core.Constants;
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @ObjectHolder(Constants.MOD_ID)
 public class Blocks {
-    public static final ModBlock test_block = null;
+    public static final Block test_block = null;
+    public static final Block rainbow_bricks = null;
 
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event) {
         Constants.LOGGER.debug("Wabbits: Registering blocks...");
         event.getRegistry().registerAll(
-                new BlockTest()
+                new BlockTest(),
+                new BlockRainbowBricks()
         );
     } //registerBlocks()
 
@@ -42,7 +44,8 @@ public class Blocks {
     public static void registerItemBlocks(final RegistryEvent.Register<Item> event) {
         Constants.LOGGER.debug("Wabbits: Registering item blocks...");
         event.getRegistry().registerAll(
-                test_block.getModBlockItem()
+                ((IModBlock) test_block).getModBlockItem(),
+                ((IModBlock) rainbow_bricks).getModBlockItem()
         );
     } //registerItemBlocks()
 } //class Blocks
