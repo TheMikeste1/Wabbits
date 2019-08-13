@@ -1,0 +1,21 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "all": "wabbits:block/rainbow_bricks"
+    },
+    "model": "wabbits:block/rainbow_bricks",
+    "uvlock": true
+  },
+  "variants": {
+    "color": {
+      "magenta": { "textures": { "all": "wabbits:block/rainbow_bricks" } },
+      "purple": { "textures": { "all": "wabbits:block/rainbow_bricks" } },
+      "blue": { "textures": { "all": "wabbits:block/rainbow_bricks" } },
+      "green": { "textures": { "all": "wabbits:block/rainbow_bricks" } },
+      "yellow": { "textures": { "all": "wabbits:block/rainbow_bricks" } },
+      "orange": { "textures": { "all": "wabbits:block/rainbow_bricks" } },
+      "red": { "textures": { "all": "wabbits:block/rainbow_bricks_red" } }
+    }
+  }
+}

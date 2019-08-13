@@ -3,6 +3,15 @@ package com.themikeste1.wabbits;
 //Java
 import java.util.stream.Collectors;
 
+//Minecraft
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.item.Item;
+
 //Forge
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -16,6 +25,7 @@ import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 //Meta
+import com.themikeste1.wabbits.core.blocks.Blocks;
 import com.themikeste1.wabbits.core.Constants;
 
 
@@ -53,7 +63,27 @@ public class Wabbits {
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
         Constants.LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
+
+        //Register IBlockColors
+        registerBlockColors();
+        //Register IItemColors
+        registerItemColors();
     } //doClientStuff()
+
+    private void registerBlockColors() {
+        BlockColors blockColors = Minecraft.getInstance().getBlockColors();
+
+        blockColors.register(
+                (IBlockColor) Blocks.rainbow_bricks, Blocks.rainbow_bricks);
+    }
+
+    private void registerItemColors() {
+        ItemColors itemColors = Minecraft.getInstance().getItemColors();
+
+        itemColors.register(
+                (IItemColor) Item.BLOCK_TO_ITEM.get(Blocks.rainbow_bricks),
+                             Item.BLOCK_TO_ITEM.get(Blocks.rainbow_bricks));
+    }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         // some example code to dispatch IMC to another mod
