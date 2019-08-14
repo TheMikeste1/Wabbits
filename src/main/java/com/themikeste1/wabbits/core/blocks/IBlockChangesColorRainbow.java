@@ -6,14 +6,9 @@ import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
 //Minecraft
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.World;
-
-//Java
-import javax.annotation.Nullable;
 
 /**
  * Helps set up a {@link Block} to change color according to
@@ -21,24 +16,7 @@ import javax.annotation.Nullable;
  *
  * @see com.themikeste1.wabbits.core.blockitems.IBlockItemChangesColorRainbow
  */
-public interface IBlockChangesColorRainbow extends IBlockColor {
-
-    /**
-     * Returns an int which is multiplied to the color value of the pixels
-     * of the texture of this block. This changes the color of the pixels.
-     *
-     * @param blockState The current {@link BlockState} of the block.
-     * @param environment The block's environment (biome, ect.)
-     * @param coordinates The {@link BlockPos}.
-     * @param tintIndex The current color of a pixel in the texture of the block.
-     * @return The value of the current {@link BlockStateProperties} color.
-     */
-    @Override
-    default int getColor(BlockState blockState, @Nullable IEnviromentBlockReader environment, @Nullable BlockPos coordinates, int tintIndex) {
-        return blockState.get(BlockStateProperties.RAINBOW_COLORS)
-                .getMapColor().colorValue;
-    }
-
+public interface IBlockChangesColorRainbow  {
     /**
      * Adds rainbow colors to a {@link BlockState} to a
      * {@link StateContainer.Builder}.
@@ -50,6 +28,12 @@ public interface IBlockChangesColorRainbow extends IBlockColor {
         builder.add(BlockStateProperties.RAINBOW_COLORS);
     }
 
+    /**
+     *
+     * @param state Current {@link BlockState} of the block we're changing.
+     * @param worldIn The {@link World}.
+     * @param pos The {@link BlockPos} of the block we're changing.
+     */
     default void updateColor(BlockState state, World worldIn, BlockPos pos) {
         worldIn.setBlockState(pos,
                 state.cycle(BlockStateProperties.RAINBOW_COLORS));

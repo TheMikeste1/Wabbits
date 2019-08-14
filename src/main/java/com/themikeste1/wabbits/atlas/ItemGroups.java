@@ -1,13 +1,16 @@
 package com.themikeste1.wabbits.atlas;
 
+//META
+import com.themikeste1.wabbits.core.Constants;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
 //Minecraft
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
-//META
-import com.themikeste1.wabbits.core.Constants;
 
-
+@OnlyIn(Dist.CLIENT)
 public class ItemGroups {
     public static ItemGroup MAIN_GROUP_WABBITS =
             new ItemGroup(Constants.MOD_ID) {

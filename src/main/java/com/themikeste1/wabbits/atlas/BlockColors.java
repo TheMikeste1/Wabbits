@@ -1,11 +1,15 @@
 package com.themikeste1.wabbits.atlas;
 
 //META
-import com.themikeste1.wabbits.core.blocks.IBlockChangesColorRainbow;
+import com.themikeste1.wabbits.api.handlers.HandlerRainbowColor;
 
 //Minecraft
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+
+@OnlyIn(Dist.CLIENT)
 public class BlockColors {
     private static final net.minecraft.client.renderer.color.BlockColors blockColors = Minecraft.getInstance().getBlockColors();
 
@@ -15,6 +19,8 @@ public class BlockColors {
 
     private static void registerRainbowColors() {
         blockColors.register(
-                (IBlockChangesColorRainbow) Blocks.rainbow_bricks, Blocks.rainbow_bricks);
+                new HandlerRainbowColor(), Blocks.rainbow_bricks);
     }
+
+
 }

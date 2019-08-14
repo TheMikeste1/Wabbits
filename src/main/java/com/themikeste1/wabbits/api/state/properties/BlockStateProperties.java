@@ -4,8 +4,12 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.state.EnumProperty;
 
 /**
+ *  Contains all the custom {@link net.minecraft.block.BlockState}
+ *  {@link net.minecraft.state.Property}'s.
  *
- *
+ * @version 1.0
+ * @since 0.0.0.0
+ * @author TheMikeste1
  * @see net.minecraft.state.properties.BlockStateProperties
  */
 public class BlockStateProperties {
