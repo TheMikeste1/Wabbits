@@ -1,7 +1,6 @@
 package com.themikeste1.wabbits.core.blocks;
 
 //FalconAthenaeum
-
 import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 import com.themikeste1.falconathenaeum.core.blocks.IModHasTileEntity;
 
@@ -15,7 +14,6 @@ import com.themikeste1.wabbits.core.tileentities.TileEntityRainbowBricks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -24,7 +22,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.World;
 
 //Java
@@ -33,8 +30,11 @@ import javax.annotation.Nullable;
 
 /**
  *
+ * @see BlockItemRainbowBricks
+ * @see TileEntityRainbowBricks
+ * @see com.themikeste1.wabbits.atlas.Blocks
  */
-public class BlockRainbowBricks extends Block implements IBlockColor, IModHasBlockItem, IModHasTileEntity {
+public class BlockRainbowBricks extends Block implements IBlockChangeColorRainbow, IModHasBlockItem, IModHasTileEntity {
 
     public BlockRainbowBricks() {
         super(Block.Properties
@@ -81,8 +81,8 @@ public class BlockRainbowBricks extends Block implements IBlockColor, IModHasBlo
      * BlockStates
      ****************************************************************************/
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(BlockStateProperties.RAINBOW_COLORS);
+    public void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        addRainbowColors(builder);
     }
 
     /* ***************************************************************************
@@ -99,19 +99,4 @@ public class BlockRainbowBricks extends Block implements IBlockColor, IModHasBlo
                 .create(TileEntityRainbowBricks::new, this)
                 .build(null).setRegistryName(this.getRegistryName());
     }
-
-    /* ***************************************************************************
-     * IBlockColor
-     ****************************************************************************/
-    /* ***********************************************************************
-     * getColor()
-     * Returns an int which is multiplied to the color value of the pixels
-     * of the texture of this block. This changes the color of the pixels.
-     ************************************************************************/
-    @Override
-    public int getColor(BlockState blockState, @Nullable IEnviromentBlockReader environment, @Nullable BlockPos coordinates, int tintIndex) {
-        return blockState.get(BlockStateProperties.RAINBOW_COLORS)
-                .getMapColor().colorValue;
-    }
-
 } //class BlockRainbowBricks

@@ -26,9 +26,10 @@ import com.themikeste1.wabbits.core.blocks.BlockRainbowBricks;
  * @since 0.0.0.0
  * @author TheMikeste1
  * @see BlockRainbowBricks
- * @see BlockItem
+ * @see com.themikeste1.wabbits.core.tileentities.TileEntityRainbowBricks
+ * @see com.themikeste1.wabbits.atlas.BlockItems
  */
-public class BlockItemRainbowBricks extends BlockItem implements IItemColor {
+public class BlockItemRainbowBricks extends BlockItem implements IBlockItemChangeColorRainbow {
     public BlockItemRainbowBricks() {
         super(Blocks.rainbow_bricks,
                 new Item.Properties()
@@ -53,15 +54,4 @@ public class BlockItemRainbowBricks extends BlockItem implements IItemColor {
         return true;
     }
 
-    /* *******************************************************************
-     * getColor()
-     * Returns an int which is multiplied to the color value of the pixels
-     * of the texture of this item. This changes the color of the pixels.
-     ********************************************************************/
-    @Override
-    public int getColor(ItemStack itemStack, int tintIndex) {
-        return Blocks.rainbow_bricks.getStateContainer().getBaseState()
-                .get(BlockStateProperties.RAINBOW_COLORS)
-                .getMapColor().colorValue;
-    }
 } //class BlockItemRainbowBricks

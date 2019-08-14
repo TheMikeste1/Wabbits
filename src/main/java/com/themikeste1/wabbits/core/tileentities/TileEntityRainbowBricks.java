@@ -11,7 +11,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-
+/**
+ *
+ * @see com.themikeste1.wabbits.core.blocks.BlockRainbowBricks
+ * @see com.themikeste1.wabbits.core.blockitems.BlockItemRainbowBricks
+ * @see com.themikeste1.wabbits.atlas.Blocks
+ */
 public class TileEntityRainbowBricks extends TileEntity implements ITickableTileEntity {
 
     private int colorChangeCounter = 0;
