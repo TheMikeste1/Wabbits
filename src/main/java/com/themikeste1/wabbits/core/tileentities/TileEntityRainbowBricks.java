@@ -4,11 +4,8 @@ package com.themikeste1.wabbits.core.tileentities;
 import com.themikeste1.wabbits.atlas.TileEntities;
 
 //Minecraft
-import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 /**
  *
@@ -16,27 +13,25 @@ import net.minecraft.world.World;
  * @see com.themikeste1.wabbits.core.blockitems.BlockItemRainbowBricks
  * @see com.themikeste1.wabbits.atlas.Blocks
  */
-public class TileEntityRainbowBricks extends TileEntity implements ITileEntityChangesColorsRainbow, ITickableTileEntity {
+public class TileEntityRainbowBricks extends TileEntity implements ITickableTileEntity {
     private int colorChangeCounter = 0;
+    private final int counterStart;
 
     public TileEntityRainbowBricks() {
         super(TileEntities.rainbow_bricks);
+        counterStart = 20;
+    }
+    public TileEntityRainbowBricks(int counterStart) {
+        super(TileEntities.rainbow_bricks);
+        this.counterStart = counterStart;
     }
 
     @Override
     public void tick() {
-        if (colorChangeCounter > 0)
+        if (!world.isRemote && !canChange())
             colorChangeCounter--;
     }
 
-    public void walked(BlockState state, World worldIn, BlockPos pos) {
-        if (colorChangeCounter <= 0) {
-            colorChangeCounter = 20;
-            updateColor(state, worldIn, pos);
-        }
-    }
-
-    public void clicked(BlockState state, World worldIn, BlockPos pos) {
-        updateColor(state, worldIn, pos);
-    }
+    public boolean canChange() { return colorChangeCounter <= 0; }
+    public void resetCounter() { colorChangeCounter = counterStart; }
 }

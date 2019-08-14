@@ -5,7 +5,6 @@ import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
 
 //Minecraft
 import com.themikeste1.wabbits.core.blocks.IBlockChangesColorRainbow;
-import com.themikeste1.wabbits.core.tileentities.ITileEntityChangesColorsRainbow;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
@@ -17,7 +16,6 @@ import net.minecraft.item.ItemStack;
  * Should be used in conjunction with {@link IBlockChangesColorRainbow}.
  *
  * @see IBlockChangesColorRainbow
- * @see ITileEntityChangesColorsRainbow
  */
 public interface IBlockItemChangesColorRainbow extends IItemColor {
 

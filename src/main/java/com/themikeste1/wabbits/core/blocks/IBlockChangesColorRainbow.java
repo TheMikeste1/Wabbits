@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IEnviromentBlockReader;
+import net.minecraft.world.World;
 
 //Java
 import javax.annotation.Nullable;
@@ -18,10 +19,7 @@ import javax.annotation.Nullable;
  * Helps set up a {@link Block} to change color according to
  * {@link BlockStateProperties}.RAINBOW_COLORS.
  *
- * Should be used with {@link com.themikeste1.wabbits.core.tileentities.ITileEntityChangesColorsRainbow}.
- *
  * @see com.themikeste1.wabbits.core.blockitems.IBlockItemChangesColorRainbow
- * @see com.themikeste1.wabbits.core.tileentities.ITileEntityChangesColorsRainbow
  */
 public interface IBlockChangesColorRainbow extends IBlockColor {
 
@@ -50,5 +48,10 @@ public interface IBlockChangesColorRainbow extends IBlockColor {
      */
     default void addRainbowColors(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(BlockStateProperties.RAINBOW_COLORS);
+    }
+
+    default void updateColor(BlockState state, World worldIn, BlockPos pos) {
+        worldIn.setBlockState(pos,
+                state.cycle(BlockStateProperties.RAINBOW_COLORS));
     }
 }

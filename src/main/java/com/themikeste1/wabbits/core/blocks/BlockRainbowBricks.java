@@ -63,18 +63,19 @@ public class BlockRainbowBricks extends Block implements IBlockChangesColorRainb
 
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        TileEntity tile = worldIn.getTileEntity(pos);
-        if (tile != null && !tile.isRemoved()) {
+        TileEntityRainbowBricks tile = (TileEntityRainbowBricks) worldIn.getTileEntity(pos);
+        if (tile != null && !tile.isRemoved() && tile.canChange()) {
             BlockState state = worldIn.getBlockState(pos);
-            ((TileEntityRainbowBricks) tile).walked(state, worldIn, pos);
+            updateColor(state, worldIn, pos);
+            tile.resetCounter();
         }
     }
 
     @Override
     public void onBlockClicked(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
-        TileEntity tile = worldIn.getTileEntity(pos);
+        TileEntityRainbowBricks tile = (TileEntityRainbowBricks) worldIn.getTileEntity(pos);
         if (tile != null && !tile.isRemoved())
-            ((TileEntityRainbowBricks) tile).clicked(state, worldIn, pos);
+            updateColor(state, worldIn, pos);
     }
 
     /* ***************************************************************************
