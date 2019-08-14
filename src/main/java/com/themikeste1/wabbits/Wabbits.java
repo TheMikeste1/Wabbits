@@ -4,7 +4,6 @@ package com.themikeste1.wabbits;
 import java.util.stream.Collectors;
 
 //Minecraft
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -25,7 +24,7 @@ import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 //Meta
-import com.themikeste1.wabbits.core.blocks.Blocks;
+import com.themikeste1.wabbits.atlas.Blocks;
 import com.themikeste1.wabbits.core.Constants;
 
 

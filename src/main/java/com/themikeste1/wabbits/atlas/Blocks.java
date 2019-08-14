@@ -1,6 +1,9 @@
-package com.themikeste1.wabbits.core.blocks;
+package com.themikeste1.wabbits.atlas;
 
 //Minecraft
+import com.themikeste1.wabbits.atlas.Items;
+import com.themikeste1.wabbits.core.blocks.BlockRainbowBricks;
+import com.themikeste1.wabbits.core.blocks.BlockTest;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
@@ -23,12 +26,13 @@ import com.themikeste1.wabbits.core.Constants;
  * @version 1.0
  * @since 0.0.0.0
  * @author TheMikeste1
- * @see com.themikeste1.wabbits.core.items.Items
+ * @see Items
  */
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-@ObjectHolder(Constants.MOD_ID)
 public class Blocks {
+    @ObjectHolder(Constants.MOD_ID + ":test_block")
     public static final Block test_block = null;
+    @ObjectHolder(Constants.MOD_ID + ":rainbow_bricks")
     public static final Block rainbow_bricks = null;
 
     @SubscribeEvent

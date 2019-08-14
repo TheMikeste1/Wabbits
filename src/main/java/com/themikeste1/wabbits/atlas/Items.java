@@ -1,6 +1,7 @@
-package com.themikeste1.wabbits.core.items;
+package com.themikeste1.wabbits.atlas;
 
 //Minecraft
+import com.themikeste1.wabbits.core.items.ItemTest;
 import net.minecraft.item.Item;
 
 //Forge
@@ -19,11 +20,11 @@ import com.themikeste1.wabbits.core.Constants;
  * @version 1.0
  * @since 0.0.0.0
  * @author TheMikeste1
- * @see com.themikeste1.wabbits.core.blocks.Blocks
+ * @see Blocks
  */
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-@ObjectHolder(Constants.MOD_ID)
 public class Items {
+    @ObjectHolder(Constants.MOD_ID + ":test_item")
     public static final Item test_item = null;
 
     @SubscribeEvent
