@@ -1,7 +1,6 @@
 package com.themikeste1.wabbits.atlas;
 
 //Minecraft
-import com.themikeste1.wabbits.core.items.ItemTest;
 import net.minecraft.item.Item;
 
 //Forge
@@ -12,6 +11,7 @@ import net.minecraftforge.registries.ObjectHolder;
 
 //Meta
 import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.core.items.ItemTest;
 
 
 /**

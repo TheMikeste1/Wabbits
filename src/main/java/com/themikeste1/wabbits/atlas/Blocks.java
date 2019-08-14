@@ -1,9 +1,6 @@
 package com.themikeste1.wabbits.atlas;
 
 //Minecraft
-import com.themikeste1.wabbits.atlas.Items;
-import com.themikeste1.wabbits.core.blocks.BlockRainbowBricks;
-import com.themikeste1.wabbits.core.blocks.BlockTest;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
@@ -17,6 +14,8 @@ import net.minecraftforge.registries.ObjectHolder;
 import com.themikeste1.falconathenaeum.core.blocks.IModBlock;
 
 //Meta
+import com.themikeste1.wabbits.core.blocks.BlockRainbowBricks;
+import com.themikeste1.wabbits.core.blocks.BlockTest;
 import com.themikeste1.wabbits.core.Constants;
 
 
@@ -43,13 +42,4 @@ public class Blocks {
                 new BlockRainbowBricks()
         );
     } //registerBlocks()
-
-    @SubscribeEvent
-    public static void registerItemBlocks(final RegistryEvent.Register<Item> event) {
-        Constants.LOGGER.debug("Wabbits: Registering item blocks...");
-        event.getRegistry().registerAll(
-                ((IModBlock) test_block).getModBlockItem(),
-                ((IModBlock) rainbow_bricks).getModBlockItem()
-        );
-    } //registerItemBlocks()
 } //class Blocks

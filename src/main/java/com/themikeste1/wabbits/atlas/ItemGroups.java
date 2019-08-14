@@ -1,9 +1,12 @@
 package com.themikeste1.wabbits.atlas;
 
-//Meta
-import com.themikeste1.wabbits.core.Constants;
+//Minecraft
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+
+//Meta
+import com.themikeste1.wabbits.core.Constants;
+
 
 public class ItemGroups {
     public static ItemGroup MAIN_GROUP_WABBITS =
