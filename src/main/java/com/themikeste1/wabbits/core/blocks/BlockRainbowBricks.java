@@ -1,10 +1,17 @@
 package com.themikeste1.wabbits.core.blocks;
 
-//Java
-import javax.annotation.Nullable;
+//FalconAthenaeum
+
+import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
+import com.themikeste1.falconathenaeum.core.blocks.IModHasTileEntity;
+
+//META
+import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
+import com.themikeste1.wabbits.core.blockitems.BlockItemRainbowBricks;
+import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.core.tileentities.TileEntityRainbowBricks;
 
 //Minecraft
-import com.themikeste1.wabbits.core.blockitems.BlockItemRainbowBricks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -13,23 +20,21 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.state.StateContainer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.World;
 
-//FalconAthenaeum
-import com.themikeste1.falconathenaeum.core.blocks.IModBlock;
-
-//Meta
-import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
-import com.themikeste1.wabbits.core.Constants;
-
+//Java
+import javax.annotation.Nullable;
 
 
 /**
  *
  */
-public class BlockRainbowBricks extends Block implements IBlockColor, IModBlock {
+public class BlockRainbowBricks extends Block implements IBlockColor, IModHasBlockItem, IModHasTileEntity {
 
     public BlockRainbowBricks() {
         super(Block.Properties
@@ -45,23 +50,59 @@ public class BlockRainbowBricks extends Block implements IBlockColor, IModBlock 
                 .with(BlockStateProperties.RAINBOW_COLORS, DyeColor.MAGENTA));
     }
 
-/* ***************************************************************************
- * BlockStates
- ****************************************************************************/
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new TileEntityRainbowBricks();
+    }
+
+    @Override
+    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+        TileEntity tile = worldIn.getTileEntity(pos);
+        if (tile != null && !tile.isRemoved()) {
+            BlockState state = worldIn.getBlockState(pos);
+            ((TileEntityRainbowBricks) tile).walked(state, worldIn, pos);
+        }
+    }
+
+    @Override
+    public void onBlockClicked(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
+        TileEntity tile = worldIn.getTileEntity(pos);
+        if (tile != null && !tile.isRemoved())
+            ((TileEntityRainbowBricks) tile).clicked(state, worldIn, pos);
+    }
+
+    /* ***************************************************************************
+     * BlockStates
+     ****************************************************************************/
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(BlockStateProperties.RAINBOW_COLORS);
     }
 
-/* ***************************************************************************
- * ModBlock
- ****************************************************************************/
+    /* ***************************************************************************
+     * FalconAthenaeum
+     ****************************************************************************/
     @Override
-    public BlockItem getModBlockItem() { return new BlockItemRainbowBricks(); }
+    public BlockItem generateModBlockItem() {
+        return new BlockItemRainbowBricks();
+    }
 
-/* ***************************************************************************
- * IBlockColor
- ****************************************************************************/
+    @Override
+    public TileEntityType generateModTileEntity() {
+        return TileEntityType.Builder
+                .create(TileEntityRainbowBricks::new, this)
+                .build(null).setRegistryName(this.getRegistryName());
+    }
+
+    /* ***************************************************************************
+     * IBlockColor
+     ****************************************************************************/
     /* ***********************************************************************
      * getColor()
      * Returns an int which is multiplied to the color value of the pixels
@@ -73,25 +114,4 @@ public class BlockRainbowBricks extends Block implements IBlockColor, IModBlock 
                 .getMapColor().colorValue;
     }
 
-
-    @Override
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        updateColor(worldIn, pos);
-    }
-
-    @Override
-    public void onBlockClicked(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
-        updateColor(worldIn, pos);
-        super.onBlockClicked(state, worldIn, pos, player);
-    }
-
-    private void updateColor(World worldIn, BlockPos pos) {
-        DyeColor color = worldIn.getBlockState(pos)
-                .cycle(BlockStateProperties.RAINBOW_COLORS)
-                .get(BlockStateProperties.RAINBOW_COLORS);
-
-        worldIn.setBlockState(pos,
-                worldIn.getBlockState(pos)
-                .with(BlockStateProperties.RAINBOW_COLORS, color));
-    }
 } //class BlockRainbowBricks

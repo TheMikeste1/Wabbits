@@ -2,7 +2,6 @@ package com.themikeste1.wabbits.atlas;
 
 //Minecraft
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 
 //Forge
 import net.minecraftforge.event.RegistryEvent;
@@ -10,13 +9,14 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
-//FalconAthenaeum
-import com.themikeste1.falconathenaeum.core.blocks.IModBlock;
-
-//Meta
+//META
 import com.themikeste1.wabbits.core.blocks.BlockRainbowBricks;
 import com.themikeste1.wabbits.core.blocks.BlockTest;
 import com.themikeste1.wabbits.core.Constants;
+
+//Java
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 /**
@@ -29,6 +29,9 @@ import com.themikeste1.wabbits.core.Constants;
  */
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Blocks {
+    //Logging
+    private static final Logger LOGGER = LogManager.getLogger();
+
     @ObjectHolder(Constants.MOD_ID + ":test_block")
     public static final Block test_block = null;
     @ObjectHolder(Constants.MOD_ID + ":rainbow_bricks")
@@ -36,7 +39,7 @@ public class Blocks {
 
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event) {
-        Constants.LOGGER.debug("Wabbits: Registering blocks...");
+        LOGGER.debug("Wabbits: Registering blocks...");
         event.getRegistry().registerAll(
                 new BlockTest(),
                 new BlockRainbowBricks()

@@ -4,7 +4,7 @@ package com.themikeste1.wabbits.atlas;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
-//Meta
+//META
 import com.themikeste1.wabbits.core.Constants;
 
 

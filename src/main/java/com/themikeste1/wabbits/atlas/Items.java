@@ -1,5 +1,9 @@
 package com.themikeste1.wabbits.atlas;
 
+//META
+import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.core.items.ItemTest;
+
 //Minecraft
 import net.minecraft.item.Item;
 
@@ -9,9 +13,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ObjectHolder;
 
-//Meta
-import com.themikeste1.wabbits.core.Constants;
-import com.themikeste1.wabbits.core.items.ItemTest;
+//Java
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 /**
@@ -24,12 +28,15 @@ import com.themikeste1.wabbits.core.items.ItemTest;
  */
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Items {
+    //Logging
+    private static final Logger LOGGER = LogManager.getLogger();
+
     @ObjectHolder(Constants.MOD_ID + ":test_item")
     public static final Item test_item = null;
 
     @SubscribeEvent
     public static void registerItems(final RegistryEvent.Register<Item> event) {
-        Constants.LOGGER.debug("Wabbits: Registering items...");
+        LOGGER.debug("Wabbits: Registering items...");
         event.getRegistry().registerAll(
                 new ItemTest()
         );

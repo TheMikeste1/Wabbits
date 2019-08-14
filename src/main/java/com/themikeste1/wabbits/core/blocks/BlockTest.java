@@ -1,9 +1,9 @@
 package com.themikeste1.wabbits.core.blocks;
 
 //FalconAthenaeum
-import com.themikeste1.falconathenaeum.core.blocks.IModBlock;
+import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 
-//Meta
+//META
 import com.themikeste1.wabbits.core.blockitems.BlockItemTest;
 import com.themikeste1.wabbits.core.Constants;
 
@@ -16,7 +16,7 @@ import net.minecraft.item.BlockItem;
 
 
 
-public class BlockTest extends Block implements IModBlock {
+public class BlockTest extends Block implements IModHasBlockItem {
 
     public BlockTest() {
         super(Block.Properties.create(Material.ROCK, MaterialColor.STONE));
@@ -28,7 +28,7 @@ public class BlockTest extends Block implements IModBlock {
     }
 
     @Override
-    public BlockItem getModBlockItem() {
+    public BlockItem generateModBlockItem() {
         return new BlockItemTest();
     }
 } //class BlockTest

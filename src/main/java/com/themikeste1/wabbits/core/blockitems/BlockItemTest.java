@@ -1,6 +1,6 @@
 package com.themikeste1.wabbits.core.blockitems;
 
-//Meta
+//META
 import com.themikeste1.wabbits.atlas.Blocks;
 import com.themikeste1.wabbits.core.blocks.BlockTest;
 

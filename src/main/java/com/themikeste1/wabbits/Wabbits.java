@@ -1,7 +1,8 @@
 package com.themikeste1.wabbits;
 
-//Java
-import java.util.stream.Collectors;
+//META
+import com.themikeste1.wabbits.atlas.Blocks;
+import com.themikeste1.wabbits.core.Constants;
 
 //Minecraft
 import net.minecraft.client.Minecraft;
@@ -23,9 +24,10 @@ import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-//Meta
-import com.themikeste1.wabbits.atlas.Blocks;
-import com.themikeste1.wabbits.core.Constants;
+//Java
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import java.util.stream.Collectors;
 
 
 /**
@@ -37,6 +39,8 @@ import com.themikeste1.wabbits.core.Constants;
  */
 @Mod(Constants.MOD_ID)
 public class Wabbits {
+    //Logging
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public Wabbits() {
         // Register the setup method for modloading
@@ -55,13 +59,13 @@ public class Wabbits {
 
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
-        Constants.LOGGER.info("HELLO FROM " + Constants.MOD_NAME + " " + Constants.VERSION);
+        LOGGER.info("HELLO FROM " + Constants.MOD_NAME + " " + Constants.VERSION);
     } //setup()
 
     @OnlyIn(Dist.CLIENT)
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
-        Constants.LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
+        LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
 
         //Register IBlockColors
         registerBlockColors();
@@ -86,12 +90,12 @@ public class Wabbits {
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         // some example code to dispatch IMC to another mod
-        InterModComms.sendTo(Constants.MOD_ID, "helloworld", () -> { Constants.LOGGER.info("Hello world from the MDK"); return "Hello world";});
+        InterModComms.sendTo(Constants.MOD_ID, "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
     } //enqueueIMC()
 
     private void processIMC(final InterModProcessEvent event) {
         // some example code to receive and process InterModComms from other mods
-        Constants.LOGGER.info("Got IMC {}", event.getIMCStream().
+        LOGGER.info("Got IMC {}", event.getIMCStream().
                 map(m->m.getMessageSupplier().get()).
                 collect(Collectors.toList()));
     } //processIMC()
