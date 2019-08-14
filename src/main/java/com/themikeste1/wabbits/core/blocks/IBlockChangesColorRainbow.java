@@ -4,8 +4,6 @@ package com.themikeste1.wabbits.core.blocks;
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
 
 //Minecraft
-import com.themikeste1.wabbits.core.blockitems.IBlockItemChangesColorRainbow;
-import com.themikeste1.wabbits.core.tileentities.ITileEntityChangesColorsRainbow;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -20,10 +18,10 @@ import javax.annotation.Nullable;
  * Helps set up a {@link Block} to change color according to
  * {@link BlockStateProperties}.RAINBOW_COLORS.
  *
- * Should be used with {@link ITileEntityChangesColorsRainbow}.
+ * Should be used with {@link com.themikeste1.wabbits.core.tileentities.ITileEntityChangesColorsRainbow}.
  *
- * @see IBlockItemChangesColorRainbow
- * @see ITileEntityChangesColorsRainbow
+ * @see com.themikeste1.wabbits.core.blockitems.IBlockItemChangesColorRainbow
+ * @see com.themikeste1.wabbits.core.tileentities.ITileEntityChangesColorsRainbow
  */
 public interface IBlockChangesColorRainbow extends IBlockColor {
 
@@ -45,7 +43,8 @@ public interface IBlockChangesColorRainbow extends IBlockColor {
 
     /**
      * Adds rainbow colors to a {@link BlockState} to a
-     * {@link StateContainer.Builder}. Should be called in #fillStateContainer.
+     * {@link StateContainer.Builder}.
+     * Should be called in {@link Block}#fillStateContainer.
      *
      * @param builder The {@link StateContainer.Builder}
      */
