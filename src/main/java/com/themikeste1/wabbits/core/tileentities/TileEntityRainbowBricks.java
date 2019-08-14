@@ -6,7 +6,6 @@ import com.themikeste1.wabbits.atlas.TileEntities;
 
 //Minecraft
 import net.minecraft.block.BlockState;
-import net.minecraft.item.DyeColor;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;

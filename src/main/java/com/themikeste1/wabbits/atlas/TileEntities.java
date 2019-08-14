@@ -1,7 +1,9 @@
 package com.themikeste1.wabbits.atlas;
 
-//META
+//FalconAthenaeum
 import com.themikeste1.falconathenaeum.core.blocks.IModHasTileEntity;
+
+//META
 import com.themikeste1.wabbits.core.Constants;
 import com.themikeste1.wabbits.core.tileentities.TileEntityRainbowBricks;
 
@@ -31,7 +33,7 @@ public class TileEntities {
     public static void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event) {
         LOGGER.debug("Wabbits: Registering TileEntities...");
         event.getRegistry().registerAll(
-                ((IModHasTileEntity) Blocks.rainbow_bricks).generateModTileEntity()
+                ((IModHasTileEntity) Blocks.rainbow_bricks).generateModTileEntityType()
         );
     }
 }

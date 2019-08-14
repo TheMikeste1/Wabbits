@@ -94,7 +94,7 @@ public class BlockRainbowBricks extends Block implements IBlockColor, IModHasBlo
     }
 
     @Override
-    public TileEntityType generateModTileEntity() {
+    public TileEntityType generateModTileEntityType() {
         return TileEntityType.Builder
                 .create(TileEntityRainbowBricks::new, this)
                 .build(null).setRegistryName(this.getRegistryName());
