@@ -1,16 +1,7 @@
 package com.themikeste1.wabbits;
 
 //META
-import com.themikeste1.wabbits.atlas.Blocks;
 import com.themikeste1.wabbits.core.Constants;
-
-//Minecraft
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraft.item.Item;
 
 //Forge
 import net.minecraftforge.api.distmarker.Dist;
@@ -68,25 +59,11 @@ public class Wabbits {
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
 
         //Register IBlockColors
-        registerBlockColors();
+        com.themikeste1.wabbits.atlas.BlockColors.registerColors();
         //Register IItemColors
-        registerItemColors();
+        com.themikeste1.wabbits.atlas.ItemColors.registerColors();
+        com.themikeste1.wabbits.atlas.BlockItemColors.registerColors();
     } //doClientStuff()
-
-    private void registerBlockColors() {
-        BlockColors blockColors = Minecraft.getInstance().getBlockColors();
-
-        blockColors.register(
-                (IBlockColor) Blocks.rainbow_bricks, Blocks.rainbow_bricks);
-    }
-
-    private void registerItemColors() {
-        ItemColors itemColors = Minecraft.getInstance().getItemColors();
-
-        itemColors.register(
-                (IItemColor) Item.BLOCK_TO_ITEM.get(Blocks.rainbow_bricks),
-                             Item.BLOCK_TO_ITEM.get(Blocks.rainbow_bricks));
-    }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         // some example code to dispatch IMC to another mod
