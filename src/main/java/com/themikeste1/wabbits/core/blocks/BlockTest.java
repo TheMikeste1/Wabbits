@@ -22,7 +22,7 @@ public class BlockTest extends Block implements IModBlock {
         setup();
     } //BlockTest()
 
-    protected void setup() {
+    private void setup() {
         setRegistryName(Constants.MOD_ID, "test_block");
     }
 
@@ -44,13 +44,13 @@ public class BlockTest extends Block implements IModBlock {
      * @see BlockItem
      */
     public class BlockItemTest extends BlockItem {
-        public BlockItemTest() {
+        BlockItemTest() {
             super(BlockTest.this,
                     new Item.Properties());
             setup();
         }
 
-        protected void setup() {
+        void setup() {
             ResourceLocation name = BlockTest.this.getRegistryName();
             assert name != null;
             setRegistryName(name);

@@ -2,6 +2,7 @@ package com.themikeste1.wabbits.core.blocks;
 
 //Java
 import javax.annotation.Nullable;
+import java.util.Random;
 
 //Minecraft
 import net.minecraft.block.Block;
@@ -23,9 +24,10 @@ import com.themikeste1.falconathenaeum.core.blocks.IModBlock;
 
 //Meta
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
+import com.themikeste1.wabbits.atlas.ItemGroups;
 import com.themikeste1.wabbits.core.Constants;
 
-import java.util.Random;
+
 
 /**
  *
@@ -42,7 +44,7 @@ public class BlockRainbowBricks extends Block implements IBlockColor, IModBlock 
         setup();
     }
 
-    protected void setup() {
+    private void setup() {
         setRegistryName(Constants.MOD_ID, "rainbow_bricks");
         this.setDefaultState(getDefaultState()
                 .with(BlockStateProperties.RAINBOW_COLORS, DyeColor.MAGENTA));
@@ -123,16 +125,16 @@ public class BlockRainbowBricks extends Block implements IBlockColor, IModBlock 
      * @see BlockItem
      */
     public class BlockItemRainbowBricks extends BlockItem implements IItemColor {
-        public BlockItemRainbowBricks() {
+        BlockItemRainbowBricks() {
             super(BlockRainbowBricks.this,
                     new Item.Properties()
-                    .group(ItemGroup.BUILDING_BLOCKS)
+                    .group(ItemGroups.MAIN_GROUP_WABBITS)
                     .rarity(Rarity.EPIC)
             );
             setup();
         }
 
-        protected void setup() {
+        void setup() {
             ResourceLocation name = BlockRainbowBricks.this.getRegistryName();
             assert name != null;
             setRegistryName(name);

@@ -2,5 +2,7 @@
   "block.wabbits.test_block": "Test Block",
   "block.wabbits.rainbow_bricks":  "Rainbow Bricks",
 
-  "item.wabbits.test_item": "Test Item"
+  "item.wabbits.test_item": "Test Item",
+
+  "itemGroup.wabbits": "Wabbits"
 }
