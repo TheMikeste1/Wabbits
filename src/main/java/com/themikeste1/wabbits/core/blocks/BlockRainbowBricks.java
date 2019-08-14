@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
  * @see TileEntityRainbowBricks
  * @see com.themikeste1.wabbits.atlas.Blocks
  */
-public class BlockRainbowBricks extends Block implements IBlockChangeColorRainbow, IModHasBlockItem, IModHasTileEntity {
+public class BlockRainbowBricks extends Block implements IBlockChangesColorRainbow, IModHasBlockItem, IModHasTileEntity {
 
     public BlockRainbowBricks() {
         super(Block.Properties

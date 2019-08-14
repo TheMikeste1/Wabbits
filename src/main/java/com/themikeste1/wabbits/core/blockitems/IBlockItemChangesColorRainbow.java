@@ -4,19 +4,22 @@ package com.themikeste1.wabbits.core.blockitems;
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
 
 //Minecraft
+import com.themikeste1.wabbits.core.blocks.IBlockChangesColorRainbow;
+import com.themikeste1.wabbits.core.tileentities.ITileEntityChangesColorsRainbow;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 
 /**
- * Helps set up a block to change color according to
+ * Helps set up a {@link BlockItem} to change color according to
  * {@link BlockStateProperties}.RAINBOW_COLORS.
  *
- * Should be used in conjunction with {@link com.themikeste1.wabbits.core.blocks.IBlockChangeColorRainbow}.
+ * Should be used in conjunction with {@link IBlockChangesColorRainbow}.
  *
- * @see com.themikeste1.wabbits.core.blocks.IBlockChangeColorRainbow
+ * @see IBlockChangesColorRainbow
+ * @see ITileEntityChangesColorsRainbow
  */
-public interface IBlockItemChangeColorRainbow extends IItemColor {
+public interface IBlockItemChangesColorRainbow extends IItemColor {
 
     /**
      * Returns an int which is multiplied to the color value of the pixels

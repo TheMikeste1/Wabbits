@@ -1,7 +1,6 @@
 package com.themikeste1.wabbits.core.blockitems;
 
 //Minecraft
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -9,7 +8,6 @@ import net.minecraft.item.Rarity;
 import net.minecraft.util.ResourceLocation;
 
 //META
-import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
 import com.themikeste1.wabbits.atlas.Blocks;
 import com.themikeste1.wabbits.atlas.ItemGroups;
 import com.themikeste1.wabbits.core.blocks.BlockRainbowBricks;
@@ -29,7 +27,7 @@ import com.themikeste1.wabbits.core.blocks.BlockRainbowBricks;
  * @see com.themikeste1.wabbits.core.tileentities.TileEntityRainbowBricks
  * @see com.themikeste1.wabbits.atlas.BlockItems
  */
-public class BlockItemRainbowBricks extends BlockItem implements IBlockItemChangeColorRainbow {
+public class BlockItemRainbowBricks extends BlockItem implements IBlockItemChangesColorRainbow {
     public BlockItemRainbowBricks() {
         super(Blocks.rainbow_bricks,
                 new Item.Properties()
