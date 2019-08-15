@@ -19,9 +19,8 @@ public class BlockColors {
     }
 
     private static void registerRainbowColors() {
-        blockColors.register(
-                new HandlerRainbowColor(), Blocks.rainbow_bricks);
+        blockColors.register(new HandlerRainbowColor(),
+                Blocks.rainbow_bricks
+        );
     }
-
-
 }

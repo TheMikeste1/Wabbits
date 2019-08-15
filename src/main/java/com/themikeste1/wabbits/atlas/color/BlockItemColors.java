@@ -20,8 +20,8 @@ public class BlockItemColors {
     }
 
     private static void registerRainbowColors() {
-        itemColors.register(
-                new HandlerRainbowColor(),
-                Item.BLOCK_TO_ITEM.get(Blocks.rainbow_bricks));
+        itemColors.register(new HandlerRainbowColor(),
+                Item.BLOCK_TO_ITEM.get(Blocks.rainbow_bricks)
+        );
     }
 }
