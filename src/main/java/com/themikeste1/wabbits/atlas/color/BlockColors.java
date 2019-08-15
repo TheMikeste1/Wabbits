@@ -1,9 +1,10 @@
-package com.themikeste1.wabbits.atlas;
+package com.themikeste1.wabbits.atlas.color;
 
 //META
 import com.themikeste1.wabbits.api.handlers.HandlerRainbowColor;
 
 //Minecraft
+import com.themikeste1.wabbits.atlas.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

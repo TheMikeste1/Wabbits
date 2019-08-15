@@ -1,4 +1,4 @@
-package com.themikeste1.wabbits.atlas;
+package com.themikeste1.wabbits.atlas.color;
 
 //Minecraft
 import net.minecraft.client.Minecraft;

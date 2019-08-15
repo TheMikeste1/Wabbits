@@ -1,6 +1,9 @@
 package com.themikeste1.wabbits;
 
 //META
+import com.themikeste1.wabbits.atlas.color.BlockColors;
+import com.themikeste1.wabbits.atlas.color.BlockItemColors;
+import com.themikeste1.wabbits.atlas.color.ItemColors;
 import com.themikeste1.wabbits.core.Constants;
 
 //Forge
@@ -59,10 +62,10 @@ public class Wabbits {
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
 
         //Register IBlockColors
-        com.themikeste1.wabbits.atlas.BlockColors.registerColors();
+        BlockColors.registerColors();
         //Register IItemColors
-        com.themikeste1.wabbits.atlas.ItemColors.registerColors();
-        com.themikeste1.wabbits.atlas.BlockItemColors.registerColors();
+        ItemColors.registerColors();
+        BlockItemColors.registerColors();
     } //doClientStuff()
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
