@@ -29,7 +29,8 @@ public class BlockItems {
         LOGGER.debug("Wabbits: Registering item blocks...");
         event.getRegistry().registerAll(
                 ((IModHasBlockItem) Blocks.test_block).generateModBlockItem(),
-                ((IModHasBlockItem) Blocks.rainbow_bricks).generateModBlockItem()
+                ((IModHasBlockItem) Blocks.rainbow_bricks).generateModBlockItem(),
+                ((IModHasBlockItem) Blocks.rainbow_chest).generateModBlockItem()
         );
     } //registerBlockItems()
 }

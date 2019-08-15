@@ -1,8 +1,11 @@
 {
   "block.wabbits.test_block": "Test Block",
   "block.wabbits.rainbow_bricks":  "Rainbow Bricks",
+  "block.wabbits.rainbow_chest": "Rainbow Chest",
 
   "item.wabbits.test_item": "Test Item",
 
-  "itemGroup.wabbits": "Wabbits"
+  "itemGroup.wabbits": "Wabbits",
+
+  "container.wabbits.rainbow_chest": "Rainbow Chest"
 }

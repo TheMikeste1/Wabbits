@@ -1,6 +1,7 @@
 package com.themikeste1.wabbits.atlas;
 
 //Minecraft
+import com.themikeste1.wabbits.core.blocks.BlockChestChangingRainbow;
 import net.minecraft.block.Block;
 
 //Forge
@@ -36,15 +37,16 @@ public class Blocks {
     public static final Block test_block = null;
     @ObjectHolder(Constants.MOD_ID + ":rainbow_bricks")
     public static final Block rainbow_bricks = null;
-    @ObjectHolder(Constants.MOD_ID + ":test_rainbow")
-    public static final Block test_rainbow = null;
+    @ObjectHolder(Constants.MOD_ID + ":rainbow_chest")
+    public static final Block rainbow_chest = null;
 
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event) {
         LOGGER.debug("Wabbits: Registering blocks...");
         event.getRegistry().registerAll(
                 new BlockTest(),
-                new BlockChangingRainbow("rainbow_bricks")
+                new BlockChangingRainbow("rainbow_bricks"),
+                new BlockChestChangingRainbow("rainbow_chest")
         );
     } //registerBlocks()
 } //class Blocks
