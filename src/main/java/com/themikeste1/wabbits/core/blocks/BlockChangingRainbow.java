@@ -2,13 +2,12 @@ package com.themikeste1.wabbits.core.blocks;
 
 //FalconAthenaeum
 import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
-import com.themikeste1.falconathenaeum.core.blocks.IModHasTileEntity;
 
 //META
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
-import com.themikeste1.wabbits.core.blockitems.BlockItemRainbowBricks;
+import com.themikeste1.wabbits.core.blockitems.BlockItemChangingRainbow;
 import com.themikeste1.wabbits.core.Constants;
-import com.themikeste1.wabbits.core.tileentities.TileEntityRainbowBricks;
+import com.themikeste1.wabbits.core.tileentities.TileEntityChangingRainbow;
 
 //Minecraft
 import net.minecraft.block.Block;
@@ -19,7 +18,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -30,22 +28,46 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see BlockItemRainbowBricks
- * @see TileEntityRainbowBricks
+ * @see BlockItemChangingRainbow
+ * @see TileEntityChangingRainbow
  * @see com.themikeste1.wabbits.atlas.Blocks
  */
-public class BlockRainbowBricks extends Block implements IBlockChangesColorRainbow, IModHasBlockItem, IModHasTileEntity {
+public class BlockChangingRainbow extends Block implements IBlockChangesColorRainbow, IModHasBlockItem {
 
-    public BlockRainbowBricks() {
+    private final int changeTimer;
+
+    public BlockChangingRainbow(String registryName) {
         super(Block.Properties
                 .create(Material.ROCK)
                 .hardnessAndResistance(1.5F, 6.0F)
         );
-        setup();
+        setup(registryName);
+        changeTimer = -1;
     }
 
-    private void setup() {
-        setRegistryName(Constants.MOD_ID, "rainbow_bricks");
+    public BlockChangingRainbow(String registryName, int changeTimer) {
+        super(Block.Properties
+                .create(Material.ROCK)
+                .hardnessAndResistance(1.5F, 6.0F)
+        );
+        setup(registryName);
+        this.changeTimer = changeTimer;
+    }
+
+    public BlockChangingRainbow(String registryName, Block.Properties properties) {
+        super(properties);
+        setup(registryName);
+        changeTimer = -1;
+    }
+
+    public BlockChangingRainbow(String registryName, int changeTimer, Block.Properties properties) {
+        super(properties);
+        setup(registryName);
+        this.changeTimer = changeTimer;
+    }
+
+    private void setup(String registryName) {
+         setRegistryName(Constants.MOD_ID, registryName);
         this.setDefaultState(getDefaultState()
                 .with(BlockStateProperties.RAINBOW_COLORS, DyeColor.MAGENTA));
     }
@@ -58,12 +80,12 @@ public class BlockRainbowBricks extends Block implements IBlockChangesColorRainb
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new TileEntityRainbowBricks();
+        return new TileEntityChangingRainbow(changeTimer);
     }
 
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        TileEntityRainbowBricks tile = (TileEntityRainbowBricks) worldIn.getTileEntity(pos);
+        TileEntityChangingRainbow tile = (TileEntityChangingRainbow) worldIn.getTileEntity(pos);
         if (tile != null && !tile.isRemoved() && tile.canChange()) {
             BlockState state = worldIn.getBlockState(pos);
             updateColor(state, worldIn, pos);
@@ -73,7 +95,7 @@ public class BlockRainbowBricks extends Block implements IBlockChangesColorRainb
 
     @Override
     public void onBlockClicked(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
-        TileEntityRainbowBricks tile = (TileEntityRainbowBricks) worldIn.getTileEntity(pos);
+        TileEntityChangingRainbow tile = (TileEntityChangingRainbow) worldIn.getTileEntity(pos);
         if (tile != null && !tile.isRemoved())
             updateColor(state, worldIn, pos);
     }
@@ -91,13 +113,6 @@ public class BlockRainbowBricks extends Block implements IBlockChangesColorRainb
      ****************************************************************************/
     @Override
     public BlockItem generateModBlockItem() {
-        return new BlockItemRainbowBricks();
-    }
-
-    @Override
-    public TileEntityType generateModTileEntityType() {
-        return TileEntityType.Builder
-                .create(TileEntityRainbowBricks::new, this)
-                .build(null).setRegistryName(this.getRegistryName());
+        return new BlockItemChangingRainbow(this);
     }
 } //class BlockRainbowBricks

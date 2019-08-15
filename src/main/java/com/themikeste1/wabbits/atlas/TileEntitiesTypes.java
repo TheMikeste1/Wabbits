@@ -1,13 +1,13 @@
 package com.themikeste1.wabbits.atlas;
 
 //FalconAthenaeum
-import com.themikeste1.falconathenaeum.core.blocks.IModHasTileEntity;
 
 //META
 import com.themikeste1.wabbits.core.Constants;
-import com.themikeste1.wabbits.core.tileentities.TileEntityRainbowBricks;
+import com.themikeste1.wabbits.core.tileentities.TileEntityChangingRainbow;
 
 //Minecraft
+import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityType;
 
 //Forge
@@ -22,18 +22,26 @@ import org.apache.logging.log4j.Logger;
 
 
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class TileEntities {
+public class TileEntitiesTypes {
     //Logging
     private static final Logger LOGGER = LogManager.getLogger();
 
-    @ObjectHolder(Constants.MOD_ID + ":rainbow_bricks")
-    public static final TileEntityType<TileEntityRainbowBricks> rainbow_bricks = null;
+   @ObjectHolder(Constants.MOD_ID + ":changing_rainbow")
+    public static final TileEntityType<TileEntityChangingRainbow> changing_rainbow = null;
 
     @SubscribeEvent
     public static void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event) {
         LOGGER.debug("Wabbits: Registering TileEntities...");
         event.getRegistry().registerAll(
-                ((IModHasTileEntity) Blocks.rainbow_bricks).generateModTileEntityType()
+                TypeGenerator.generateRainbowTileEntityType(Blocks.rainbow_bricks)
         );
+    }
+
+    private static class TypeGenerator {
+        static TileEntityType generateRainbowTileEntityType(Block... blocks) {
+            return TileEntityType.Builder
+                    .create(TileEntityChangingRainbow::new, blocks)
+                    .build(null).setRegistryName("changing_rainbow");
+        }
     }
 }

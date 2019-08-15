@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
 //META
-import com.themikeste1.wabbits.core.blocks.BlockRainbowBricks;
+import com.themikeste1.wabbits.core.blocks.BlockChangingRainbow;
 import com.themikeste1.wabbits.core.blocks.BlockTest;
 import com.themikeste1.wabbits.core.Constants;
 
@@ -36,13 +36,15 @@ public class Blocks {
     public static final Block test_block = null;
     @ObjectHolder(Constants.MOD_ID + ":rainbow_bricks")
     public static final Block rainbow_bricks = null;
+    @ObjectHolder(Constants.MOD_ID + ":test_rainbow")
+    public static final Block test_rainbow = null;
 
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event) {
         LOGGER.debug("Wabbits: Registering blocks...");
         event.getRegistry().registerAll(
                 new BlockTest(),
-                new BlockRainbowBricks()
+                new BlockChangingRainbow("rainbow_bricks")
         );
     } //registerBlocks()
 } //class Blocks
