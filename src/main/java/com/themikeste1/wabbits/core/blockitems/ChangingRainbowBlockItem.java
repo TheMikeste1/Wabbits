@@ -27,8 +27,8 @@ import net.minecraft.util.ResourceLocation;
  * @see ChangingRainbowTileEntity
  * @see com.themikeste1.wabbits.atlas.BlockItems
  */
-public class BlockItemChangingRainbow extends BlockItem implements IBlockItemChangesColorRainbow {
-    public BlockItemChangingRainbow(Block block) {
+public class ChangingRainbowBlockItem extends BlockItem implements IChangesColorRainbowBlockItem {
+    public ChangingRainbowBlockItem(Block block) {
         super(block,
                 new Item.Properties()
                         .group(ItemGroups.MAIN_GROUP_WABBITS)

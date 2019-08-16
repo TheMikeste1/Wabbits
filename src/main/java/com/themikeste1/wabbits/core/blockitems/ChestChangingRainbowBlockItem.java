@@ -16,9 +16,9 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public class BlockItemChestChangingRainbow extends BlockItemChangingRainbow implements IBakedModel {
+public class ChestChangingRainbowBlockItem extends ChangingRainbowBlockItem implements IBakedModel {
 
-    public BlockItemChestChangingRainbow(Block block) {
+    public ChestChangingRainbowBlockItem(Block block) {
         super(block);
     }
 

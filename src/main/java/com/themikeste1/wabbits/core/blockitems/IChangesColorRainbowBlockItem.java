@@ -15,5 +15,5 @@ import net.minecraft.item.BlockItem;
  *
  * @see IChangesColorRainbowBlock
  */
-public interface IBlockItemChangesColorRainbow {
+public interface IChangesColorRainbowBlockItem {
 }
