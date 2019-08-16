@@ -22,6 +22,7 @@ public class BlockColors {
         blockColors.register(new HandlerRainbowColor(),
                 Blocks.rainbow_bricks,
                 Blocks.rainbow_glass,
+                Blocks.stained_rainbow_glass,
                 Blocks.rainbow_chest
         );
     }

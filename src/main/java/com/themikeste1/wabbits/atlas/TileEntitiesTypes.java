@@ -5,9 +5,9 @@ package com.themikeste1.wabbits.atlas;
 //META
 import com.themikeste1.wabbits.core.Constants;
 import com.themikeste1.wabbits.core.tileentities.ChangingRainbowTileEntity;
+import com.themikeste1.wabbits.core.tileentities.ChestChangingRainbowTileEntity;
 
 //Minecraft
-import com.themikeste1.wabbits.core.tileentities.ChestChangingRainbowTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityType;
 
@@ -20,6 +20,8 @@ import net.minecraftforge.registries.ObjectHolder;
 //Java
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import static com.themikeste1.wabbits.atlas.Blocks.*;
 
 
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -37,11 +39,12 @@ public class TileEntitiesTypes {
         LOGGER.debug("Wabbits: Registering TileEntities...");
         event.getRegistry().registerAll(
                 TypeGenerator.generateChangingRainbowTileEntityType(
-                        Blocks.rainbow_bricks,
-                        Blocks.rainbow_glass
+                        rainbow_bricks,
+                        rainbow_glass,
+                        stained_rainbow_glass
                 ),
                 TypeGenerator.generateChestChangingRainbowTileEntityType(
-                        Blocks.rainbow_chest
+                        rainbow_chest
                 )
         );
     }

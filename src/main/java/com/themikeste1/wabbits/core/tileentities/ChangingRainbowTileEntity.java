@@ -11,6 +11,12 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 
+
+//TODO: Find way to reduce ticks when not used for a while.
+// For example, create a counter, when counter reaches 100 ticks, time until
+// next tick increases. Resets when next used. Use  Block#tickrate()?
+// Also, look at how crops to their ticking.
+
 /**
  *
  * @see ChangingRainbowBlock
