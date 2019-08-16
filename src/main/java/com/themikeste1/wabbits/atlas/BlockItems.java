@@ -30,6 +30,7 @@ public class BlockItems {
         event.getRegistry().registerAll(
                 ((IModHasBlockItem) Blocks.test_block).generateModBlockItem(),
                 ((IModHasBlockItem) Blocks.rainbow_bricks).generateModBlockItem(),
+                ((IModHasBlockItem) Blocks.rainbow_glass).generateModBlockItem(),
                 ((IModHasBlockItem) Blocks.rainbow_chest).generateModBlockItem()
         );
     } //registerBlockItems()

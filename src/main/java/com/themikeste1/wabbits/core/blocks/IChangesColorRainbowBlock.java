@@ -4,6 +4,7 @@ package com.themikeste1.wabbits.core.blocks;
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
 
 //Minecraft
+import com.themikeste1.wabbits.core.blockitems.IChangesColorRainbowBlockItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.StateContainer;
@@ -14,7 +15,7 @@ import net.minecraft.world.World;
  * Helps set up a {@link Block} to change color according to
  * {@link BlockStateProperties}.RAINBOW_COLORS.
  *
- * @see com.themikeste1.wabbits.core.blockitems.IBlockItemChangesColorRainbow
+ * @see IChangesColorRainbowBlockItem
  */
 public interface IChangesColorRainbowBlock {
     /**

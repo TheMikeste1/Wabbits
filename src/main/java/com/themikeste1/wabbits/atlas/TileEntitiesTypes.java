@@ -36,8 +36,13 @@ public class TileEntitiesTypes {
     public static void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event) {
         LOGGER.debug("Wabbits: Registering TileEntities...");
         event.getRegistry().registerAll(
-                TypeGenerator.generateChangingRainbowTileEntityType(Blocks.rainbow_bricks),
-                TypeGenerator.generateChestChangingRainbowTileEntityType(Blocks.rainbow_chest)
+                TypeGenerator.generateChangingRainbowTileEntityType(
+                        Blocks.rainbow_bricks,
+                        Blocks.rainbow_glass
+                ),
+                TypeGenerator.generateChestChangingRainbowTileEntityType(
+                        Blocks.rainbow_chest
+                )
         );
     }
 

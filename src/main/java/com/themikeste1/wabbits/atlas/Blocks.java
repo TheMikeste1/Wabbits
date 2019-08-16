@@ -1,8 +1,11 @@
 package com.themikeste1.wabbits.atlas;
 
-//Minecraft
 import com.themikeste1.wabbits.core.blocks.ChestChangingRainbowBlock;
+import com.themikeste1.wabbits.core.blocks.GlassChangingRainbowBlock;
+
+//Minecraft
 import net.minecraft.block.Block;
+import net.minecraft.util.BlockRenderLayer;
 
 //Forge
 import net.minecraftforge.event.RegistryEvent;
@@ -37,6 +40,8 @@ public class Blocks {
     public static final Block test_block = null;
     @ObjectHolder(Constants.MOD_ID + ":rainbow_bricks")
     public static final Block rainbow_bricks = null;
+    @ObjectHolder(Constants.MOD_ID + ":rainbow_glass")
+    public static final Block rainbow_glass = null;
     @ObjectHolder(Constants.MOD_ID + ":rainbow_chest")
     public static final Block rainbow_chest = null;
 
@@ -46,6 +51,7 @@ public class Blocks {
         event.getRegistry().registerAll(
                 new TestBlock(),
                 new ChangingRainbowBlock("rainbow_bricks"),
+                new GlassChangingRainbowBlock("rainbow_glass", BlockRenderLayer.TRANSLUCENT),
                 new ChestChangingRainbowBlock("rainbow_chest")
         );
     } //registerBlocks()

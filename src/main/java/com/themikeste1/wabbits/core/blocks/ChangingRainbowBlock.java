@@ -5,7 +5,7 @@ import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 
 //META
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
-import com.themikeste1.wabbits.core.blockitems.BlockItemChangingRainbow;
+import com.themikeste1.wabbits.core.blockitems.ChangingRainbowBlockItem;
 import com.themikeste1.wabbits.core.Constants;
 import com.themikeste1.wabbits.core.tileentities.ChangingRainbowTileEntity;
 
@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see BlockItemChangingRainbow
+ * @see ChangingRainbowBlockItem
  * @see ChangingRainbowTileEntity
  * @see com.themikeste1.wabbits.atlas.Blocks
  */
@@ -88,7 +88,7 @@ public class ChangingRainbowBlock extends Block implements IChangesColorRainbowB
         ChangingRainbowTileEntity tile = (ChangingRainbowTileEntity) worldIn.getTileEntity(pos);
         if (tile != null && !tile.isRemoved() && tile.canChange()) {
             BlockState state = tile.getBlockState();
-            updateColor(state, worldIn, pos);
+            state = updateColor(state, worldIn, pos);
             tile.resetCounter();
         }
     }
@@ -97,7 +97,7 @@ public class ChangingRainbowBlock extends Block implements IChangesColorRainbowB
     public void onBlockClicked(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
         ChangingRainbowTileEntity tile = (ChangingRainbowTileEntity) worldIn.getTileEntity(pos);
         if (tile != null && !tile.isRemoved())
-            updateColor(state, worldIn, pos);
+            state = updateColor(state, worldIn, pos);
     }
 
     /* ***************************************************************************
@@ -113,6 +113,6 @@ public class ChangingRainbowBlock extends Block implements IChangesColorRainbowB
      ****************************************************************************/
     @Override
     public BlockItem generateModBlockItem() {
-        return new BlockItemChangingRainbow(this);
+        return new ChangingRainbowBlockItem(this);
     }
 } //class BlockRainbowBricks

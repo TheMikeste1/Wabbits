@@ -4,7 +4,7 @@ package com.themikeste1.wabbits.core.blocks;
 import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 
 //META
-import com.themikeste1.wabbits.core.blockitems.BlockItemTest;
+import com.themikeste1.wabbits.core.blockitems.TestBlockItem;
 import com.themikeste1.wabbits.core.Constants;
 
 //Minecraft
@@ -29,6 +29,6 @@ public class TestBlock extends Block implements IModHasBlockItem {
 
     @Override
     public BlockItem generateModBlockItem() {
-        return new BlockItemTest();
+        return new TestBlockItem();
     }
 } //class BlockTest

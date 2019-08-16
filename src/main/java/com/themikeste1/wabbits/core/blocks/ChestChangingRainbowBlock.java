@@ -4,7 +4,7 @@ import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
 import com.themikeste1.wabbits.core.Constants;
-import com.themikeste1.wabbits.core.blockitems.BlockItemChestChangingRainbow;
+import com.themikeste1.wabbits.core.blockitems.ChestChangingRainbowBlockItem;
 import com.themikeste1.wabbits.core.tileentities.ChestChangingRainbowTileEntity;
 
 import net.minecraft.block.Block;
@@ -181,7 +181,7 @@ public class ChestChangingRainbowBlock extends ChestBlock implements IModHasBloc
      ****************************************************************************/
     @Override
     public BlockItem generateModBlockItem() {
-        return new BlockItemChestChangingRainbow(this);
+        return new ChestChangingRainbowBlockItem(this);
     }
 
 }
