@@ -4,7 +4,7 @@ import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
 import com.themikeste1.wabbits.core.Constants;
-import com.themikeste1.wabbits.core.blockitems.BlockItemChangingRainbow;
+import com.themikeste1.wabbits.core.blockitems.BlockItemChestChangingRainbow;
 import com.themikeste1.wabbits.core.tileentities.TileEntityChestChangingRainbow;
 
 import net.minecraft.block.Block;
@@ -70,7 +70,7 @@ public class BlockChestChangingRainbow extends ChestBlock implements IModHasBloc
     }
 
 
-    
+
     @Override
     public boolean hasTileEntity(BlockState state) {
         return true;
@@ -179,10 +179,9 @@ public class BlockChestChangingRainbow extends ChestBlock implements IModHasBloc
     /* ***************************************************************************
      * FalconAthenaeum
      ****************************************************************************/
-
     @Override
     public BlockItem generateModBlockItem() {
-        return new BlockItemChangingRainbow(this);
+        return new BlockItemChestChangingRainbow(this);
     }
 
 }
