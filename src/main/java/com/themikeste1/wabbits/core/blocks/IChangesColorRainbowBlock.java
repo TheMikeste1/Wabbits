@@ -16,7 +16,7 @@ import net.minecraft.world.World;
  *
  * @see com.themikeste1.wabbits.core.blockitems.IBlockItemChangesColorRainbow
  */
-public interface IBlockChangesColorRainbow  {
+public interface IChangesColorRainbowBlock {
     /**
      * Adds rainbow colors to a {@link BlockState} to a
      * {@link StateContainer.Builder}.

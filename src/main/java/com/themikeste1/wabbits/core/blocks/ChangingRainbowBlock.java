@@ -7,7 +7,7 @@ import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
 import com.themikeste1.wabbits.core.blockitems.BlockItemChangingRainbow;
 import com.themikeste1.wabbits.core.Constants;
-import com.themikeste1.wabbits.core.tileentities.TileEntityChangingRainbow;
+import com.themikeste1.wabbits.core.tileentities.ChangingRainbowTileEntity;
 
 //Minecraft
 import net.minecraft.block.Block;
@@ -29,14 +29,14 @@ import javax.annotation.Nullable;
 /**
  *
  * @see BlockItemChangingRainbow
- * @see TileEntityChangingRainbow
+ * @see ChangingRainbowTileEntity
  * @see com.themikeste1.wabbits.atlas.Blocks
  */
-public class BlockChangingRainbow extends Block implements IBlockChangesColorRainbow, IModHasBlockItem {
+public class ChangingRainbowBlock extends Block implements IChangesColorRainbowBlock, IModHasBlockItem {
 
     private final int changeTimer;
 
-    public BlockChangingRainbow(String registryName) {
+    public ChangingRainbowBlock(String registryName) {
         super(Block.Properties
                 .create(Material.ROCK)
                 .hardnessAndResistance(1.5F, 6.0F)
@@ -45,7 +45,7 @@ public class BlockChangingRainbow extends Block implements IBlockChangesColorRai
         changeTimer = -1;
     }
 
-    public BlockChangingRainbow(String registryName, int changeTimer) {
+    public ChangingRainbowBlock(String registryName, int changeTimer) {
         super(Block.Properties
                 .create(Material.ROCK)
                 .hardnessAndResistance(1.5F, 6.0F)
@@ -54,13 +54,13 @@ public class BlockChangingRainbow extends Block implements IBlockChangesColorRai
         this.changeTimer = changeTimer;
     }
 
-    public BlockChangingRainbow(String registryName, Block.Properties properties) {
+    public ChangingRainbowBlock(String registryName, Block.Properties properties) {
         super(properties);
         setup(registryName);
         changeTimer = -1;
     }
 
-    public BlockChangingRainbow(String registryName, int changeTimer, Block.Properties properties) {
+    public ChangingRainbowBlock(String registryName, int changeTimer, Block.Properties properties) {
         super(properties);
         setup(registryName);
         this.changeTimer = changeTimer;
@@ -80,12 +80,12 @@ public class BlockChangingRainbow extends Block implements IBlockChangesColorRai
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new TileEntityChangingRainbow(changeTimer);
+        return new ChangingRainbowTileEntity(changeTimer);
     }
 
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        TileEntityChangingRainbow tile = (TileEntityChangingRainbow) worldIn.getTileEntity(pos);
+        ChangingRainbowTileEntity tile = (ChangingRainbowTileEntity) worldIn.getTileEntity(pos);
         if (tile != null && !tile.isRemoved() && tile.canChange()) {
             BlockState state = tile.getBlockState();
             updateColor(state, worldIn, pos);
@@ -95,7 +95,7 @@ public class BlockChangingRainbow extends Block implements IBlockChangesColorRai
 
     @Override
     public void onBlockClicked(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
-        TileEntityChangingRainbow tile = (TileEntityChangingRainbow) worldIn.getTileEntity(pos);
+        ChangingRainbowTileEntity tile = (ChangingRainbowTileEntity) worldIn.getTileEntity(pos);
         if (tile != null && !tile.isRemoved())
             updateColor(state, worldIn, pos);
     }

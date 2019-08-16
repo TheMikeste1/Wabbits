@@ -5,26 +5,26 @@ import com.themikeste1.wabbits.atlas.TileEntitiesTypes;
 
 //Minecraft
 import com.themikeste1.wabbits.core.blockitems.BlockItemChangingRainbow;
-import com.themikeste1.wabbits.core.blocks.BlockChangingRainbow;
+import com.themikeste1.wabbits.core.blocks.ChangingRainbowBlock;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 /**
  *
- * @see BlockChangingRainbow
+ * @see ChangingRainbowBlock
  * @see BlockItemChangingRainbow
  * @see com.themikeste1.wabbits.atlas.Blocks
  */
-public class TileEntityChangingRainbow extends TileEntity implements ITickableTileEntity {
+public class ChangingRainbowTileEntity extends TileEntity implements ITickableTileEntity {
     private int colorChangeCounter = 0;
     private final int counterStart;
 
-    public TileEntityChangingRainbow() {
+    public ChangingRainbowTileEntity() {
         super(TileEntitiesTypes.changing_rainbow);
         counterStart = 20;
     }
 
-    public TileEntityChangingRainbow(int counterStart) {
+    public ChangingRainbowTileEntity(int counterStart) {
         super(TileEntitiesTypes.changing_rainbow);
 
         if (counterStart >= 0)

@@ -2,7 +2,7 @@ package com.themikeste1.wabbits.atlas;
 
 //META
 import com.themikeste1.wabbits.core.Constants;
-import com.themikeste1.wabbits.core.items.ItemTest;
+import com.themikeste1.wabbits.core.items.TestItem;
 
 //Minecraft
 import net.minecraft.item.Item;
@@ -38,7 +38,7 @@ public class Items {
     public static void registerItems(final RegistryEvent.Register<Item> event) {
         LOGGER.debug("Wabbits: Registering items...");
         event.getRegistry().registerAll(
-                new ItemTest()
+                new TestItem()
         );
     } //registerItems()
 } //class Items

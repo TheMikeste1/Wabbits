@@ -1,7 +1,7 @@
 package com.themikeste1.wabbits.atlas;
 
 //Minecraft
-import com.themikeste1.wabbits.core.blocks.BlockChestChangingRainbow;
+import com.themikeste1.wabbits.core.blocks.ChestChangingRainbowBlock;
 import net.minecraft.block.Block;
 
 //Forge
@@ -11,8 +11,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
 //META
-import com.themikeste1.wabbits.core.blocks.BlockChangingRainbow;
-import com.themikeste1.wabbits.core.blocks.BlockTest;
+import com.themikeste1.wabbits.core.blocks.ChangingRainbowBlock;
+import com.themikeste1.wabbits.core.blocks.TestBlock;
 import com.themikeste1.wabbits.core.Constants;
 
 //Java
@@ -44,9 +44,9 @@ public class Blocks {
     public static void registerBlocks(final RegistryEvent.Register<Block> event) {
         LOGGER.debug("Wabbits: Registering blocks...");
         event.getRegistry().registerAll(
-                new BlockTest(),
-                new BlockChangingRainbow("rainbow_bricks"),
-                new BlockChestChangingRainbow("rainbow_chest")
+                new TestBlock(),
+                new ChangingRainbowBlock("rainbow_bricks"),
+                new ChestChangingRainbowBlock("rainbow_chest")
         );
     } //registerBlocks()
 } //class Blocks

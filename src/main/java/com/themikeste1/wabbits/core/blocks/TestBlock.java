@@ -16,9 +16,9 @@ import net.minecraft.item.BlockItem;
 
 
 
-public class BlockTest extends Block implements IModHasBlockItem {
+public class TestBlock extends Block implements IModHasBlockItem {
 
-    public BlockTest() {
+    public TestBlock() {
         super(Block.Properties.create(Material.ROCK, MaterialColor.STONE));
         setup();
     } //BlockTest()

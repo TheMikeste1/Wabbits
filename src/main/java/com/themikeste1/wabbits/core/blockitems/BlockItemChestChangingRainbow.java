@@ -1,6 +1,6 @@
 package com.themikeste1.wabbits.core.blockitems;
 
-import com.themikeste1.wabbits.core.tileentities.TileEntityChestChangingRainbow;
+import com.themikeste1.wabbits.core.tileentities.ChestChangingRainbowTileEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,7 +23,7 @@ public class BlockItemChestChangingRainbow extends BlockItemChangingRainbow impl
     }
 
     public void renderByItem(ItemStack itemStackIn) {
-        TileEntityRendererDispatcher.instance.renderAsItem(new TileEntityChestChangingRainbow());
+        TileEntityRendererDispatcher.instance.renderAsItem(new ChestChangingRainbowTileEntity());
     }
 
     @Override

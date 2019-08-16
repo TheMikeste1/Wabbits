@@ -23,7 +23,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class RendererTileEntityChestChangingRainbow extends ChestTileEntityRenderer {
+public class RendererChestChangingRainbowTileEntity extends ChestTileEntityRenderer {
     private static final String TEXTURE_RAINBOW = "wabbits:textures/entity/rainbowchest/rainbow";
     private static final String TEXTURE_RAINBOW_DOUBLE = "wabbits:textures/entity/rainbowchest/rainbow_double";
 

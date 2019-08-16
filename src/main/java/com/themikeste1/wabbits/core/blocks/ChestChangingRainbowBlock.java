@@ -5,7 +5,7 @@ import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
 import com.themikeste1.wabbits.core.Constants;
 import com.themikeste1.wabbits.core.blockitems.BlockItemChestChangingRainbow;
-import com.themikeste1.wabbits.core.tileentities.TileEntityChestChangingRainbow;
+import com.themikeste1.wabbits.core.tileentities.ChestChangingRainbowTileEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -29,10 +29,10 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 
-public class BlockChestChangingRainbow extends ChestBlock implements IModHasBlockItem, IBlockChangesColorRainbow {
+public class ChestChangingRainbowBlock extends ChestBlock implements IModHasBlockItem, IChangesColorRainbowBlock {
     private final int changeTimer;
 
-    public BlockChestChangingRainbow(String registryName) {
+    public ChestChangingRainbowBlock(String registryName) {
         super(Block.Properties
                 .create(Material.ROCK)
                 .hardnessAndResistance(1.5F, 6.0F)
@@ -42,7 +42,7 @@ public class BlockChestChangingRainbow extends ChestBlock implements IModHasBloc
         changeTimer = -1;
     }
 
-    public BlockChestChangingRainbow(String registryName, int changeTimer) {
+    public ChestChangingRainbowBlock(String registryName, int changeTimer) {
         super(Block.Properties
                 .create(Material.ROCK)
                 .hardnessAndResistance(1.5F, 6.0F)
@@ -51,13 +51,13 @@ public class BlockChestChangingRainbow extends ChestBlock implements IModHasBloc
         this.changeTimer = changeTimer;
     }
 
-    public BlockChestChangingRainbow(String registryName, Block.Properties properties) {
+    public ChestChangingRainbowBlock(String registryName, Block.Properties properties) {
         super(properties);
         setup(registryName);
         changeTimer = -1;
     }
 
-    public BlockChestChangingRainbow(String registryName, int changeTimer, Block.Properties properties) {
+    public ChestChangingRainbowBlock(String registryName, int changeTimer, Block.Properties properties) {
         super(properties);
         setup(registryName);
         this.changeTimer = changeTimer;
@@ -79,14 +79,14 @@ public class BlockChestChangingRainbow extends ChestBlock implements IModHasBloc
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new TileEntityChestChangingRainbow(changeTimer);
+        return new ChestChangingRainbowTileEntity(changeTimer);
     }
 
 
 
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        TileEntityChestChangingRainbow tile = (TileEntityChestChangingRainbow) worldIn.getTileEntity(pos);
+        ChestChangingRainbowTileEntity tile = (ChestChangingRainbowTileEntity) worldIn.getTileEntity(pos);
         if (tile != null && !tile.isRemoved() && tile.canChange()) {
             BlockState state = worldIn.getBlockState(pos);
             state = updateColor(state, worldIn, pos);
@@ -97,7 +97,7 @@ public class BlockChestChangingRainbow extends ChestBlock implements IModHasBloc
 
     @Override
     public void onBlockClicked(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
-        TileEntityChestChangingRainbow tile = (TileEntityChestChangingRainbow) worldIn.getTileEntity(pos);
+        ChestChangingRainbowTileEntity tile = (ChestChangingRainbowTileEntity) worldIn.getTileEntity(pos);
         if (tile != null && !tile.isRemoved()) {
             state = updateColor(state, worldIn, pos);
             updatePartner(state, worldIn, pos, BlockStateProperties.RAINBOW_COLORS);
@@ -164,7 +164,7 @@ public class BlockChestChangingRainbow extends ChestBlock implements IModHasBloc
                             )
                     );
             assert otherChest != null;
-            assert otherChest instanceof TileEntityChestChangingRainbow;
+            assert otherChest instanceof ChestChangingRainbowTileEntity;
 
             state = state.with(BlockStateProperties.RAINBOW_COLORS,
                     otherChest.getBlockState()

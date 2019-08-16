@@ -4,10 +4,10 @@ package com.themikeste1.wabbits.atlas;
 
 //META
 import com.themikeste1.wabbits.core.Constants;
-import com.themikeste1.wabbits.core.tileentities.TileEntityChangingRainbow;
+import com.themikeste1.wabbits.core.tileentities.ChangingRainbowTileEntity;
 
 //Minecraft
-import com.themikeste1.wabbits.core.tileentities.TileEntityChestChangingRainbow;
+import com.themikeste1.wabbits.core.tileentities.ChestChangingRainbowTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityType;
 
@@ -28,9 +28,9 @@ public class TileEntitiesTypes {
     private static final Logger LOGGER = LogManager.getLogger();
 
    @ObjectHolder(Constants.MOD_ID + ":changing_rainbow")
-    public static final TileEntityType<TileEntityChangingRainbow> changing_rainbow = null;
+    public static final TileEntityType<ChangingRainbowTileEntity> changing_rainbow = null;
     @ObjectHolder(Constants.MOD_ID + ":chest_changing_rainbow")
-    public static final TileEntityType<TileEntityChangingRainbow> chest_changing_rainbow = null;
+    public static final TileEntityType<ChangingRainbowTileEntity> chest_changing_rainbow = null;
 
     @SubscribeEvent
     public static void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event) {
@@ -44,13 +44,13 @@ public class TileEntitiesTypes {
     private static class TypeGenerator {
         static TileEntityType generateChangingRainbowTileEntityType(Block... blocks) {
             return TileEntityType.Builder
-                    .create(TileEntityChangingRainbow::new, blocks)
+                    .create(ChangingRainbowTileEntity::new, blocks)
                     .build(null).setRegistryName("changing_rainbow");
         }
 
         static TileEntityType generateChestChangingRainbowTileEntityType(Block... blocks) {
             return TileEntityType.Builder
-                    .create(TileEntityChestChangingRainbow::new, blocks)
+                    .create(ChestChangingRainbowTileEntity::new, blocks)
                     .build(null).setRegistryName("chest_changing_rainbow");
         }
     }

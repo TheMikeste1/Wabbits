@@ -4,6 +4,8 @@ package com.themikeste1.wabbits.core.blockitems;
 import com.themikeste1.wabbits.atlas.ItemGroups;
 
 //Minecraft
+import com.themikeste1.wabbits.core.blocks.ChangingRainbowBlock;
+import com.themikeste1.wabbits.core.tileentities.ChangingRainbowTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -12,7 +14,7 @@ import net.minecraft.item.Rarity;
 import net.minecraft.util.ResourceLocation;
 
 /**
- * Manages the {@link net.minecraft.item.BlockItem} of {@link com.themikeste1.wabbits.core.blocks.BlockChangingRainbow}.
+ * Manages the {@link net.minecraft.item.BlockItem} of {@link ChangingRainbowBlock}.
  * All properties of the item can be set in the constructor. This could be
  * done as a function, but making a class allows adding custom functionality
  * to the {@link net.minecraft.item.BlockItem}
@@ -21,8 +23,8 @@ import net.minecraft.util.ResourceLocation;
  * @version 1.0
  * @since 0.0.0.0
  * @author TheMikeste1
- * @see com.themikeste1.wabbits.core.blocks.BlockChangingRainbow
- * @see com.themikeste1.wabbits.core.tileentities.TileEntityChangingRainbow
+ * @see ChangingRainbowBlock
+ * @see ChangingRainbowTileEntity
  * @see com.themikeste1.wabbits.atlas.BlockItems
  */
 public class BlockItemChangingRainbow extends BlockItem implements IBlockItemChangesColorRainbow {

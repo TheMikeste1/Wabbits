@@ -6,16 +6,16 @@ import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class TileEntityChestChangingRainbow extends ChestTileEntity{
+public class ChestChangingRainbowTileEntity extends ChestTileEntity{
     private int colorChangeCounter = 0;
     private final int counterStart;
 
-    public TileEntityChestChangingRainbow() {
+    public ChestChangingRainbowTileEntity() {
         super(TileEntitiesTypes.chest_changing_rainbow);
         counterStart = 20;
     }
 
-    public TileEntityChestChangingRainbow(int counterStart) {
+    public ChestChangingRainbowTileEntity(int counterStart) {
         super(TileEntitiesTypes.chest_changing_rainbow);
 
         if (counterStart >= 0)

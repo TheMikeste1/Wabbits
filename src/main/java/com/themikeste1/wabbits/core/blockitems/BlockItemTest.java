@@ -2,7 +2,7 @@ package com.themikeste1.wabbits.core.blockitems;
 
 //META
 import com.themikeste1.wabbits.atlas.Blocks;
-import com.themikeste1.wabbits.core.blocks.BlockTest;
+import com.themikeste1.wabbits.core.blocks.TestBlock;
 
 //Minecraft
 import net.minecraft.item.BlockItem;
@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 
 
 /**
- * Manages the {@link net.minecraft.item.BlockItem} of {@link BlockTest}. All properties of
+ * Manages the {@link net.minecraft.item.BlockItem} of {@link TestBlock}. All properties of
  * the item can be set in the constructor. This could be done as a
  * function, but making a class allows adding custom functionality to the
  * {@link net.minecraft.item.BlockItem} (e.g. making it explode after being held for too long).
@@ -19,7 +19,7 @@ import net.minecraft.util.ResourceLocation;
  * @version 1.0
  * @since 0.0.0.0
  * @author TheMikeste1
- * @see BlockTest
+ * @see TestBlock
  * @see BlockItem
  */
 public class BlockItemTest extends BlockItem {
