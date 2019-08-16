@@ -2,10 +2,10 @@ package com.themikeste1.wabbits.core.blockitems;
 
 //META
 import com.themikeste1.wabbits.atlas.ItemGroups;
-
-//Minecraft
 import com.themikeste1.wabbits.core.blocks.ChangingRainbowBlock;
 import com.themikeste1.wabbits.core.tileentities.ChangingRainbowTileEntity;
+
+//Minecraft
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;

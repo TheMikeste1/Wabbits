@@ -2,12 +2,14 @@ package com.themikeste1.wabbits.atlas;
 
 //META
 import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.core.items.GenericItem;
 import com.themikeste1.wabbits.core.items.TestItem;
 
 //Minecraft
 import net.minecraft.item.Item;
 
 //Forge
+import net.minecraft.item.Rarity;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -38,7 +40,10 @@ public class Items {
     public static void registerItems(final RegistryEvent.Register<Item> event) {
         LOGGER.debug("Wabbits: Registering items...");
         event.getRegistry().registerAll(
-                new TestItem()
+                new TestItem(),
+                new GenericItem("rainbow_shard", true, new Item.Properties()
+                        .rarity(Rarity.EPIC)
+                )
         );
     } //registerItems()
 } //class Items

@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class GlassChangingRainbowBlock extends AbstractGlassBlock implements IChangesColorRainbowBlock, IModHasBlockItem {
+public class GlassChangingRainbowBlock extends AbstractGlassBlock implements IChangesColorRainbowBlock, IModHasBlockItem, IBeaconBeamColorProvider {
 
     private int changeTimer;
     private BlockRenderLayer renderLayer;
@@ -87,6 +87,8 @@ public class GlassChangingRainbowBlock extends AbstractGlassBlock implements ICh
 
         this.changeTimer = changeTimer;
         this.renderLayer = renderLayer;
+
+        currentColor = DyeColor.MAGENTA;
     }
 
     public BlockRenderLayer getRenderLayer() {
@@ -146,5 +148,10 @@ public class GlassChangingRainbowBlock extends AbstractGlassBlock implements ICh
     @Override
     public BlockItem generateModBlockItem() {
         return new ChangingRainbowBlockItem(this);
+    }
+
+    @Override
+    public DyeColor getColor() {
+        return currentColor;
     }
 }

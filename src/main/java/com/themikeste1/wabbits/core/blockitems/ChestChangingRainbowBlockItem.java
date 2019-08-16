@@ -20,6 +20,7 @@ public class ChestChangingRainbowBlockItem extends ChangingRainbowBlockItem impl
 
     public ChestChangingRainbowBlockItem(Block block) {
         super(block);
+        //properties.setTEISR()
     }
 
     public void renderByItem(ItemStack itemStackIn) {
