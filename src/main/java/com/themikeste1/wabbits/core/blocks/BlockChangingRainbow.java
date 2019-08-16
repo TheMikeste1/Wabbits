@@ -87,7 +87,7 @@ public class BlockChangingRainbow extends Block implements IBlockChangesColorRai
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
         TileEntityChangingRainbow tile = (TileEntityChangingRainbow) worldIn.getTileEntity(pos);
         if (tile != null && !tile.isRemoved() && tile.canChange()) {
-            BlockState state = worldIn.getBlockState(pos);
+            BlockState state = tile.getBlockState();
             updateColor(state, worldIn, pos);
             tile.resetCounter();
         }

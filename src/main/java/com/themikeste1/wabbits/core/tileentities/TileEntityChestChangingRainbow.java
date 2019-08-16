@@ -1,6 +1,7 @@
 package com.themikeste1.wabbits.core.tileentities;
 
 import com.themikeste1.wabbits.atlas.TileEntitiesTypes;
+
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;

@@ -15,9 +15,13 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.DyeColor;
+import net.minecraft.state.IProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.ChestType;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -65,6 +69,8 @@ public class BlockChestChangingRainbow extends ChestBlock implements IModHasBloc
                 .with(BlockStateProperties.RAINBOW_COLORS, DyeColor.MAGENTA));
     }
 
+
+    
     @Override
     public boolean hasTileEntity(BlockState state) {
         return true;
@@ -76,12 +82,15 @@ public class BlockChestChangingRainbow extends ChestBlock implements IModHasBloc
         return new TileEntityChestChangingRainbow(changeTimer);
     }
 
+
+
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
         TileEntityChestChangingRainbow tile = (TileEntityChestChangingRainbow) worldIn.getTileEntity(pos);
         if (tile != null && !tile.isRemoved() && tile.canChange()) {
             BlockState state = worldIn.getBlockState(pos);
-            updateColor(state, worldIn, pos);
+            state = updateColor(state, worldIn, pos);
+            updatePartner(state, worldIn, pos, BlockStateProperties.RAINBOW_COLORS);
             tile.resetCounter();
         }
     }
@@ -89,9 +98,35 @@ public class BlockChestChangingRainbow extends ChestBlock implements IModHasBloc
     @Override
     public void onBlockClicked(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
         TileEntityChestChangingRainbow tile = (TileEntityChestChangingRainbow) worldIn.getTileEntity(pos);
-        if (tile != null && !tile.isRemoved())
-            updateColor(state, worldIn, pos);
+        if (tile != null && !tile.isRemoved()) {
+            state = updateColor(state, worldIn, pos);
+            updatePartner(state, worldIn, pos, BlockStateProperties.RAINBOW_COLORS);
+        }
     }
+
+    protected void updatePartner(BlockState state, World worldIn, BlockPos pos, IProperty property) {
+        if (state.get(TYPE) == ChestType.SINGLE)
+            return;
+
+        assert property != null;
+
+        Direction direction = getDirectionToAttached(state);
+
+        pos = pos.add(
+                direction.getXOffset(),
+                direction.getYOffset(),
+                direction.getZOffset()
+        );
+
+        try {
+            state = worldIn.getBlockState(pos).with(property, state.get(property));
+            worldIn.setBlockState(pos, state);
+        } catch (Exception e) {
+            LOGGER.warn(e);
+            throw e;
+        }
+    }
+
 
     /* ***************************************************************************
      * BlockStates
@@ -102,11 +137,52 @@ public class BlockChestChangingRainbow extends ChestBlock implements IModHasBloc
         addRainbowColors(builder);
     }
 
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        BlockState state = super.getStateForPlacement(context);
+
+        if (state.get(TYPE) != ChestType.SINGLE) {
+            BlockPos pos = context.getPos();
+
+            Direction direction = context.getPlacementHorizontalFacing();
+
+            if (state.get(TYPE) == ChestType.RIGHT) {
+                direction = direction.rotateY();
+            } else {
+                direction = direction.rotateYCCW();
+            }
+
+            World world = context.getWorld();
+            assert world != null;
+
+            TileEntity otherChest =
+                    world.getTileEntity(
+                            pos.add(
+                                    direction.getXOffset(),
+                                    direction.getYOffset(),
+                                    direction.getZOffset()
+                            )
+                    );
+            assert otherChest != null;
+            assert otherChest instanceof TileEntityChestChangingRainbow;
+
+            state = state.with(BlockStateProperties.RAINBOW_COLORS,
+                    otherChest.getBlockState()
+                            .get(BlockStateProperties.RAINBOW_COLORS)
+            );
+        }
+
+        return state;
+    }
+
+
     /* ***************************************************************************
      * FalconAthenaeum
      ****************************************************************************/
+
     @Override
     public BlockItem generateModBlockItem() {
         return new BlockItemChangingRainbow(this);
     }
+
 }

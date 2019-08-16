@@ -34,8 +34,11 @@ public interface IBlockChangesColorRainbow  {
      * @param worldIn The {@link World}.
      * @param pos The {@link BlockPos} of the block we're changing.
      */
-    default void updateColor(BlockState state, World worldIn, BlockPos pos) {
-        worldIn.setBlockState(pos,
-                state.cycle(BlockStateProperties.RAINBOW_COLORS));
+    default BlockState updateColor(BlockState state, World worldIn, BlockPos pos) {
+        state = state.cycle(BlockStateProperties.RAINBOW_COLORS);
+
+        worldIn.setBlockState(pos, state);
+
+        return state;
     }
 }

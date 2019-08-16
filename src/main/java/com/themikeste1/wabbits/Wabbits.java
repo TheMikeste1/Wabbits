@@ -6,9 +6,9 @@ import com.themikeste1.wabbits.atlas.color.BlockItemColors;
 import com.themikeste1.wabbits.atlas.color.ItemColors;
 import com.themikeste1.wabbits.client.renderer.tileentity.RendererTileEntityChestChangingRainbow;
 import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.core.tileentities.TileEntityChestChangingRainbow;
 
 //Forge
-import com.themikeste1.wabbits.core.tileentities.TileEntityChestChangingRainbow;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -70,7 +70,7 @@ public class Wabbits {
         ItemColors.registerColors();
         BlockItemColors.registerColors();
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityChestChangingRainbow.class, new RendererTileEntityChestChangingRainbow<>());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityChestChangingRainbow.class, new RendererTileEntityChestChangingRainbow());
     } //doClientStuff()
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
