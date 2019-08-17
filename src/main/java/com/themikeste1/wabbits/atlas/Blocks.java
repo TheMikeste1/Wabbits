@@ -44,7 +44,7 @@ public class Blocks {
     public static final Block rainbow_glass = null;
     @ObjectHolder(Constants.MOD_ID + ":stained_rainbow_glass")
     public static final Block stained_rainbow_glass = null;
-    @ObjectHolder(Constants.MOD_ID + ":rainbow_chest.json")
+    @ObjectHolder(Constants.MOD_ID + ":rainbow_chest")
     public static final Block rainbow_chest = null;
 
     @SubscribeEvent
@@ -55,7 +55,7 @@ public class Blocks {
                 new ChangingRainbowBlock("rainbow_bricks"),
                 new GlassChangingRainbowBlock("rainbow_glass"),
                 new GlassChangingRainbowBlock("stained_rainbow_glass", BlockRenderLayer.TRANSLUCENT),
-                new ChestChangingRainbowBlock("rainbow_chest.json")
+                new ChestChangingRainbowBlock("rainbow_chest")
         );
     } //registerBlocks()
 } //class Blocks
