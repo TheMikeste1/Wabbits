@@ -36,6 +36,6 @@ public class ChestChangingRainbowTileEntity extends ChestTileEntity{
 
     @Override
     protected ITextComponent getDefaultName() {
-        return new TranslationTextComponent("container.wabbits.rainbow_chest");
+        return new TranslationTextComponent("container.wabbits.rainbow_chest.json");
     }
 }
