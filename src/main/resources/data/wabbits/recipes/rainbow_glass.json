@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "Rainbow",
+  "ingredients":
+  [
+    {
+      "item": "wabbits:rainbow_shard"
+    },
+    {
+      "item": "minecraft:glass"
+    },
+    {
+      "item": "minecraft:glass"
+    },
+    {
+      "item": "minecraft:glass"
+    },
+    {
+      "item": "minecraft:glass"
+    },
+    {
+      "item": "minecraft:glass"
+    },
+    {
+      "item": "minecraft:glass"
+    },
+    {
+      "item": "minecraft:glass"
+    },
+    {
+      "item": "minecraft:glass"
+    }
+  ],
+  "result":
+  {
+    "item": "wabbits:rainbow_glass",
+    "count": 8
+  }
+}

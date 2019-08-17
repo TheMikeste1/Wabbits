@@ -1,9 +1,14 @@
 package com.themikeste1.wabbits.core.items;
 
+//META
 import com.themikeste1.wabbits.atlas.ItemGroups;
 import com.themikeste1.wabbits.core.Constants;
+
+//Minecraft
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+
 
 public class GenericItem extends Item {
     private boolean glows;

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "Rainbow",
+  "pattern":
+  [
+    "xx",
+    "xx"
+  ],
+  "key":
+  {
+    "x":
+    {
+      "item": "wabbits:rainbow_shard"
+    }
+  },
+  "result":
+  {
+    "item": "wabbits:rainbow_bricks",
+    "count": 4
+  }
+}
