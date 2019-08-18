@@ -6,6 +6,7 @@ import com.themikeste1.wabbits.core.items.GenericItem;
 import com.themikeste1.wabbits.core.items.TestItem;
 
 //Minecraft
+import com.themikeste1.wabbits.core.items.WrenchItem;
 import net.minecraft.item.Item;
 
 //Forge
@@ -35,6 +36,8 @@ public class Items {
 
     @ObjectHolder(Constants.MOD_ID + ":test_item")
     public static final Item test_item = null;
+    @ObjectHolder(Constants.MOD_ID + ":wrench")
+    public static final Item wrench = null;
 
     @SubscribeEvent
     public static void registerItems(final RegistryEvent.Register<Item> event) {
@@ -43,7 +46,8 @@ public class Items {
                 new TestItem(),
                 new GenericItem("rainbow_shard", true, new Item.Properties()
                         .rarity(Rarity.EPIC)
-                )
+                ),
+                new WrenchItem("wrench")
         );
     } //registerItems()
 } //class Items

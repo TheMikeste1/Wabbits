@@ -16,16 +16,12 @@ import net.minecraft.item.BlockItem;
 
 
 
-public class TestBlock extends Block implements IModHasBlockItem {
+public class TestBlock extends FacedBlock implements IModHasBlockItem {
 
     public TestBlock() {
-        super(Block.Properties.create(Material.ROCK, MaterialColor.STONE));
-        setup();
+        super("test_block",
+                Block.Properties.create(Material.ROCK, MaterialColor.STONE));
     } //BlockTest()
-
-    private void setup() {
-        setRegistryName(Constants.MOD_ID, "test_block");
-    }
 
     @Override
     public BlockItem generateModBlockItem() {

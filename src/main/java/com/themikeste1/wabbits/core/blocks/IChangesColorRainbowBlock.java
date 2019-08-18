@@ -40,7 +40,7 @@ public interface IChangesColorRainbowBlock {
     default BlockState updateColor(BlockState state, World worldIn, BlockPos pos) {
         state = state.cycle(BlockStateProperties.RAINBOW_COLORS);
 
-        worldIn.setBlockState(pos, state);
+        worldIn.setBlockState(pos, state, 2);
 
         return state;
     }

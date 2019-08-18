@@ -34,7 +34,7 @@ public class ChestChangingRainbowBlock extends ChestBlock implements IModHasBloc
 
     public ChestChangingRainbowBlock(String registryName) {
         super(Block.Properties
-                .create(Material.ROCK)
+                .create(Material.CLAY)
                 .hardnessAndResistance(1.5F, 6.0F)
                 .sound(SoundType.METAL)
         );
@@ -44,8 +44,9 @@ public class ChestChangingRainbowBlock extends ChestBlock implements IModHasBloc
 
     public ChestChangingRainbowBlock(String registryName, int changeTimer) {
         super(Block.Properties
-                .create(Material.ROCK)
+                .create(Material.CLAY)
                 .hardnessAndResistance(1.5F, 6.0F)
+                .sound(SoundType.METAL)
         );
         setup(registryName);
         this.changeTimer = changeTimer;

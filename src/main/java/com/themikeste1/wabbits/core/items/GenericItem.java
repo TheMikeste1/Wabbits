@@ -13,6 +13,16 @@ import net.minecraft.item.ItemStack;
 public class GenericItem extends Item {
     private boolean glows;
 
+    public GenericItem(String registryName) {
+        super(new Item.Properties().group(ItemGroups.MAIN_GROUP_WABBITS));
+        setup(registryName, false);
+    }
+
+    public GenericItem(String registryName, boolean glows) {
+        super(new Item.Properties().group(ItemGroups.MAIN_GROUP_WABBITS));
+        setup(registryName, glows);
+    }
+
     public GenericItem(String registryName, Properties properties) {
         super(properties.group(ItemGroups.MAIN_GROUP_WABBITS));
         setup(registryName, false);
