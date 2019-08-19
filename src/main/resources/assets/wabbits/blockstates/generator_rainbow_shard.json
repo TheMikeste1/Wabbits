@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "wabbits:block/generator_rainbow_shard" },
+    "facing=south": { "model": "wabbits:block/generator_rainbow_shard", "y": 180 },
+    "facing=west":  { "model": "wabbits:block/generator_rainbow_shard", "y": -90 },
+    "facing=east":  { "model": "wabbits:block/generator_rainbow_shard", "y": 90  }
+  }
+}

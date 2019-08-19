@@ -36,6 +36,8 @@ public class Items {
 
     @ObjectHolder(Constants.MOD_ID + ":test_item")
     public static final Item test_item = null;
+    @ObjectHolder(Constants.MOD_ID + ":rainbow_shard")
+    public static final Item rainbow_shard = null;
     @ObjectHolder(Constants.MOD_ID + ":wrench")
     public static final Item wrench = null;
 

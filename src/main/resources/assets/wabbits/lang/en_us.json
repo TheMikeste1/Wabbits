@@ -4,9 +4,11 @@
   "block.wabbits.rainbow_glass":  "Rainbow Glass",
   "block.wabbits.stained_rainbow_glass":  "Stained Rainbow Glass",
   "block.wabbits.rainbow_chest": "Rainbow Chest",
+  "block.wabbits.generator_rainbow_shard": "Rainbow Shard Generator",
 
   "item.wabbits.test_item": "Test Item",
   "item.wabbits.rainbow_shard": "Rainbow Shard",
+  "item.wabbits.wrench": "Wrench",
 
   "itemGroup.wabbits": "Wabbits",
 
