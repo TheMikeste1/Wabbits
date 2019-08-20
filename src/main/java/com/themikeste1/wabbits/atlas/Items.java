@@ -48,6 +48,7 @@ public class Items {
                 new TestItem(),
                 new GenericItem("rainbow_shard", true, new Item.Properties()
                         .rarity(Rarity.EPIC)
+                        .group(ItemGroups.MAIN_GROUP_WABBITS)
                 ),
                 new WrenchItem("wrench")
         );

@@ -1,14 +1,17 @@
 package com.themikeste1.wabbits;
 
 //META
+import com.themikeste1.wabbits.atlas.ContainerTypes;
 import com.themikeste1.wabbits.atlas.color.BlockColors;
 import com.themikeste1.wabbits.atlas.color.BlockItemColors;
 import com.themikeste1.wabbits.atlas.color.ItemColors;
 import com.themikeste1.wabbits.client.renderer.tileentity.RendererChestChangingRainbowTileEntity;
 import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.core.gui.screen.GeneratorRainbowShardScreen;
 import com.themikeste1.wabbits.core.tileentities.ChestChangingRainbowTileEntity;
 
 //Forge
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -71,6 +74,7 @@ public class Wabbits {
         BlockItemColors.registerColors();
 
         ClientRegistry.bindTileEntitySpecialRenderer(ChestChangingRainbowTileEntity.class, new RendererChestChangingRainbowTileEntity());
+        ScreenManager.registerFactory(ContainerTypes.generator_rainbow_shard, GeneratorRainbowShardScreen::new);
     } //doClientStuff()
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

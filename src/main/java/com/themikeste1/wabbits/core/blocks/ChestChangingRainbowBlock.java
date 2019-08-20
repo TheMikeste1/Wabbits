@@ -25,6 +25,8 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
@@ -69,8 +71,6 @@ public class ChestChangingRainbowBlock extends ChestBlock implements IModHasBloc
         this.setDefaultState(getDefaultState()
                 .with(BlockStateProperties.RAINBOW_COLORS, DyeColor.MAGENTA));
     }
-
-
 
     @Override
     public boolean hasTileEntity(BlockState state) {

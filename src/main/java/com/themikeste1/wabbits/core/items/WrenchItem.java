@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 
 public class WrenchItem extends GenericItem {
 
-    public WrenchItem(String registryName) { super(registryName); }
-    public WrenchItem(String registryName, boolean glows) { super(registryName, glows); }
+    public WrenchItem(String registryName) { super(registryName, new Item.Properties().group(ItemGroups.MAIN_GROUP_WABBITS)); }
+    public WrenchItem(String registryName, boolean glows) { super(registryName, glows, new Item.Properties().group(ItemGroups.MAIN_GROUP_WABBITS)); }
     public WrenchItem(String registryName, Properties properties) { super(registryName, properties); }
     public WrenchItem(String registryName, boolean glows, Properties properties) { super(registryName, glows, properties); }
 

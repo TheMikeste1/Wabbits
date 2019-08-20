@@ -41,6 +41,6 @@ public class ChangingRainbowTileEntity extends TileEntity implements ITickableTi
     }
 
     public boolean canChange() { return colorChangeCounter <= 0; }
-    public void resetCounter() { colorChangeCounter = counterStart; }
-    public void setCounter(int counter) { colorChangeCounter = counter >= 0 ? counter : counterStart; }
+    public void resetCounter() { colorChangeCounter = counterStart; markDirty(); }
+    public void setCounter(int counter) { colorChangeCounter = counter >= 0 ? counter : counterStart; markDirty();}
 }
