@@ -3,16 +3,19 @@ package com.themikeste1.wabbits.core.tileentities;
 //META
 import com.themikeste1.wabbits.atlas.Items;
 import com.themikeste1.wabbits.atlas.TileEntitiesTypes;
+import com.themikeste1.wabbits.core.config.Config;
 import com.themikeste1.wabbits.core.gui.container.GeneratorRainbowShardContainer;
 import com.themikeste1.wabbits.core.tools.EnergyStorageWabbits;
 
 //Minecraft
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -47,20 +50,31 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
 
     @Override
     public void tick() {
+        if (world.isRemote)
+            return;
+
         pushPower();
         markDirty();
 
         AtomicBoolean maxCap = new AtomicBoolean(false);
         energyHandler.ifPresent(e -> maxCap.set(((EnergyStorageWabbits) e).atMaxCapacity()));
 
-        if (maxCap.get())
+        if (maxCap.get()) {
+            world.setBlockState(
+                    pos,
+                    getBlockState().with(BlockStateProperties.POWERED, false),
+                    3
+            );
             return;
+        }
+
 
         if (counter > 0) {
             counter--;
             energyHandler.ifPresent(e -> ((EnergyStorageWabbits) e).addEnergy(50));
         }
-        else {
+
+        if (counter <= 0) {
             itemHandler.ifPresent(
                     h -> {
                         ItemStack stack = h.getStackInSlot(0);
@@ -71,19 +85,30 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
                     }
             );
         }
+
+        BlockState state = getBlockState();
+        if (state.get(BlockStateProperties.POWERED) != counter > 0) {
+            world.setBlockState(
+                    pos,
+                    state.with(BlockStateProperties.POWERED, counter > 0),
+                    3
+            );
+        }
     }
 
     private void pushPower() {
         energyHandler.ifPresent(
                 sender -> {
+                    //Return if we have no energy.
                     AtomicInteger stored = new AtomicInteger(sender.getEnergyStored());
                     if (stored.get() <= 0)
                         return;
 
                     for (Direction direction : Direction.values()) {
                         TileEntity tileEntity = world.getTileEntity(pos.offset(direction));
+                        //If there's no TE, just continue to the next.
                         if (tileEntity == null)
-                            return;
+                            continue;
 
                         tileEntity.getCapability(CapabilityEnergy.ENERGY, direction)
                                 .ifPresent(
@@ -95,10 +120,12 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
                                         }
                         );
 
+                        //If we're out of energy, leave.
                         if (stored.get() <= 0)
                             break;
                     }
 
+                    //Update our energy in our handler.
                     //The default EnergyStorage#extractEnergy would almost work
                     //here, but it has a max amount you can extract at once.
                     ((EnergyStorageWabbits) sender).addEnergy(-(sender.getEnergyStored() - stored.get()));
@@ -160,7 +187,7 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
     }
 
     private IEnergyStorage createEnergyHandler() {
-        return new EnergyStorageWabbits(100000);
+        return new EnergyStorageWabbits(Config.GENERATOR_RAINBOW_SHARD_MAXCAP.get());
     }
 
 

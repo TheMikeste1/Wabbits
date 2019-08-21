@@ -1,8 +1,13 @@
 {
   "variants": {
-    "facing=north": { "model": "wabbits:block/generator_rainbow_shard" },
-    "facing=south": { "model": "wabbits:block/generator_rainbow_shard", "y": 180 },
-    "facing=west":  { "model": "wabbits:block/generator_rainbow_shard", "y": -90 },
-    "facing=east":  { "model": "wabbits:block/generator_rainbow_shard", "y": 90  }
+    "facing=north,powered=false": { "model": "wabbits:block/generator_rainbow_shard" },
+    "facing=south,powered=false": { "model": "wabbits:block/generator_rainbow_shard", "y": 180 },
+    "facing=west,powered=false": { "model": "wabbits:block/generator_rainbow_shard", "y": -90 },
+    "facing=east,powered=false": { "model": "wabbits:block/generator_rainbow_shard", "y": 90  },
+
+    "facing=north,powered=true": { "model": "wabbits:block/generator_rainbow_shard_powered" },
+    "facing=south,powered=true": { "model": "wabbits:block/generator_rainbow_shard_powered", "y": 180 },
+    "facing=west,powered=true": { "model": "wabbits:block/generator_rainbow_shard_powered", "y": -90 },
+    "facing=east,powered=true": { "model": "wabbits:block/generator_rainbow_shard_powered", "y": 90  }
   }
 }

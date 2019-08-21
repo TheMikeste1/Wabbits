@@ -19,6 +19,8 @@ import net.minecraft.inventory.container.IContainerProvider;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -87,5 +89,12 @@ public class GeneratorRainbowShardBlock extends HorizontalFacedBlock implements 
         }
 
         return world.removeBlock(pos, false);
+    }
+
+    @Override
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        super.fillStateContainer(builder);
+
+        builder.add(BlockStateProperties.POWERED);
     }
 }

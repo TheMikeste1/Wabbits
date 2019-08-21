@@ -7,6 +7,7 @@ import com.themikeste1.wabbits.atlas.color.BlockItemColors;
 import com.themikeste1.wabbits.atlas.color.ItemColors;
 import com.themikeste1.wabbits.client.renderer.tileentity.RendererChestChangingRainbowTileEntity;
 import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.core.config.Config;
 import com.themikeste1.wabbits.core.gui.screen.GeneratorRainbowShardScreen;
 import com.themikeste1.wabbits.core.tileentities.ChestChangingRainbowTileEntity;
 
@@ -15,8 +16,10 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -25,6 +28,7 @@ import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 //Java
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.stream.Collectors;
@@ -43,6 +47,8 @@ public class Wabbits {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public Wabbits() {
+
+
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -54,12 +60,20 @@ public class Wabbits {
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
+
     } //Wabbits()
 
 
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
         LOGGER.info("HELLO FROM " + Constants.MOD_NAME + " " + Constants.VERSION);
+
+        //Setup config
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_CONFIG);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
+        Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("wabbits-client.toml"));
+        Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("wabbits-common.toml"));
     } //setup()
 
     @OnlyIn(Dist.CLIENT)
