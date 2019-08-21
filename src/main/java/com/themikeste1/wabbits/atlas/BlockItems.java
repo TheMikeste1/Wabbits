@@ -31,7 +31,9 @@ public class BlockItems {
                 ((IModHasBlockItem) Blocks.test_block).generateModBlockItem(),
                 ((IModHasBlockItem) Blocks.rainbow_bricks).generateModBlockItem(),
                 ((IModHasBlockItem) Blocks.rainbow_glass).generateModBlockItem(),
-                ((IModHasBlockItem) Blocks.rainbow_chest).generateModBlockItem()
+                ((IModHasBlockItem) Blocks.stained_rainbow_glass).generateModBlockItem(),
+                ((IModHasBlockItem) Blocks.rainbow_chest).generateModBlockItem(),
+                ((IModHasBlockItem) Blocks.generator_rainbow_shard).generateModBlockItem()
         );
     } //registerBlockItems()
 }

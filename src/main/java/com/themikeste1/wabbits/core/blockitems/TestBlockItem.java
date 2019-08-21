@@ -24,8 +24,7 @@ import net.minecraft.util.ResourceLocation;
  */
 public class TestBlockItem extends BlockItem {
     public TestBlockItem() {
-        super(Blocks.test_block,
-                new Item.Properties());
+        super(Blocks.test_block, new Item.Properties());
         setup();
     }
 

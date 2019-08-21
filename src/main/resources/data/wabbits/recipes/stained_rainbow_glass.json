@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "Rainbow",
+  "ingredient": {
+    "item": "wabbits:rainbow_glass"
+  },
+  "result": "wabbits:stained_rainbow_glass",
+  "experience": 0.05,
+  "cookingtime": 66
+}

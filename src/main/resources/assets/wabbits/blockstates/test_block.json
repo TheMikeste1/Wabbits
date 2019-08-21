@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": [
-      { "model": "wabbits:block/test_block" }
-    ]
+    "facing=north": { "model": "wabbits:block/test_block"           },
+    "facing=south": { "model": "wabbits:block/test_block", "y": 180 },
+    "facing=west":  { "model": "wabbits:block/test_block", "y": -90 },
+    "facing=east":  { "model": "wabbits:block/test_block", "y": 90  },
+    "facing=up":    { "model": "wabbits:block/test_block", "x": -90 },
+    "facing=down":  { "model": "wabbits:block/test_block", "x": 90  }
   }
 }

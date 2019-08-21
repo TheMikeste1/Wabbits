@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "wabbits:block/test_block"
+    "particle": "wabbits:flatcolors/blue",
+    "down":     "wabbits:flatcolors/blue",
+    "up":       "wabbits:flatcolors/blue",
+    "east":     "wabbits:flatcolors/blue",
+    "west":     "wabbits:flatcolors/blue",
+    "north":    "wabbits:flatcolors/red",
+    "south":    "wabbits:flatcolors/blue"
   }
 }

@@ -1,7 +1,6 @@
 package com.themikeste1.wabbits.atlas;
 
-import com.themikeste1.wabbits.core.blocks.ChestChangingRainbowBlock;
-import com.themikeste1.wabbits.core.blocks.GlassChangingRainbowBlock;
+import com.themikeste1.wabbits.core.blocks.*;
 
 //Minecraft
 import net.minecraft.block.Block;
@@ -14,8 +13,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
 //META
-import com.themikeste1.wabbits.core.blocks.ChangingRainbowBlock;
-import com.themikeste1.wabbits.core.blocks.TestBlock;
 import com.themikeste1.wabbits.core.Constants;
 
 //Java
@@ -42,8 +39,12 @@ public class Blocks {
     public static final Block rainbow_bricks = null;
     @ObjectHolder(Constants.MOD_ID + ":rainbow_glass")
     public static final Block rainbow_glass = null;
+    @ObjectHolder(Constants.MOD_ID + ":stained_rainbow_glass")
+    public static final Block stained_rainbow_glass = null;
     @ObjectHolder(Constants.MOD_ID + ":rainbow_chest")
     public static final Block rainbow_chest = null;
+    @ObjectHolder(Constants.MOD_ID + ":generator_rainbow_shard")
+    public static final Block generator_rainbow_shard = null;
 
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -51,8 +52,10 @@ public class Blocks {
         event.getRegistry().registerAll(
                 new TestBlock(),
                 new ChangingRainbowBlock("rainbow_bricks"),
-                new GlassChangingRainbowBlock("rainbow_glass", BlockRenderLayer.TRANSLUCENT),
-                new ChestChangingRainbowBlock("rainbow_chest")
+                new GlassChangingRainbowBlock("rainbow_glass"),
+                new GlassChangingRainbowBlock("stained_rainbow_glass", BlockRenderLayer.TRANSLUCENT),
+                new ChestChangingRainbowBlock("rainbow_chest"),
+                new GeneratorRainbowShardBlock()
         );
     } //registerBlocks()
 } //class Blocks

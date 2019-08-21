@@ -25,6 +25,8 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
@@ -34,7 +36,7 @@ public class ChestChangingRainbowBlock extends ChestBlock implements IModHasBloc
 
     public ChestChangingRainbowBlock(String registryName) {
         super(Block.Properties
-                .create(Material.ROCK)
+                .create(Material.CLAY)
                 .hardnessAndResistance(1.5F, 6.0F)
                 .sound(SoundType.METAL)
         );
@@ -44,8 +46,9 @@ public class ChestChangingRainbowBlock extends ChestBlock implements IModHasBloc
 
     public ChestChangingRainbowBlock(String registryName, int changeTimer) {
         super(Block.Properties
-                .create(Material.ROCK)
+                .create(Material.CLAY)
                 .hardnessAndResistance(1.5F, 6.0F)
+                .sound(SoundType.METAL)
         );
         setup(registryName);
         this.changeTimer = changeTimer;
@@ -68,8 +71,6 @@ public class ChestChangingRainbowBlock extends ChestBlock implements IModHasBloc
         this.setDefaultState(getDefaultState()
                 .with(BlockStateProperties.RAINBOW_COLORS, DyeColor.MAGENTA));
     }
-
-
 
     @Override
     public boolean hasTileEntity(BlockState state) {

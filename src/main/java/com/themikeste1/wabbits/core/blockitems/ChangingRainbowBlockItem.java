@@ -7,11 +7,10 @@ import com.themikeste1.wabbits.core.tileentities.ChangingRainbowTileEntity;
 
 //Minecraft
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
-import net.minecraft.util.ResourceLocation;
+
 
 /**
  * Manages the {@link net.minecraft.item.BlockItem} of {@link ChangingRainbowBlock}.
@@ -27,20 +26,14 @@ import net.minecraft.util.ResourceLocation;
  * @see ChangingRainbowTileEntity
  * @see com.themikeste1.wabbits.atlas.BlockItems
  */
-public class ChangingRainbowBlockItem extends BlockItem implements IChangesColorRainbowBlockItem {
+public class ChangingRainbowBlockItem extends AutoNamingBlockItem implements IChangesColorRainbowBlockItem {
     public ChangingRainbowBlockItem(Block block) {
         super(block,
                 new Item.Properties()
                         .group(ItemGroups.MAIN_GROUP_WABBITS)
                         .rarity(Rarity.EPIC)
         );
-        setup(block.getRegistryName());
     }
-
-    private void setup(ResourceLocation registryName) {
-        assert registryName != null;
-        setRegistryName(registryName);
-    } //setup()
 
     /* *******************************************************************
      * hasEffect()
