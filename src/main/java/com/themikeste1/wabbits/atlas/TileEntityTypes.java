@@ -22,7 +22,7 @@ import org.apache.logging.log4j.Logger;
 
 
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class TileEntitiesTypes {
+public class TileEntityTypes {
     //Logging
     private static final Logger LOGGER = LogManager.getLogger();
 
