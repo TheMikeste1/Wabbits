@@ -7,10 +7,13 @@ import com.themikeste1.wabbits.core.items.TestItem;
 
 //Minecraft
 import com.themikeste1.wabbits.core.items.WrenchItem;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 
 //Forge
 import net.minecraft.item.Rarity;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -29,16 +32,17 @@ import org.apache.logging.log4j.Logger;
  * @author TheMikeste1
  * @see Blocks
  */
+@ObjectHolder(Constants.MOD_ID)
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Items {
     //Logging
     private static final Logger LOGGER = LogManager.getLogger();
 
-    @ObjectHolder(Constants.MOD_ID + ":test_item")
+    @ObjectHolder("test_item")
     public static final Item test_item = null;
-    @ObjectHolder(Constants.MOD_ID + ":rainbow_shard")
+    @ObjectHolder("rainbow_shard")
     public static final Item rainbow_shard = null;
-    @ObjectHolder(Constants.MOD_ID + ":wrench")
+    @ObjectHolder("wrench")
     public static final Item wrench = null;
 
     @SubscribeEvent
