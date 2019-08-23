@@ -54,7 +54,7 @@ public class EntityTypes {
         LOGGER.debug("Wabbits: Creating EntityTypes...");
         wabbit = EntityType.Builder
                 .create(WabbitEntity::new, EntityClassification.AMBIENT)
-                .size(1F, 1F)
+                .size(0.8F, 1F)
                 .build("wabbit");
         wabbit.setRegistryName(Constants.MOD_ID, "wabbit");
     }

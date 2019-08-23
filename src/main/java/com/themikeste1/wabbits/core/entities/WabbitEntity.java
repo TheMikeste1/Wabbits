@@ -45,7 +45,7 @@ public class WabbitEntity extends MonsterEntity {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 10.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
         applyEntityAI();
     }
@@ -58,13 +58,12 @@ public class WabbitEntity extends MonsterEntity {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, RabbitEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WolfEntity.class, true));
-        this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 10.0F));
     }
 
     @Override
     protected void registerAttributes() {
         super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.3F);
     }
 

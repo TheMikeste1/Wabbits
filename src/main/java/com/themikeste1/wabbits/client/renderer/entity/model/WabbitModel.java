@@ -6,7 +6,10 @@ import com.themikeste1.wabbits.core.entities.WabbitEntity;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class WabbitModel<T extends WabbitEntity> extends EntityModel<T> {
     private final RendererModel wabbitLeftFoot = new RendererModel(this, 26, 24);
     private final RendererModel wabbitRightFoot = new RendererModel(this, 8, 24);
@@ -87,26 +90,13 @@ public class WabbitModel<T extends WabbitEntity> extends EntityModel<T> {
     @Override
     public void render(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         this.setRotationAngles(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        if (this.isChild) {
-            float f = 1.5F;
-            GlStateManager.pushMatrix();
-            GlStateManager.scalef(0.56666666F, 0.56666666F, 0.56666666F);
-            GlStateManager.translatef(0.0F, 22.0F * scale, 2.0F * scale);
-            renderHead(scale);
-            GlStateManager.popMatrix();
-            GlStateManager.pushMatrix();
-            GlStateManager.scalef(0.4F, 0.4F, 0.4F);
-            GlStateManager.translatef(0.0F, 36.0F * scale, 0.0F);
-            renderBody(scale);
-            GlStateManager.popMatrix();
-        } else {
-            GlStateManager.pushMatrix();
-            GlStateManager.scalef(0.6F, 0.6F, 0.6F);
-            GlStateManager.translatef(0.0F, 16.0F * scale, 0.0F);
-            renderHead(scale);
-            renderBody(scale);
-            GlStateManager.popMatrix();
-        }
+        GlStateManager.pushMatrix();
+        GlStateManager.scalef(0.6F, 0.6F, 0.6F);
+        GlStateManager.translatef(0.0F, 16.0F * scale, 0.0F);
+//                                                  ,  high # = lower Y
+        renderHead(scale);
+        renderBody(scale);
+        GlStateManager.popMatrix();
     }
 
     private void renderBody(float scale) {
@@ -134,17 +124,21 @@ public class WabbitModel<T extends WabbitEntity> extends EntityModel<T> {
         this.jumpRotation = MathHelper.sin(entityIn.getJumpCompletion(f) * (float)Math.PI);
 
         this.wabbitNose.rotateAngleX = headPitch * ((float)Math.PI / 180F);
+        this.wabbitHead.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
         this.wabbitHead.rotateAngleX = headPitch * ((float)Math.PI / 180F);
+        this.wabbitNose.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
+
         this.wabbitRightEar.rotateAngleX = headPitch * ((float)Math.PI / 180F);
         this.wabbitLeftEar.rotateAngleX = headPitch * ((float)Math.PI / 180F);
-        this.wabbitNose.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-        this.wabbitHead.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
         this.wabbitRightEar.rotateAngleY = this.wabbitNose.rotateAngleY - 0.2617994F;
         this.wabbitLeftEar.rotateAngleY = this.wabbitNose.rotateAngleY + 0.2617994F;
+
         this.wabbitLeftThigh.rotateAngleX = (this.jumpRotation * 50.0F - 21.0F) * ((float)Math.PI / 180F);
         this.wabbitRightThigh.rotateAngleX = (this.jumpRotation * 50.0F - 21.0F) * ((float)Math.PI / 180F);
+
         this.wabbitLeftFoot.rotateAngleX = this.jumpRotation * 50.0F * ((float)Math.PI / 180F);
         this.wabbitRightFoot.rotateAngleX = this.jumpRotation * 50.0F * ((float)Math.PI / 180F);
+
         this.wabbitLeftArm.rotateAngleX = (this.jumpRotation * -40.0F - 11.0F) * ((float)Math.PI / 180F);
         this.wabbitRightArm.rotateAngleX = (this.jumpRotation * -40.0F - 11.0F) * ((float)Math.PI / 180F);
     }
