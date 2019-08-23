@@ -6,6 +6,8 @@ import com.themikeste1.wabbits.atlas.EntityTypes;
 import com.themikeste1.wabbits.atlas.color.BlockColors;
 import com.themikeste1.wabbits.atlas.color.BlockItemColors;
 import com.themikeste1.wabbits.atlas.color.ItemColors;
+import com.themikeste1.wabbits.client.renderer.entity.RenderWabbitFactory;
+import com.themikeste1.wabbits.client.renderer.entity.WabbitRenderer;
 import com.themikeste1.wabbits.client.renderer.tileentity.RendererChestChangingRainbowTileEntity;
 import com.themikeste1.wabbits.core.Constants;
 import com.themikeste1.wabbits.core.config.Config;
@@ -98,7 +100,7 @@ public class Wabbits {
         BlockItemColors.registerColors();
 
         ClientRegistry.bindTileEntitySpecialRenderer(ChestChangingRainbowTileEntity.class, new RendererChestChangingRainbowTileEntity());
-        //RenderingRegistry.registerEntityRenderingHandler(WabbitEntity.class, );
+        RenderingRegistry.registerEntityRenderingHandler(WabbitEntity.class, RenderWabbitFactory.INSTANCE);
         ScreenManager.registerFactory(ContainerTypes.generator_rainbow_shard, GeneratorRainbowShardScreen::new);
     } //doClientStuff()
 

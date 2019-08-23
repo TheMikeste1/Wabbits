@@ -26,7 +26,7 @@ public class TileEntityTypes {
     //Logging
     private static final Logger LOGGER = LogManager.getLogger();
 
-   @ObjectHolder(Constants.MOD_ID + ":changing_rainbow")
+    @ObjectHolder(Constants.MOD_ID + ":changing_rainbow")
     public static final TileEntityType<ChangingRainbowTileEntity> changing_rainbow = null;
     @ObjectHolder(Constants.MOD_ID + ":chest_changing_rainbow")
     public static final TileEntityType<ChangingRainbowTileEntity> chest_changing_rainbow = null;

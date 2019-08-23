@@ -5,17 +5,24 @@ import com.themikeste1.wabbits.core.entities.WabbitEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nullable;
 
+@OnlyIn(Dist.CLIENT)
 public class WabbitRenderer extends MobRenderer<WabbitEntity, WabbitModel<WabbitEntity>> {
-    public WabbitRenderer(EntityRendererManager p_i50961_1_, WabbitModel<WabbitEntity> p_i50961_2_, float p_i50961_3_) {
-        super(p_i50961_1_, p_i50961_2_, p_i50961_3_);
+    private static final ResourceLocation SKIN = new ResourceLocation("wabbits:textures/entity/wabbit.png");
+
+    public WabbitRenderer(EntityRendererManager renderManager) {
+        //   (renderManager,               model,     shadowSize);
+        super(renderManager, new WabbitModel<>(),1.0F);
     }
 
     @Nullable
     @Override
     protected ResourceLocation getEntityTexture(WabbitEntity entity) {
-        return null;
+        return SKIN;
     }
 }
