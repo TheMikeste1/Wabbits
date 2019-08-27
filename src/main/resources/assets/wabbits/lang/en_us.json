@@ -13,5 +13,7 @@
 
   "itemGroup.wabbits": "Wabbits",
 
-  "container.wabbits.rainbow_chest": "Rainbow Chest"
+  "container.wabbits.rainbow_chest": "Rainbow Chest",
+
+  "entity.wabbits.wabbit": "Wabbit"
 }

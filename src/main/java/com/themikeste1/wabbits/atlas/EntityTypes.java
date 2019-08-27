@@ -3,14 +3,21 @@ package com.themikeste1.wabbits.atlas;
 import com.themikeste1.wabbits.core.Constants;
 
 import com.themikeste1.wabbits.core.entities.WabbitEntity;
+
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.gen.Heightmap;
+
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,6 +42,8 @@ public class EntityTypes {
         event.getRegistry().registerAll(
                 wabbit
         );
+
+        setWabbitSpawnBiomes();
     } //registerEntities()
 
     @SubscribeEvent
@@ -53,9 +62,35 @@ public class EntityTypes {
     private static void generateEntityTypes() {
         LOGGER.debug("Wabbits: Creating EntityTypes...");
         wabbit = EntityType.Builder
-                .create(WabbitEntity::new, EntityClassification.AMBIENT)
+                .create(WabbitEntity::new, EntityClassification.CREATURE)
                 .size(0.8F, 1F)
                 .build("wabbit");
         wabbit.setRegistryName(Constants.MOD_ID, "wabbit");
+    }
+
+    private static void setWabbitSpawnBiomes() {
+        EntitySpawnPlacementRegistry.register(wabbit,
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+                (entityType, world, spawnReason, pos, random) -> {
+                    if (entityType != wabbit)
+                        throw new IllegalArgumentException(wabbit.getRegistryName() + " only!");
+
+                    return WabbitEntity.isValidSpawnPlacement(entityType, world, spawnReason, pos, random);
+                }
+        );
+
+        //In reality, it would be better to take each biome ands set a custom weight
+        //instead of using the generalEntry... But I'm lazy, so all biomes get
+        //the same probability. ^_^
+        Biome[] biomes = { Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.DESERT_LAKES,
+                Biomes.BADLANDS, Biomes.BADLANDS_PLATEAU, Biomes.WOODED_BADLANDS_PLATEAU,
+                Biomes.ERODED_BADLANDS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS,
+                Biomes.DARK_FOREST, Biomes.DARK_FOREST_HILLS, Biomes.PLAINS
+        };
+        Biome.SpawnListEntry generalEntry = new Biome.SpawnListEntry(wabbit, 2, 1, 5);
+        for (Biome biome : biomes) {
+            biome.getSpawns(EntityClassification.CREATURE).add(generalEntry);
+        }
     }
 } //class EntityTypes

@@ -143,7 +143,7 @@ public class WabbitEntity extends MonsterEntity {
     //Combat
     @Override
     public boolean attackEntityAsMob(Entity entityIn) {
-        playSound(SoundEvents.ENTITY_RABBIT_ATTACK, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+        playSound(SoundEvents.ENTITY_RABBIT_ATTACK, 2.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
         return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 8.0F);
     }
 
@@ -265,8 +265,9 @@ public class WabbitEntity extends MonsterEntity {
      * @return True if it can spawn on that location.
      */
     public static boolean isValidSpawnPlacement(EntityType<WabbitEntity> wabbit, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
+        LOGGER.debug("Spawning Wabbit...");
         Block block = world.getBlockState(pos.down()).getBlock();
-        return (block == Blocks.GRASS_BLOCK || block == Blocks.SNOW || block == Blocks.SAND) && world.getLightSubtracted(pos, 0) > 8;
+        return (block == Blocks.GRASS_BLOCK || block == Blocks.SNOW || block == Blocks.SAND) && world.getLightSubtracted(pos, 0) > 5;
     }
 
     /**
