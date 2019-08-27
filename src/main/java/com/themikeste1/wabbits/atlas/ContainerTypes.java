@@ -1,6 +1,5 @@
 package com.themikeste1.wabbits.atlas;
 
-
 import com.themikeste1.wabbits.core.Constants;
 import com.themikeste1.wabbits.core.gui.container.GeneratorRainbowShardContainer;
 import net.minecraft.client.Minecraft;
@@ -13,10 +12,12 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
+
+@ObjectHolder(Constants.MOD_ID)
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ContainerTypes {
 
-    @ObjectHolder(Constants.MOD_ID + ":generator_rainbow_shard")
+    @ObjectHolder("generator_rainbow_shard")
     public static ContainerType<GeneratorRainbowShardContainer> generator_rainbow_shard = null;
 
 

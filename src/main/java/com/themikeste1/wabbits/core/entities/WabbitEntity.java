@@ -2,6 +2,7 @@ package com.themikeste1.wabbits.core.entities;
 
 import com.themikeste1.wabbits.core.entities.ai.goal.WabbitAttackGoal;
 import net.minecraft.block.Block;
+
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.controller.JumpController;
@@ -23,9 +24,11 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -63,8 +66,8 @@ public class WabbitEntity extends MonsterEntity {
     @Override
     protected void registerAttributes() {
         super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.3F);
+        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
+       // this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.3F);
     }
 
     @Override

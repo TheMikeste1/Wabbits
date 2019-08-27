@@ -5,8 +5,8 @@ import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
 
 //Minecraft
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.themikeste1.wabbits.atlas.Blocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.client.renderer.tileentity.ChestTileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.model.ChestModel;
@@ -34,7 +34,7 @@ public class RendererChestChangingRainbowTileEntity extends ChestTileEntityRende
         GlStateManager.depthMask(true);
 
         //Get the chest's blockstate if it has one, set it otherwise.
-        BlockState blockstate = tileEntityIn.hasWorld() ? tileEntityIn.getBlockState() : Blocks.CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
+        BlockState blockstate = tileEntityIn.hasWorld() ? tileEntityIn.getBlockState() : Blocks.rainbow_chest.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
         //Is the chest Left, Right, or Single?
         ChestType chestType = blockstate.has(ChestBlock.TYPE) ? blockstate.get(ChestBlock.TYPE) : ChestType.SINGLE;
 
@@ -43,7 +43,7 @@ public class RendererChestChangingRainbowTileEntity extends ChestTileEntityRende
             //Is the chest single or right?
             boolean isDouble = chestType != ChestType.SINGLE;
             //Get the model for the chest.
-            ChestModel chestModel = this.getChestModel(tileEntityIn, destroyStage, isDouble);
+            ChestModel chestModel = this.getChestModel(tileEntityIn, destroyStage, isDouble, blockstate);
 
             //If the chest being destroyed
             if (destroyStage >= 0) {
@@ -86,13 +86,12 @@ public class RendererChestChangingRainbowTileEntity extends ChestTileEntityRende
         } //if (chestType != ChestType.LEFT)
     } //render()
 
-    private ChestModel getChestModel(TileEntity tileEntityIn, int destroyStage, boolean doubleChest) {
+    private ChestModel getChestModel(TileEntity tileEntityIn, int destroyStage, boolean doubleChest, BlockState state) {
         //If the chest being destroyed
         if (destroyStage >= 0) {
             this.bindTexture(DESTROY_STAGES[destroyStage]);
         } else {
             String resourceLocation;
-            BlockState state = tileEntityIn.getBlockState();
             DyeColor color;
 
             try {

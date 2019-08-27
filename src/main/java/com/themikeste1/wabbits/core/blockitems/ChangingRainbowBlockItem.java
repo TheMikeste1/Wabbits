@@ -28,11 +28,15 @@ import net.minecraft.item.Rarity;
  */
 public class ChangingRainbowBlockItem extends AutoNamingBlockItem implements IChangesColorRainbowBlockItem {
     public ChangingRainbowBlockItem(Block block) {
-        super(block,
+        this(block,
                 new Item.Properties()
                         .group(ItemGroups.MAIN_GROUP_WABBITS)
                         .rarity(Rarity.EPIC)
         );
+    }
+
+    public ChangingRainbowBlockItem(Block block, Item.Properties properties) {
+        super(block, properties);
     }
 
     /* *******************************************************************

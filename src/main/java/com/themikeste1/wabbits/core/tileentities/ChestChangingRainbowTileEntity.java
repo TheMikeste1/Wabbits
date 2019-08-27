@@ -11,8 +11,7 @@ public class ChestChangingRainbowTileEntity extends ChestTileEntity{
     private final int counterStart;
 
     public ChestChangingRainbowTileEntity() {
-        super(TileEntityTypes.chest_changing_rainbow);
-        counterStart = 20;
+        this(20);
     }
 
     public ChestChangingRainbowTileEntity(int counterStart) {
@@ -22,6 +21,8 @@ public class ChestChangingRainbowTileEntity extends ChestTileEntity{
             this.counterStart = counterStart;
         else
             this.counterStart = 20;
+
+
     }
 
     @Override

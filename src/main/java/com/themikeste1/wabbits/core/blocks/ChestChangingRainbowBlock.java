@@ -3,6 +3,8 @@ package com.themikeste1.wabbits.core.blocks;
 import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
+import com.themikeste1.wabbits.atlas.ItemGroups;
+import com.themikeste1.wabbits.client.renderer.itemstack.RendererChestChangingRainbowBlockItem;
 import com.themikeste1.wabbits.core.Constants;
 import com.themikeste1.wabbits.core.blockitems.ChestChangingRainbowBlockItem;
 import com.themikeste1.wabbits.core.tileentities.ChestChangingRainbowTileEntity;
@@ -14,9 +16,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.DyeColor;
+import net.minecraft.item.*;
 import net.minecraft.state.IProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.ChestType;
@@ -29,20 +29,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.concurrent.Callable;
+import java.util.function.Supplier;
 
 
 public class ChestChangingRainbowBlock extends ChestBlock implements IModHasBlockItem, IChangesColorRainbowBlock {
     private final int changeTimer;
 
-    public ChestChangingRainbowBlock(String registryName) {
-        super(Block.Properties
-                .create(Material.CLAY)
-                .hardnessAndResistance(1.5F, 6.0F)
-                .sound(SoundType.METAL)
-        );
-        setup(registryName);
-        changeTimer = -1;
-    }
+    public ChestChangingRainbowBlock(String registryName) { this(registryName, -1); }
 
     public ChestChangingRainbowBlock(String registryName, int changeTimer) {
         super(Block.Properties
@@ -182,7 +176,14 @@ public class ChestChangingRainbowBlock extends ChestBlock implements IModHasBloc
      ****************************************************************************/
     @Override
     public BlockItem generateModBlockItem() {
-        return new ChestChangingRainbowBlockItem(this);
+        Supplier sup = () -> (Callable) () -> RendererChestChangingRainbowBlockItem.INSTANCE;
+
+        return new ChestChangingRainbowBlockItem(this,
+                new Item.Properties()
+                        .setTEISR(sup)
+                        .group(ItemGroups.MAIN_GROUP_WABBITS)
+                        .rarity(Rarity.EPIC)
+        );
     }
 
 }
