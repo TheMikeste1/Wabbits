@@ -58,10 +58,10 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
         pushPower();
         markDirty();
 
-        AtomicBoolean maxCap = new AtomicBoolean(false);
-        energyHandler.ifPresent(e -> maxCap.set(((EnergyStorageWabbits) e).atMaxCapacity()));
+        AtomicBoolean atMaxCap = new AtomicBoolean(false);
+        energyHandler.ifPresent(e -> atMaxCap.set(((EnergyStorageWabbits) e).atMaxCapacity()));
 
-        if (maxCap.get()) {
+        if (atMaxCap.get()) {
             if (getBlockState().get(BlockStateProperties.POWERED)) {
                 world.setBlockState(
                         pos,

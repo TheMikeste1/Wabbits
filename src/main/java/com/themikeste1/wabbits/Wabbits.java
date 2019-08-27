@@ -70,8 +70,6 @@ public class Wabbits {
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-
-
     } //Wabbits()
 
 
@@ -84,6 +82,9 @@ public class Wabbits {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
         Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("wabbits-client.toml"));
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("wabbits-common.toml"));
+
+        //Setup Mob Spawning
+        EntityTypes.setWabbitSpawnBiomes();
     } //setup()
 
     private void doClientStuff(final FMLClientSetupEvent event) {

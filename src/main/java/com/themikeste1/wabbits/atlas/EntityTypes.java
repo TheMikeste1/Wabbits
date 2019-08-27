@@ -2,6 +2,7 @@ package com.themikeste1.wabbits.atlas;
 
 import com.themikeste1.wabbits.core.Constants;
 
+import com.themikeste1.wabbits.core.config.Config;
 import com.themikeste1.wabbits.core.entities.WabbitEntity;
 
 import net.minecraft.entity.EntityClassification;
@@ -42,8 +43,6 @@ public class EntityTypes {
         event.getRegistry().registerAll(
                 wabbit
         );
-
-        setWabbitSpawnBiomes();
     } //registerEntities()
 
     @SubscribeEvent
@@ -68,7 +67,8 @@ public class EntityTypes {
         wabbit.setRegistryName(Constants.MOD_ID, "wabbit");
     }
 
-    private static void setWabbitSpawnBiomes() {
+
+    public static void setWabbitSpawnBiomes() {
         EntitySpawnPlacementRegistry.register(wabbit,
                 EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
@@ -88,7 +88,11 @@ public class EntityTypes {
                 Biomes.ERODED_BADLANDS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS,
                 Biomes.DARK_FOREST, Biomes.DARK_FOREST_HILLS, Biomes.PLAINS
         };
-        Biome.SpawnListEntry generalEntry = new Biome.SpawnListEntry(wabbit, 2, 1, 5);
+        Biome.SpawnListEntry generalEntry = new Biome.SpawnListEntry(wabbit,
+                Config.WABBIT_SPAWN_WEIGHT.get(),
+                Config.WABBIT_MIN_SPAWN_AMOUNT.get(),
+                Config.WABBIT_MAX_SPAWN_AMOUNT.get()
+        );
         for (Biome biome : biomes) {
             biome.getSpawns(EntityClassification.CREATURE).add(generalEntry);
         }
