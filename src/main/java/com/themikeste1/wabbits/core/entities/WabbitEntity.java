@@ -33,13 +33,13 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class WabbitEntity extends MonsterEntity {
+public class WabbitEntity extends CreatureEntity {
     private int jumpTicks;
     private int jumpDuration;
     private boolean wasOnGround;
     private int currentMoveTypeDuration;
     
-    public WabbitEntity(EntityType<? extends MonsterEntity> type, World world) {
+    public WabbitEntity(EntityType<? extends CreatureEntity> type, World world) {
         super(type, world);
         jumpController = new JumpHelperController(this);
         moveController = new MoveHelperController(this);

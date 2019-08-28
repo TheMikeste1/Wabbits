@@ -1,6 +1,7 @@
 package com.themikeste1.wabbits;
 
 //META
+import com.themikeste1.wabbits.atlas.Biomes;
 import com.themikeste1.wabbits.atlas.ContainerTypes;
 import com.themikeste1.wabbits.atlas.EntityTypes;
 import com.themikeste1.wabbits.atlas.color.BlockColors;
@@ -83,6 +84,8 @@ public class Wabbits {
         Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("wabbits-client.toml"));
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("wabbits-common.toml"));
 
+        //Setup Biomes
+        Biomes.addBiomes();
         //Setup Mob Spawning
         EntityTypes.setWabbitSpawnBiomes();
     } //setup()

@@ -86,7 +86,8 @@ public class EntityTypes {
         Biome[] biomes = { Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.DESERT_LAKES,
                 Biomes.BADLANDS, Biomes.BADLANDS_PLATEAU, Biomes.WOODED_BADLANDS_PLATEAU,
                 Biomes.ERODED_BADLANDS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS,
-                Biomes.DARK_FOREST, Biomes.DARK_FOREST_HILLS, Biomes.PLAINS
+                Biomes.DARK_FOREST, Biomes.DARK_FOREST_HILLS, Biomes.PLAINS,
+                com.themikeste1.wabbits.atlas.Biomes.rainbow_brick_biome
         };
         Biome.SpawnListEntry generalEntry = new Biome.SpawnListEntry(wabbit,
                 Config.WABBIT_SPAWN_WEIGHT.get(),
