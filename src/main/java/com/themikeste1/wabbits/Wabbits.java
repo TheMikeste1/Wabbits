@@ -1,23 +1,33 @@
 package com.themikeste1.wabbits;
 
 //META
+import com.themikeste1.wabbits.atlas.Biomes;
 import com.themikeste1.wabbits.atlas.ContainerTypes;
+import com.themikeste1.wabbits.atlas.EntityTypes;
 import com.themikeste1.wabbits.atlas.color.BlockColors;
 import com.themikeste1.wabbits.atlas.color.BlockItemColors;
 import com.themikeste1.wabbits.atlas.color.ItemColors;
+import com.themikeste1.wabbits.client.renderer.entity.RenderWabbitFactory;
+import com.themikeste1.wabbits.client.renderer.entity.WabbitRenderer;
 import com.themikeste1.wabbits.client.renderer.tileentity.RendererChestChangingRainbowTileEntity;
 import com.themikeste1.wabbits.core.Constants;
 import com.themikeste1.wabbits.core.config.Config;
+import com.themikeste1.wabbits.core.entities.WabbitEntity;
 import com.themikeste1.wabbits.core.gui.screen.GeneratorRainbowShardScreen;
 import com.themikeste1.wabbits.core.tileentities.ChestChangingRainbowTileEntity;
 
 //Forge
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.RabbitRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -28,6 +38,7 @@ import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 //Java
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -60,8 +71,6 @@ public class Wabbits {
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-
-
     } //Wabbits()
 
 
@@ -74,10 +83,17 @@ public class Wabbits {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
         Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("wabbits-client.toml"));
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("wabbits-common.toml"));
+
+        //Setup Biomes
+        Biomes.addBiomes();
+        //Setup Mob Spawning
+        EntityTypes.setWabbitSpawnBiomes();
     } //setup()
 
-    @OnlyIn(Dist.CLIENT)
     private void doClientStuff(final FMLClientSetupEvent event) {
+        if (FMLEnvironment.dist.isDedicatedServer())
+            return;
+
         // do something that can only be done on the client
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
 
@@ -88,6 +104,7 @@ public class Wabbits {
         BlockItemColors.registerColors();
 
         ClientRegistry.bindTileEntitySpecialRenderer(ChestChangingRainbowTileEntity.class, new RendererChestChangingRainbowTileEntity());
+        RenderingRegistry.registerEntityRenderingHandler(WabbitEntity.class, RenderWabbitFactory.INSTANCE);
         ScreenManager.registerFactory(ContainerTypes.generator_rainbow_shard, GeneratorRainbowShardScreen::new);
     } //doClientStuff()
 

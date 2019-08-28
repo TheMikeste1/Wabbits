@@ -1,6 +1,7 @@
 package com.themikeste1.wabbits.core.blocks;
 
 //META
+import com.themikeste1.wabbits.core.Constants;
 import com.themikeste1.wabbits.core.Functions;
 
 //Minecraft
@@ -25,18 +26,21 @@ import javax.annotation.Nullable;
  *
  * @see HorizontalFacedBlock
  */
-public class FacedBlock extends GenericBlock {
+public class FacedBlock extends Block {
     /**
      * Basic constructor for the {@link net.minecraft.block.Block}. It can't
      * be much simpler than this. It literally just calls the constructor for
-     * {@link GenericBlock}.
+     * {@link Block}.
      *
      * @param registryName The to-be registry name.
      * @param properties   The to-be {@link net.minecraft.block.Block.Properties}.
      * @author TheMikeste1
      * @since 0.0.0.0
      */
-    public FacedBlock(String registryName, Properties properties) { super(registryName, properties); }
+    public FacedBlock(String registryName, Properties properties) {
+        super(properties);
+        setRegistryName(Constants.MOD_ID, registryName);
+    }
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

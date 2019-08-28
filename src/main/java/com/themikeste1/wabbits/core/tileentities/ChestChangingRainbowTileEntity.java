@@ -1,6 +1,6 @@
 package com.themikeste1.wabbits.core.tileentities;
 
-import com.themikeste1.wabbits.atlas.TileEntitiesTypes;
+import com.themikeste1.wabbits.atlas.TileEntityTypes;
 
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.util.text.ITextComponent;
@@ -11,17 +11,18 @@ public class ChestChangingRainbowTileEntity extends ChestTileEntity{
     private final int counterStart;
 
     public ChestChangingRainbowTileEntity() {
-        super(TileEntitiesTypes.chest_changing_rainbow);
-        counterStart = 20;
+        this(20);
     }
 
     public ChestChangingRainbowTileEntity(int counterStart) {
-        super(TileEntitiesTypes.chest_changing_rainbow);
+        super(TileEntityTypes.chest_changing_rainbow);
 
         if (counterStart >= 0)
             this.counterStart = counterStart;
         else
             this.counterStart = 20;
+
+
     }
 
     @Override

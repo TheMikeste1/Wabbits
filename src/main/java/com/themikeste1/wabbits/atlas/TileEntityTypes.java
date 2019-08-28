@@ -20,17 +20,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-
+@ObjectHolder(Constants.MOD_ID)
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class TileEntitiesTypes {
+public class TileEntityTypes {
     //Logging
     private static final Logger LOGGER = LogManager.getLogger();
 
-   @ObjectHolder(Constants.MOD_ID + ":changing_rainbow")
+    @ObjectHolder("changing_rainbow")
     public static final TileEntityType<ChangingRainbowTileEntity> changing_rainbow = null;
-    @ObjectHolder(Constants.MOD_ID + ":chest_changing_rainbow")
+    @ObjectHolder("chest_changing_rainbow")
     public static final TileEntityType<ChangingRainbowTileEntity> chest_changing_rainbow = null;
-    @ObjectHolder(Constants.MOD_ID + ":generator_rainbow_shard")
+    @ObjectHolder("generator_rainbow_shard")
     public static final TileEntityType<GeneratorRainbowShardTileEntity> generator_rainbow_shard = null;
 
 

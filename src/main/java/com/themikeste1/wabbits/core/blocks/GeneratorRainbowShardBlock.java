@@ -13,9 +13,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.IFluidState;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.inventory.container.IContainerProvider;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -27,6 +25,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+
+//Forge
 import net.minecraftforge.fml.network.NetworkHooks;
 
 //Java
@@ -39,6 +39,10 @@ public class GeneratorRainbowShardBlock extends HorizontalFacedBlock implements 
                 Block.Properties
                         .create(Material.CLAY)
                         .hardnessAndResistance(2.5f, 30f));
+        setDefaultState(
+                getDefaultState()
+                        .with(BlockStateProperties.POWERED, false)
+        );
     }
 
     @Override
@@ -94,7 +98,6 @@ public class GeneratorRainbowShardBlock extends HorizontalFacedBlock implements 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         super.fillStateContainer(builder);
-
         builder.add(BlockStateProperties.POWERED);
     }
 }

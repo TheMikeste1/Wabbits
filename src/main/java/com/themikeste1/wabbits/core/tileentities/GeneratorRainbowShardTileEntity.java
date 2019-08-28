@@ -1,8 +1,9 @@
 package com.themikeste1.wabbits.core.tileentities;
 
 //META
+import com.themikeste1.wabbits.atlas.EntityTypes;
 import com.themikeste1.wabbits.atlas.Items;
-import com.themikeste1.wabbits.atlas.TileEntitiesTypes;
+import com.themikeste1.wabbits.atlas.TileEntityTypes;
 import com.themikeste1.wabbits.core.config.Config;
 import com.themikeste1.wabbits.core.gui.container.GeneratorRainbowShardContainer;
 import com.themikeste1.wabbits.core.tools.EnergyStorageWabbits;
@@ -42,11 +43,12 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @SuppressWarnings("unchecked")
 public class GeneratorRainbowShardTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+
     private LazyOptional<IItemHandler> itemHandler = LazyOptional.of(this::createItemHandler);
     private LazyOptional<IEnergyStorage> energyHandler = LazyOptional.of(this::createEnergyHandler);
     private int counter;
 
-    public GeneratorRainbowShardTileEntity() { super(TileEntitiesTypes.generator_rainbow_shard); }
+    public GeneratorRainbowShardTileEntity() { super(TileEntityTypes.generator_rainbow_shard); }
 
     @Override
     public void tick() {
@@ -56,15 +58,17 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
         pushPower();
         markDirty();
 
-        AtomicBoolean maxCap = new AtomicBoolean(false);
-        energyHandler.ifPresent(e -> maxCap.set(((EnergyStorageWabbits) e).atMaxCapacity()));
+        AtomicBoolean atMaxCap = new AtomicBoolean(false);
+        energyHandler.ifPresent(e -> atMaxCap.set(((EnergyStorageWabbits) e).atMaxCapacity()));
 
-        if (maxCap.get()) {
-            world.setBlockState(
-                    pos,
-                    getBlockState().with(BlockStateProperties.POWERED, false),
-                    3
-            );
+        if (atMaxCap.get()) {
+            if (getBlockState().get(BlockStateProperties.POWERED)) {
+                world.setBlockState(
+                        pos,
+                        getBlockState().with(BlockStateProperties.POWERED, false),
+                        3
+                );
+            }
             return;
         }
 

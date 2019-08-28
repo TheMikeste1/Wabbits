@@ -5,6 +5,7 @@ import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 
 //META
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
+import com.themikeste1.wabbits.core.Constants;
 import com.themikeste1.wabbits.core.blockitems.ChangingRainbowBlockItem;
 import com.themikeste1.wabbits.core.tileentities.ChangingRainbowTileEntity;
 
@@ -37,7 +38,7 @@ import javax.annotation.Nullable;
  * @since 0.0.0.0
  * @author TheMikeste1
  */
-public class ChangingRainbowBlock extends GenericBlock implements IChangesColorRainbowBlock, IModHasBlockItem {
+public class ChangingRainbowBlock extends Block implements IChangesColorRainbowBlock, IModHasBlockItem {
 
     /**
      * The time (in ticks) until the block can change color again.
@@ -60,25 +61,14 @@ public class ChangingRainbowBlock extends GenericBlock implements IChangesColorR
      * @since 0.0.0.0
      * @author TheMikeste1
      */
-    public ChangingRainbowBlock(String registryName) {
-        super(registryName, Block.Properties
-                .create(Material.ROCK)
-                .hardnessAndResistance(1.5F, 6.0F)
-        );
-        setup(-1);
+    public ChangingRainbowBlock(String registryName) { this(registryName, -1); }
+    public ChangingRainbowBlock(String registryName, int changeTimer) { this(registryName, changeTimer, Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)); }
+    public ChangingRainbowBlock(String registryName, Block.Properties properties) { this(registryName, -1, properties); }
+
+    public ChangingRainbowBlock(String registryName, int changeTimer, Block.Properties properties) {
+        super(properties);
+        setup(changeTimer, registryName);
     }
-
-    public ChangingRainbowBlock(String registryName, int changeTimer) {
-        super(registryName, Block.Properties
-                .create(Material.ROCK)
-                .hardnessAndResistance(1.5F, 6.0F)
-        );
-        setup(changeTimer);
-    }
-
-
-    public ChangingRainbowBlock(String registryName, Block.Properties properties) { super(registryName, properties); setup(-1); }
-    public ChangingRainbowBlock(String registryName, int changeTimer, Block.Properties properties) { super(registryName, properties); setup(changeTimer); }
 
     /**
      * Setups up the {@link Block} so I don't have to write this in multiple
@@ -87,11 +77,13 @@ public class ChangingRainbowBlock extends GenericBlock implements IChangesColorR
      * @param changeTimer The default timer for the tile entity that controls
      *                    the color change cooldown.
      */
-    private void setup(int changeTimer) {
+    private void setup(int changeTimer, String registryName) {
         this.setDefaultState(getDefaultState()
                 .with(BlockStateProperties.RAINBOW_COLORS, DyeColor.MAGENTA)
         );
         this.changeTimer = changeTimer;
+
+        setRegistryName(Constants.MOD_ID, registryName);
     }
 
     /**

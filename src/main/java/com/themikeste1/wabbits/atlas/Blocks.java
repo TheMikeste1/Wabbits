@@ -1,9 +1,11 @@
 package com.themikeste1.wabbits.atlas;
 
+import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 import com.themikeste1.wabbits.core.blocks.*;
 
 //Minecraft
 import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.util.BlockRenderLayer;
 
 //Forge
@@ -28,22 +30,23 @@ import org.apache.logging.log4j.Logger;
  * @author TheMikeste1
  * @see Items
  */
+@ObjectHolder(Constants.MOD_ID)
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Blocks {
     //Logging
     private static final Logger LOGGER = LogManager.getLogger();
 
-    @ObjectHolder(Constants.MOD_ID + ":test_block")
+    @ObjectHolder("test_block")
     public static final Block test_block = null;
-    @ObjectHolder(Constants.MOD_ID + ":rainbow_bricks")
+    @ObjectHolder("rainbow_bricks")
     public static final Block rainbow_bricks = null;
-    @ObjectHolder(Constants.MOD_ID + ":rainbow_glass")
+    @ObjectHolder("rainbow_glass")
     public static final Block rainbow_glass = null;
-    @ObjectHolder(Constants.MOD_ID + ":stained_rainbow_glass")
+    @ObjectHolder("stained_rainbow_glass")
     public static final Block stained_rainbow_glass = null;
-    @ObjectHolder(Constants.MOD_ID + ":rainbow_chest")
+    @ObjectHolder("rainbow_chest")
     public static final Block rainbow_chest = null;
-    @ObjectHolder(Constants.MOD_ID + ":generator_rainbow_shard")
+    @ObjectHolder("generator_rainbow_shard")
     public static final Block generator_rainbow_shard = null;
 
     @SubscribeEvent

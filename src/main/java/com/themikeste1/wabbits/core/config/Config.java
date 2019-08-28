@@ -20,22 +20,35 @@ public class Config {
     //Logging
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static final String CATEGORY_GENERAL = "general";
-    public static final String SUBCATEGORY_GENERATOR_RAINBOW_SHARD = "generator_rainbow_shard";
-
     private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
     private static final ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
 
     public static ForgeConfigSpec COMMON_CONFIG;
     public static ForgeConfigSpec CLIENT_CONFIG;
 
+
+
+    public static final String CATEGORY_GENERAL = "general";
+
+    public static final String SUBCATEGORY_GENERATOR_RAINBOW_SHARD = "generator_rainbow_shard";
     public static ForgeConfigSpec.IntValue GENERATOR_RAINBOW_SHARD_MAXCAP;
     private static int GENERATOR_RAINBOW_SHARD_MAXCAP_DEFAULT = 100000;
+
+
+    public static final String SUBCATEGORY_WABBIT = "wabbit";
+    public static ForgeConfigSpec.IntValue WABBIT_SPAWN_WEIGHT;
+    private static int WABBIT_SPAWN_WEIGHT_DEFAULT = 2;
+    public static ForgeConfigSpec.IntValue WABBIT_MIN_SPAWN_AMOUNT;
+    private static int WABBIT_MIN_SPAWN_AMOUNT_DEFAULT = 1;
+    public static ForgeConfigSpec.IntValue WABBIT_MAX_SPAWN_AMOUNT;
+    private static int WABBIT_MAX_SPAWN_AMOUNT_DEFAULT = 5;
+
 
     static {
         COMMON_BUILDER.comment("General Settings").push(CATEGORY_GENERAL);
 
         setupGeneratorRainbowShardConfig();
+        setupWabbitConfig();
 
         COMMON_BUILDER.pop();
 
@@ -46,9 +59,26 @@ public class Config {
     private static void setupGeneratorRainbowShardConfig() {
         COMMON_BUILDER.comment("Rainbow Shard Generator Settings").push(SUBCATEGORY_GENERATOR_RAINBOW_SHARD);
         GENERATOR_RAINBOW_SHARD_MAXCAP = COMMON_BUILDER
-                .comment("Rainbow Shard Generator Max Capacity")
-                .comment("Default: " + GENERATOR_RAINBOW_SHARD_MAXCAP_DEFAULT)
+                .comment("Rainbow Shard Generator Max Capacity\n" + "Default: " + GENERATOR_RAINBOW_SHARD_MAXCAP_DEFAULT)
                 .defineInRange("maxPower", GENERATOR_RAINBOW_SHARD_MAXCAP_DEFAULT, 0, Integer.MAX_VALUE);
+        COMMON_BUILDER.pop();
+    }
+
+    private static void setupWabbitConfig() {
+        COMMON_BUILDER.comment("Wabbit Entity Settings").push(SUBCATEGORY_WABBIT);
+
+        WABBIT_SPAWN_WEIGHT = COMMON_BUILDER
+                .comment("Spawn Weight\n" + "Default: " + WABBIT_SPAWN_WEIGHT_DEFAULT)
+                .defineInRange("wabbitSpawnWeight", WABBIT_SPAWN_WEIGHT_DEFAULT, 0, Integer.MAX_VALUE);
+
+        WABBIT_MIN_SPAWN_AMOUNT = COMMON_BUILDER
+                .comment("Minimum Spawn Group Size\n" + "Default: " + WABBIT_MIN_SPAWN_AMOUNT_DEFAULT)
+                .defineInRange("wabbitMinSpawnAmount", WABBIT_MIN_SPAWN_AMOUNT_DEFAULT, 0, Integer.MAX_VALUE);
+
+        WABBIT_MAX_SPAWN_AMOUNT = COMMON_BUILDER
+                .comment("Maximum Spawn Group Size\n" + "Default: " + WABBIT_MAX_SPAWN_AMOUNT_DEFAULT)
+                .defineInRange("wabbitMaxSpawnAmount", WABBIT_MAX_SPAWN_AMOUNT_DEFAULT, 0, Integer.MAX_VALUE);
+
         COMMON_BUILDER.pop();
     }
 

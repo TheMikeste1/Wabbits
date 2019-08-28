@@ -9,8 +9,14 @@
   "item.wabbits.test_item": "Test Item",
   "item.wabbits.rainbow_shard": "Rainbow Shard",
   "item.wabbits.wrench": "Wrench",
+  "item.wabbits.spawn_wabbit": "Wabbit Spawn Egg",
 
   "itemGroup.wabbits": "Wabbits",
 
-  "container.wabbits.rainbow_chest": "Rainbow Chest"
+  "container.wabbits.rainbow_chest": "Rainbow Chest",
+  "container.wabbits.rainbow_chest_double": "Large Rainbow Chest",
+
+  "entity.wabbits.wabbit": "Wabbit",
+
+  "biome.wabbits.rainbow_blocks_biome": "Rainbow Blocks Biome"
 }
