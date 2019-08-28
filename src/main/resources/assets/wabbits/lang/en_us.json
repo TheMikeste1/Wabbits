@@ -14,6 +14,9 @@
   "itemGroup.wabbits": "Wabbits",
 
   "container.wabbits.rainbow_chest": "Rainbow Chest",
+  "container.wabbits.rainbow_chest_double": "Large Rainbow Chest",
 
-  "entity.wabbits.wabbit": "Wabbit"
+  "entity.wabbits.wabbit": "Wabbit",
+
+  "biome.wabbits.rainbow_blocks_biome": "Rainbow Blocks Biome"
 }
