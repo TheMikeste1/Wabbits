@@ -8,7 +8,6 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.controller.JumpController;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.RabbitEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -67,7 +66,6 @@ public class WabbitEntity extends CreatureEntity {
     protected void registerAttributes() {
         super.registerAttributes();
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
-       // this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.3F);
     }
 
     @Override
@@ -110,6 +108,23 @@ public class WabbitEntity extends CreatureEntity {
         }
 
         this.wasOnGround = this.onGround;
+    }
+
+    /**
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
+     */
+    @Override
+    public void livingTick() {
+        super.livingTick();
+        if (this.jumpTicks != this.jumpDuration) {
+            ++this.jumpTicks;
+        } else if (this.jumpDuration != 0) {
+            this.jumpTicks = 0;
+            this.jumpDuration = 0;
+            this.setJumping(false);
+        }
+
     }
 
     private void calculateRotationYaw(double x, double z) {
