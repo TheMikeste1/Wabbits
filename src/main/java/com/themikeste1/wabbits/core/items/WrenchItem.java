@@ -1,6 +1,7 @@
 package com.themikeste1.wabbits.core.items;
 
 import com.themikeste1.wabbits.atlas.ItemGroups;
+import com.themikeste1.wabbits.core.Constants;
 import com.themikeste1.wabbits.core.Functions;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
@@ -10,12 +11,13 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class WrenchItem extends GenericItem {
+public class WrenchItem extends Item {
 
-    public WrenchItem(String registryName) { super(registryName, new Item.Properties().group(ItemGroups.MAIN_GROUP_WABBITS)); }
-    public WrenchItem(String registryName, boolean glows) { super(registryName, glows, new Item.Properties().group(ItemGroups.MAIN_GROUP_WABBITS)); }
-    public WrenchItem(String registryName, Properties properties) { super(registryName, properties); }
-    public WrenchItem(String registryName, boolean glows, Properties properties) { super(registryName, glows, properties); }
+    public WrenchItem(String registryName) { this(registryName, new Item.Properties().group(ItemGroups.MAIN_GROUP_WABBITS)); }
+    public WrenchItem(String registryName, Item.Properties properties) {
+        super(properties);
+        setRegistryName(Constants.MOD_ID, registryName);
+    }
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {

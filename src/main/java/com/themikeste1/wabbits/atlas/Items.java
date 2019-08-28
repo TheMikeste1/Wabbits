@@ -2,18 +2,14 @@ package com.themikeste1.wabbits.atlas;
 
 //META
 import com.themikeste1.wabbits.core.Constants;
-import com.themikeste1.wabbits.core.items.GenericItem;
 import com.themikeste1.wabbits.core.items.TestItem;
 
 //Minecraft
 import com.themikeste1.wabbits.core.items.WrenchItem;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 
 //Forge
 import net.minecraft.item.Rarity;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -50,10 +46,10 @@ public class Items {
         LOGGER.debug("Wabbits: Registering items...");
         event.getRegistry().registerAll(
                 new TestItem(),
-                new GenericItem("rainbow_shard", true, new Item.Properties()
+                new Item(new Item.Properties()
                         .rarity(Rarity.EPIC)
                         .group(ItemGroups.MAIN_GROUP_WABBITS)
-                ),
+                ).setRegistryName(Constants.MOD_ID, "rainbow_shard"),
                 new WrenchItem("wrench")
         );
     } //registerItems()
