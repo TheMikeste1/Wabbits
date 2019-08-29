@@ -1,7 +1,7 @@
 package com.themikeste1.wabbits.core.gui.screen;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.Constants;
 import com.themikeste1.wabbits.core.gui.container.GeneratorRainbowShardContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;

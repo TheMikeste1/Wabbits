@@ -5,7 +5,7 @@ import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 
 //META
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
-import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.Constants;
 import com.themikeste1.wabbits.core.blockitems.ChangingRainbowBlockItem;
 import com.themikeste1.wabbits.core.tileentities.ChangingRainbowTileEntity;
 

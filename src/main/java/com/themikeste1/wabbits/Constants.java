@@ -1,4 +1,4 @@
-package com.themikeste1.wabbits.core;
+package com.themikeste1.wabbits;
 
 //Logging
 import org.apache.logging.log4j.LogManager;

@@ -1,7 +1,7 @@
 package com.themikeste1.wabbits.core.items;
 
 import com.themikeste1.wabbits.atlas.ItemGroups;
-import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.Constants;
 import com.themikeste1.wabbits.core.Functions;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;

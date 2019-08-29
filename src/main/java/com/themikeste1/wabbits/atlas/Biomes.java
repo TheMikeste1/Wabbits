@@ -1,6 +1,6 @@
 package com.themikeste1.wabbits.atlas;
 
-import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.Constants;
 import com.themikeste1.wabbits.core.world.biome.RainbowBrickBiome;
 
 import net.minecraft.world.biome.Biome;

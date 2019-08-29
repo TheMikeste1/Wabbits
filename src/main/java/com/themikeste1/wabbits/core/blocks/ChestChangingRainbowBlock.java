@@ -7,7 +7,7 @@ import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
 import com.themikeste1.wabbits.atlas.ItemGroups;
 import com.themikeste1.wabbits.client.renderer.itemstack.RendererChestChangingRainbowBlockItem;
-import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.Constants;
 import com.themikeste1.wabbits.core.blockitems.ChestChangingRainbowBlockItem;
 import com.themikeste1.wabbits.core.tileentities.ChangingRainbowTileEntity;
 import com.themikeste1.wabbits.core.tileentities.ChestChangingRainbowTileEntity;

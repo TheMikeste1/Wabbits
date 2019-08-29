@@ -1,6 +1,6 @@
 package com.themikeste1.wabbits.atlas;
 
-import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.Constants;
 import com.themikeste1.wabbits.core.gui.container.GeneratorRainbowShardContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.container.ContainerType;

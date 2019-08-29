@@ -1,7 +1,7 @@
 package com.themikeste1.wabbits.core.world.biome;
 
 import com.themikeste1.wabbits.atlas.Blocks;
-import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.Constants;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;

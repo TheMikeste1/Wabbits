@@ -1,11 +1,9 @@
 package com.themikeste1.wabbits.atlas;
 
-import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 import com.themikeste1.wabbits.core.blocks.*;
 
 //Minecraft
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
 import net.minecraft.util.BlockRenderLayer;
 
 //Forge
@@ -15,7 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
 //META
-import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.Constants;
 
 //Java
 import org.apache.logging.log4j.LogManager;

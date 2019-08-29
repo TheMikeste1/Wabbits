@@ -1,7 +1,7 @@
 package com.themikeste1.wabbits.core.blocks;
 
 //META
-import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.Constants;
 import com.themikeste1.wabbits.core.Functions;
 
 //Minecraft

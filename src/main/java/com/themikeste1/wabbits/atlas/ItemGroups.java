@@ -1,7 +1,7 @@
 package com.themikeste1.wabbits.atlas;
 
 //META
-import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.Constants;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 

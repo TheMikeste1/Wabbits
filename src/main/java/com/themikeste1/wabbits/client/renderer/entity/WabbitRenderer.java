@@ -28,18 +28,8 @@ public class WabbitRenderer extends MobRenderer<WabbitEntity, WabbitModel<Wabbit
     }
 
     @Override
-    protected void preRenderCallback(WabbitEntity entitylivingbaseIn, float partialTickTime) {
+    protected void preRenderCallback(WabbitEntity wabbitEntity, float partialTickTime) {
         //Make larger
         GL11.glScalef(2F, 2F, 2F);
     }
-
-    /* @Override
-    public float prepareScale(WabbitEntity entitylivingbaseIn, float partialTicks) {
-        GlStateManager.enableRescaleNormal();
-        GlStateManager.scalef(-1.0F, -1.0F, 1.0F);
-        this.preRenderCallback(entitylivingbaseIn, partialTicks);
-        float f = 1.5F;
-        GlStateManager.translatef(0.0F, -1.501F, 0.0F);
-        return f;
-    }*/
 }

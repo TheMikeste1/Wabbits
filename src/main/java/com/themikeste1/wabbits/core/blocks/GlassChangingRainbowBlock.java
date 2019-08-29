@@ -3,7 +3,7 @@ package com.themikeste1.wabbits.core.blocks;
 import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 import com.themikeste1.wabbits.api.state.properties.BlockStateProperties;
 import com.themikeste1.wabbits.core.blockitems.ChangingRainbowBlockItem;
-import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.Constants;
 import com.themikeste1.wabbits.core.tileentities.ChangingRainbowTileEntity;
 
 import net.minecraft.block.*;

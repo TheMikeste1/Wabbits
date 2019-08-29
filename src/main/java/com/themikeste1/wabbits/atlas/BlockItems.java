@@ -4,7 +4,7 @@ package com.themikeste1.wabbits.atlas;
 import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 
 //META
-import com.themikeste1.wabbits.core.Constants;
+import com.themikeste1.wabbits.Constants;
 
 //Minecraft
 import net.minecraft.block.Block;

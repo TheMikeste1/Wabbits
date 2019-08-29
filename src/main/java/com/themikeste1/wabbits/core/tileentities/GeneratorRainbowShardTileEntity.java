@@ -1,10 +1,9 @@
 package com.themikeste1.wabbits.core.tileentities;
 
 //META
-import com.themikeste1.wabbits.atlas.EntityTypes;
 import com.themikeste1.wabbits.atlas.Items;
 import com.themikeste1.wabbits.atlas.TileEntityTypes;
-import com.themikeste1.wabbits.core.config.Config;
+import com.themikeste1.wabbits.Config;
 import com.themikeste1.wabbits.core.gui.container.GeneratorRainbowShardContainer;
 import com.themikeste1.wabbits.core.tools.EnergyStorageWabbits;
 
