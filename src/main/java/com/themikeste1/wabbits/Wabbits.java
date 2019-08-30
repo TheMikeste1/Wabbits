@@ -8,21 +8,14 @@ import com.themikeste1.wabbits.atlas.color.BlockColors;
 import com.themikeste1.wabbits.atlas.color.BlockItemColors;
 import com.themikeste1.wabbits.atlas.color.ItemColors;
 import com.themikeste1.wabbits.client.renderer.entity.RenderWabbitFactory;
-import com.themikeste1.wabbits.client.renderer.entity.WabbitRenderer;
 import com.themikeste1.wabbits.client.renderer.tileentity.RendererChestChangingRainbowTileEntity;
-import com.themikeste1.wabbits.core.Constants;
-import com.themikeste1.wabbits.core.config.Config;
 import com.themikeste1.wabbits.core.entities.WabbitEntity;
 import com.themikeste1.wabbits.core.gui.screen.GeneratorRainbowShardScreen;
 import com.themikeste1.wabbits.core.tileentities.ChestChangingRainbowTileEntity;
 
 //Forge
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.RabbitRenderer;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -58,8 +51,6 @@ public class Wabbits {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public Wabbits() {
-
-
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -96,6 +87,8 @@ public class Wabbits {
 
         // do something that can only be done on the client
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
+
+        OBJLoader.INSTANCE.addDomain("wabbits");
 
         //Register IBlockColors
         BlockColors.registerColors();

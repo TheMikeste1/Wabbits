@@ -7,6 +7,9 @@ import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 import com.themikeste1.wabbits.Constants;
 
 //Minecraft
+import com.themikeste1.wabbits.core.blocks.ConduitBlock;
+import com.themikeste1.wabbits.core.blocks.GeneratorRainbowShardBlock;
+import com.themikeste1.wabbits.core.blocks.TestBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -28,7 +31,7 @@ public class BlockItems {
     //Logging
     private static final Logger LOGGER = LogManager.getLogger();
 
-    @ObjectHolder("test_block")
+    @ObjectHolder(TestBlock.regName)
     public static final BlockItem test_block = null;
     @ObjectHolder("rainbow_bricks")
     public static final BlockItem rainbow_bricks = null;
@@ -38,8 +41,10 @@ public class BlockItems {
     public static final BlockItem stained_rainbow_glass = null;
     @ObjectHolder("rainbow_chest")
     public static final BlockItem rainbow_chest = null;
-    @ObjectHolder("generator_rainbow_shard")
+    @ObjectHolder(GeneratorRainbowShardBlock.regName)
     public static final BlockItem generator_rainbow_shard = null;
+    @ObjectHolder(ConduitBlock.regName)
+    public static final BlockItem conduit = null;
 
 
     @SubscribeEvent
@@ -47,15 +52,12 @@ public class BlockItems {
         LOGGER.debug("Wabbits: Registering item blocks...");
         event.getRegistry().registerAll(
                 generateModBlockItem(Blocks.test_block),
-
                 generateModBlockItem(Blocks.rainbow_bricks),
-
                 generateModBlockItem(Blocks.rainbow_chest),
-
                 generateModBlockItem(Blocks.rainbow_glass),
                 generateModBlockItem(Blocks.stained_rainbow_glass),
-
-                generateModBlockItem(Blocks.generator_rainbow_shard)
+                generateModBlockItem(Blocks.generator_rainbow_shard),
+                generateModBlockItem(Blocks.conduit)
         );
     } //registerBlockItems()
 

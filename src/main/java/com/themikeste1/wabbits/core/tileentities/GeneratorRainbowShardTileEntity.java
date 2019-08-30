@@ -45,7 +45,7 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
 
     private LazyOptional<IItemHandler> itemHandler = LazyOptional.of(this::createItemHandler);
     private LazyOptional<IEnergyStorage> energyHandler = LazyOptional.of(this::createEnergyHandler);
-    private int counter;
+    private int counter = 0;
 
     public GeneratorRainbowShardTileEntity() { super(TileEntityTypes.generator_rainbow_shard); }
 
@@ -54,8 +54,8 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
         if (world.isRemote)
             return;
 
-        pushPower();
-        markDirty();
+        energyHandler.ifPresent(
+                e -> ((EnergyStorageWabbits)e).pushPower(this));
 
         AtomicBoolean atMaxCap = new AtomicBoolean(false);
         energyHandler.ifPresent(e -> atMaxCap.set(((EnergyStorageWabbits) e).atMaxCapacity()));
@@ -67,6 +67,7 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
                         getBlockState().with(BlockStateProperties.POWERED, false),
                         3
                 );
+                markDirty(); //We've changed blockstate
             }
             return;
         }
@@ -75,8 +76,10 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
         if (counter > 0) {
             counter--;
             energyHandler.ifPresent(e -> ((EnergyStorageWabbits) e).addEnergy(50));
+            markDirty(); //We've added energy
         }
-
+        //Using if here instead of else if so we can consume an item on the
+        //same tick
         if (counter <= 0) {
             itemHandler.ifPresent(
                     h -> {
@@ -84,6 +87,7 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
                         if (stack.getItem() == Items.rainbow_shard) {
                             h.extractItem(0, 1, false);
                             counter = 20;
+                            markDirty(); //We've consumed an item
                         }
                     }
             );
@@ -96,47 +100,9 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
                     state.with(BlockStateProperties.POWERED, counter > 0),
                     3
             );
+            markDirty(); //We've changed blockstate
         }
     }
-
-    private void pushPower() {
-        energyHandler.ifPresent(
-                sender -> {
-                    //Return if we have no energy.
-                    AtomicInteger stored = new AtomicInteger(sender.getEnergyStored());
-                    if (stored.get() <= 0)
-                        return;
-
-                    for (Direction direction : Direction.values()) {
-                        TileEntity tileEntity = world.getTileEntity(pos.offset(direction));
-                        //If there's no TE, just continue to the next.
-                        if (tileEntity == null)
-                            continue;
-
-                        tileEntity.getCapability(CapabilityEnergy.ENERGY, direction)
-                                .ifPresent(
-                                        receiver -> {
-                                            if (receiver.canReceive()) {
-                                                int accepted = receiver.receiveEnergy(Math.min(stored.get(), 100), false);
-                                                stored.addAndGet(-accepted);
-                                            }
-                                        }
-                        );
-
-                        //If we're out of energy, leave.
-                        if (stored.get() <= 0)
-                            break;
-                    }
-
-                    //Update our energy in our handler.
-                    //The default EnergyStorage#extractEnergy would almost work
-                    //here, but it has a max amount you can extract at once.
-                    ((EnergyStorageWabbits) sender).addEnergy(-(sender.getEnergyStored() - stored.get()));
-                }
-        );
-    }
-
-
 
     @Override
     public void read(CompoundNBT tag) {
@@ -190,7 +156,11 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
     }
 
     private IEnergyStorage createEnergyHandler() {
-        return new EnergyStorageWabbits(Config.GENERATOR_RAINBOW_SHARD_MAXCAP.get());
+        return new EnergyStorageWabbits(
+                Config.GENERATOR_RAINBOW_SHARD_MAXCAP.get(), //MaxCap
+                0,                                //MaxReceive
+                Config.GENERATOR_RAINBOW_SHARD_MAXCAP.get()  //MaxTransfer -- we have this twice so we use the correct constructor
+        );
     }
 
 

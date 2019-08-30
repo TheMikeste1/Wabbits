@@ -32,6 +32,8 @@ public class TileEntityTypes {
     public static final TileEntityType<ChangingRainbowTileEntity> chest_changing_rainbow = null;
     @ObjectHolder("generator_rainbow_shard")
     public static final TileEntityType<GeneratorRainbowShardTileEntity> generator_rainbow_shard = null;
+    @ObjectHolder("conduit")
+    public static final TileEntityType<ConduitTileEntity> conduit = null;
 
 
     @SubscribeEvent
@@ -48,6 +50,9 @@ public class TileEntityTypes {
                 ),
                 TypeGenerator.generateGeneratorRainbowShardTileEntityType(
                         Blocks.generator_rainbow_shard
+                ),
+                TypeGenerator.generateConduitTileEntityType(
+                        Blocks.conduit
                 )
         );
     }
@@ -72,6 +77,13 @@ public class TileEntityTypes {
                     .create(GeneratorRainbowShardTileEntity::new, blocks)
                     .build(null)
                     .setRegistryName(Constants.MOD_ID, "generator_rainbow_shard");
+        }
+
+        static TileEntityType generateConduitTileEntityType(Block... blocks) {
+            return TileEntityType.Builder
+                    .create(ConduitTileEntity::new, blocks)
+                    .build(null)
+                    .setRegistryName(Constants.MOD_ID, "conduit");
         }
     }
 }

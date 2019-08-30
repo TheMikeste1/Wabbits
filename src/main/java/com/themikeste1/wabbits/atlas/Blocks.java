@@ -34,7 +34,7 @@ public class Blocks {
     //Logging
     private static final Logger LOGGER = LogManager.getLogger();
 
-    @ObjectHolder("test_block")
+    @ObjectHolder(TestBlock.regName)
     public static final Block test_block = null;
     @ObjectHolder("rainbow_bricks")
     public static final Block rainbow_bricks = null;
@@ -44,8 +44,10 @@ public class Blocks {
     public static final Block stained_rainbow_glass = null;
     @ObjectHolder("rainbow_chest")
     public static final Block rainbow_chest = null;
-    @ObjectHolder("generator_rainbow_shard")
+    @ObjectHolder(GeneratorRainbowShardBlock.regName)
     public static final Block generator_rainbow_shard = null;
+    @ObjectHolder(ConduitBlock.regName)
+    public static final Block conduit = null;
 
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -56,7 +58,8 @@ public class Blocks {
                 new GlassChangingRainbowBlock("rainbow_glass"),
                 new GlassChangingRainbowBlock("stained_rainbow_glass", BlockRenderLayer.TRANSLUCENT),
                 new ChestChangingRainbowBlock("rainbow_chest"),
-                new GeneratorRainbowShardBlock()
+                new GeneratorRainbowShardBlock(),
+                new ConduitBlock()
         );
     } //registerBlocks()
 } //class Blocks

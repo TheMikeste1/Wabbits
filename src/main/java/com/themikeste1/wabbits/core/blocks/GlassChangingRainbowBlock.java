@@ -28,56 +28,13 @@ public class GlassChangingRainbowBlock extends AbstractGlassBlock implements ICh
     private BlockRenderLayer renderLayer;
     private DyeColor currentColor;
 
-    public GlassChangingRainbowBlock(String registryName) {
-        super(Block.Properties.create(Material.GLASS)
-                .sound(SoundType.GLASS)
-                .hardnessAndResistance(0.3F)
-        );
-        setup(registryName, -1, BlockRenderLayer.CUTOUT);
-    }
-
-    public GlassChangingRainbowBlock(String registryName, int changeTimer) {
-        super(Block.Properties.create(Material.GLASS)
-                .sound(SoundType.GLASS)
-                .hardnessAndResistance(0.3F)
-        );
-        setup(registryName, changeTimer, BlockRenderLayer.CUTOUT);
-    }
-
-    public GlassChangingRainbowBlock(String registryName, Block.Properties properties) {
-        super(properties);
-        setup(registryName, -1, BlockRenderLayer.CUTOUT);
-    }
-
-    public GlassChangingRainbowBlock(String registryName, int changeTimer, Block.Properties properties) {
-        super(properties);
-        setup(registryName, changeTimer, BlockRenderLayer.CUTOUT);
-    }
-
+    public GlassChangingRainbowBlock(String registryName) { this(registryName, BlockRenderLayer.CUTOUT); }
     public GlassChangingRainbowBlock(String registryName, BlockRenderLayer renderLayer) {
         super(Block.Properties.create(Material.GLASS)
                 .sound(SoundType.GLASS)
                 .hardnessAndResistance(0.3F)
         );
         setup(registryName, -1, renderLayer);
-    }
-
-    public GlassChangingRainbowBlock(String registryName, int changeTimer, BlockRenderLayer renderLayer) {
-        super(Block.Properties.create(Material.GLASS)
-                .sound(SoundType.GLASS)
-                .hardnessAndResistance(0.3F)
-        );
-        setup(registryName, changeTimer, renderLayer);
-    }
-
-    public GlassChangingRainbowBlock(String registryName, Block.Properties properties, BlockRenderLayer renderLayer) {
-        super(properties);
-        setup(registryName, -1, renderLayer);
-    }
-
-    public GlassChangingRainbowBlock(String registryName, int changeTimer, Block.Properties properties, BlockRenderLayer renderLayer) {
-        super(properties);
-        setup(registryName, changeTimer, renderLayer);
     }
 
     private void setup(String registryName, int changeTimer, BlockRenderLayer renderLayer) {

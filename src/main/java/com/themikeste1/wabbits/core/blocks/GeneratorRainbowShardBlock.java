@@ -34,14 +34,17 @@ import javax.annotation.Nullable;
 
 
 public class GeneratorRainbowShardBlock extends HorizontalFacedBlock implements IModHasBlockItem {
+    public static final String regName = "generator_rainbow_shard";
+
     public GeneratorRainbowShardBlock() {
-        super("generator_rainbow_shard",
+        super(regName,
                 Block.Properties
                         .create(Material.CLAY)
-                        .hardnessAndResistance(2.5f, 30f));
-        setDefaultState(
-                getDefaultState()
-                        .with(BlockStateProperties.POWERED, false)
+                        .hardnessAndResistance(2.5f, 30f)
+        );
+
+        setDefaultState(getDefaultState()
+                .with(BlockStateProperties.POWERED, false)
         );
     }
 

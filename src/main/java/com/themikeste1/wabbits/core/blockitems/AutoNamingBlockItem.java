@@ -12,11 +12,7 @@ import net.minecraft.util.ResourceLocation;
  * given to it.
  */
 public class AutoNamingBlockItem extends BlockItem {
-    public AutoNamingBlockItem(Block block) {
-        super(block, new Item.Properties());
-        setup(block.getRegistryName());
-    }
-
+    public AutoNamingBlockItem(Block block) { this(block, new Item.Properties()); }
     public AutoNamingBlockItem(Block block, Properties properties) {
         super(block, properties);
         setup(block.getRegistryName());

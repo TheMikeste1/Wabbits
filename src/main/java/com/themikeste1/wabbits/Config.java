@@ -33,6 +33,9 @@ public class Config {
     public static ForgeConfigSpec.IntValue GENERATOR_RAINBOW_SHARD_MAXCAP;
     private static int GENERATOR_RAINBOW_SHARD_MAXCAP_DEFAULT = 100000;
 
+    public static final String SUBCATEGORY_CONDUIT = "conduit";
+    public static ForgeConfigSpec.IntValue CONDUIT_MAXCAP;
+    private static int CONDUIT_MAXCAP_DEFAULT = 2000;
 
     public static final String SUBCATEGORY_WABBIT = "wabbit";
     public static ForgeConfigSpec.IntValue WABBIT_SPAWN_WEIGHT;
@@ -43,10 +46,12 @@ public class Config {
     private static int WABBIT_MAX_SPAWN_AMOUNT_DEFAULT = 5;
 
 
+
     static {
         COMMON_BUILDER.comment("General Settings").push(CATEGORY_GENERAL);
 
         setupGeneratorRainbowShardConfig();
+        setupConduitConfig();
         setupWabbitConfig();
 
         COMMON_BUILDER.pop();
@@ -60,6 +65,14 @@ public class Config {
         GENERATOR_RAINBOW_SHARD_MAXCAP = COMMON_BUILDER
                 .comment("Rainbow Shard Generator Max Capacity\n" + "Default: " + GENERATOR_RAINBOW_SHARD_MAXCAP_DEFAULT)
                 .defineInRange("maxPower", GENERATOR_RAINBOW_SHARD_MAXCAP_DEFAULT, 0, Integer.MAX_VALUE);
+        COMMON_BUILDER.pop();
+    }
+
+    private static void setupConduitConfig() {
+        COMMON_BUILDER.comment("Conduit Settings").push(SUBCATEGORY_CONDUIT);
+        CONDUIT_MAXCAP = COMMON_BUILDER
+                .comment("Conduit Max Capacity\n" + "Default: " + CONDUIT_MAXCAP_DEFAULT)
+                .defineInRange("maxPower", CONDUIT_MAXCAP_DEFAULT, 0, Integer.MAX_VALUE);
         COMMON_BUILDER.pop();
     }
 
