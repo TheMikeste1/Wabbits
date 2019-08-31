@@ -48,6 +48,7 @@ public class GlassChangingRainbowBlock extends AbstractGlassBlock implements ICh
         currentColor = DyeColor.MAGENTA;
     }
 
+    @Override
     public BlockRenderLayer getRenderLayer() {
         return renderLayer;
     }

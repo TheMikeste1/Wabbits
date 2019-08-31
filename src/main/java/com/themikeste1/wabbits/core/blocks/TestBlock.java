@@ -11,8 +11,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
-import net.minecraft.util.BlockRenderLayer;
-
 
 public class TestBlock extends Block implements IModHasBlockItem {
     public static final String regName = "test_block";
