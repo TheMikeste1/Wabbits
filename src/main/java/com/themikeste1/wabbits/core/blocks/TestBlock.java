@@ -16,6 +16,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 
 import net.minecraftforge.api.distmarker.Dist;
@@ -41,21 +44,20 @@ public class TestBlock extends Block implements IModHasBlockItem {
     @Override
     public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) { return true; }
 
-    /*@Override
+    @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        super.getShape()
-        return VoxelShapes.create();
-    }*/
+        return VoxelShapes.create(0, 0.35, 0.35, 1, 0.65, 0.65);
+    }
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
 
-    @Override
+  /*  @Override
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
-    }
+    }*/
 
     @OnlyIn(Dist.CLIENT)
     @Override
@@ -63,4 +65,6 @@ public class TestBlock extends Block implements IModHasBlockItem {
         //Makes the ground stay bright
         return 1.0F;
     }
+
+
 } //class BlockTest
