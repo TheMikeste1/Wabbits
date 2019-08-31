@@ -3,5 +3,6 @@
 
 newmtl test_material
 Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
+Kd 1.000000 1.000000 1.000000
 d 1.000000
+map_Kd wabbits:flatcolors/yellow

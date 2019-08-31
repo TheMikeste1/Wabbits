@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.BasicState;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
@@ -32,6 +33,13 @@ public class Models {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @SubscribeEvent
+    public static void onPreTextureStitch(TextureStitchEvent.Pre event) {
+        event.addSprite(
+          ResourceLocation.tryCreate("wabbits:flatcolors/yellow")
+        );
     }
 
 }
