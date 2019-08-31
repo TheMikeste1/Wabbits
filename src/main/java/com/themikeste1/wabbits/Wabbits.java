@@ -17,7 +17,6 @@ import com.themikeste1.wabbits.core.tileentities.ChestChangingRainbowTileEntity;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;

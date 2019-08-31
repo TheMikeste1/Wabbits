@@ -15,6 +15,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 
+//TODO: Add #read/#write
+
 public class ConduitTileEntity extends TileEntity implements ITickableTileEntity {
     private LazyOptional<IEnergyStorage> energyHandler = LazyOptional.of(this::createEnergyHandler);
 

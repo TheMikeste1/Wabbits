@@ -48,6 +48,8 @@ public class Blocks {
     public static final Block generator_rainbow_shard = null;
     @ObjectHolder(ConduitBlock.regName)
     public static final Block conduit = null;
+    @ObjectHolder(MaceratorBlock.regName)
+    public static final Block macerator = null;
 
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -59,7 +61,8 @@ public class Blocks {
                 new GlassChangingRainbowBlock("stained_rainbow_glass", BlockRenderLayer.TRANSLUCENT),
                 new ChestChangingRainbowBlock("rainbow_chest"),
                 new GeneratorRainbowShardBlock(),
-                new ConduitBlock()
+                new ConduitBlock(),
+                new MaceratorBlock()
         );
     } //registerBlocks()
 } //class Blocks

@@ -36,7 +36,6 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 
@@ -53,7 +52,6 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
     public void tick() {
         if (world.isRemote)
             return;
-
         energyHandler.ifPresent(
                 e -> ((EnergyStorageWabbits)e).pushPower(this));
 

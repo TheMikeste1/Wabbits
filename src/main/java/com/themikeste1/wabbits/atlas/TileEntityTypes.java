@@ -34,6 +34,8 @@ public class TileEntityTypes {
     public static final TileEntityType<GeneratorRainbowShardTileEntity> generator_rainbow_shard = null;
     @ObjectHolder("conduit")
     public static final TileEntityType<ConduitTileEntity> conduit = null;
+    @ObjectHolder("macerator")
+    public static final TileEntityType<ConduitTileEntity> macerator = null;
 
 
     @SubscribeEvent
@@ -53,6 +55,9 @@ public class TileEntityTypes {
                 ),
                 TypeGenerator.generateConduitTileEntityType(
                         Blocks.conduit
+                ),
+                TypeGenerator.generateMaceratorTileEntityType(
+                        Blocks.macerator
                 )
         );
     }
@@ -84,6 +89,13 @@ public class TileEntityTypes {
                     .create(ConduitTileEntity::new, blocks)
                     .build(null)
                     .setRegistryName(Constants.MOD_ID, "conduit");
+        }
+
+        static TileEntityType generateMaceratorTileEntityType(Block... blocks) {
+            return TileEntityType.Builder
+                    .create(MaceratorTileEntity::new, blocks)
+                    .build(null)
+                    .setRegistryName(Constants.MOD_ID, "macerator");
         }
     }
 }
