@@ -5,6 +5,8 @@
   "block.wabbits.stained_rainbow_glass":  "Stained Rainbow Glass",
   "block.wabbits.rainbow_chest": "Rainbow Chest",
   "block.wabbits.generator_rainbow_shard": "Rainbow Shard Generator",
+  "block.wabbits.conduit": "Conduit",
+  "block.wabbits.macerator": "Macerator",
 
   "item.wabbits.test_item": "Test Item",
   "item.wabbits.rainbow_shard": "Rainbow Shard",

@@ -180,14 +180,12 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
         return new GeneratorRainbowShardContainer(id, playerInventory, world, pos);
     }
 
+    @Override
+    public ITextComponent getDisplayName() { return new StringTextComponent(getType().getRegistryName().getPath()); }
+
     public ItemStack getStackInSlot(int index) {
         AtomicReference<ItemStack> stack = new AtomicReference<ItemStack>();
         itemHandler.ifPresent( (h -> stack.set(h.getStackInSlot(index))) );
         return stack.get();
-    }
-
-    @Override
-    public ITextComponent getDisplayName() {
-        return new StringTextComponent(getType().getRegistryName().getPath());
     }
 }

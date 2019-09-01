@@ -17,8 +17,11 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
@@ -36,6 +39,10 @@ public class MaceratorBlock extends HorizontalFacedBlock implements IModHasBlock
         super(regName, Block.Properties
                 .create(Material.CLAY)
                 .hardnessAndResistance(2.5f, 30f)
+        );
+
+        setDefaultState(getDefaultState()
+                .with(BlockStateProperties.POWERED, false)
         );
     }
 
@@ -59,7 +66,10 @@ public class MaceratorBlock extends HorizontalFacedBlock implements IModHasBlock
             TileEntity tileEntity = worldIn.getTileEntity(pos);
 
             if (tileEntity instanceof MaceratorTileEntity) {
-                NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+                NetworkHooks.openGui(
+                        (ServerPlayerEntity) player,
+                        (INamedContainerProvider) tileEntity,
+                        tileEntity.getPos());
             }
         }
 
@@ -69,23 +79,24 @@ public class MaceratorBlock extends HorizontalFacedBlock implements IModHasBlock
     }
 
     @Override
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        super.fillStateContainer(builder);
+        builder.add(BlockStateProperties.POWERED);
+    }
+
+    @Override
     public boolean removedByPlayer(BlockState state, World world, BlockPos pos, PlayerEntity player, boolean willHarvest, IFluidState fluid) {
-        onBlockHarvested(world, pos, state, player);
         TileEntity tileEntity = world.getTileEntity(pos);
-        ItemStack stack = ItemStack.EMPTY;
+        NonNullList<ItemStack> stacks = NonNullList.create();
         if (tileEntity instanceof MaceratorTileEntity) {
-//            stack = ((MaceratorTileEntity) tileEntity).getStackInSlot(0);
+            MaceratorTileEntity maceratorEntity = ((MaceratorTileEntity) tileEntity);
+            stacks.add(maceratorEntity.getStackInSlot(0));
+            stacks.add(maceratorEntity.getStackInSlot(1));
         }
 
-        boolean removed = world.removeBlock(pos, false);
+        boolean removed = super.removedByPlayer(state, world, pos, player, willHarvest, fluid);
         if (removed) {
-            InventoryHelper.spawnItemStack(
-                    world,
-                    pos.getX(),
-                    pos.getY(),
-                    pos.getZ(),
-                    stack
-            );
+            InventoryHelper.dropItems(world, pos, stacks);
         }
 
         return removed;

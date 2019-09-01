@@ -38,8 +38,7 @@ public class GeneratorRainbowShardBlock extends HorizontalFacedBlock implements 
     public static final String regName = "generator_rainbow_shard";
 
     public GeneratorRainbowShardBlock() {
-        super(regName,
-                Block.Properties
+        super(regName, Block.Properties
                         .create(Material.CLAY)
                         .hardnessAndResistance(2.5f, 30f)
         );
@@ -56,9 +55,7 @@ public class GeneratorRainbowShardBlock extends HorizontalFacedBlock implements 
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new GeneratorRainbowShardTileEntity();
-    }
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) { return new GeneratorRainbowShardTileEntity(); }
 
     @Override
     public BlockItem generateModBlockItem() {

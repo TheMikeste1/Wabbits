@@ -9,6 +9,7 @@ import com.themikeste1.wabbits.Constants;
 //Minecraft
 import com.themikeste1.wabbits.core.blocks.ConduitBlock;
 import com.themikeste1.wabbits.core.blocks.GeneratorRainbowShardBlock;
+import com.themikeste1.wabbits.core.blocks.MaceratorBlock;
 import com.themikeste1.wabbits.core.blocks.TestBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -45,6 +46,8 @@ public class BlockItems {
     public static final BlockItem generator_rainbow_shard = null;
     @ObjectHolder(ConduitBlock.regName)
     public static final BlockItem conduit = null;
+    @ObjectHolder(MaceratorBlock.regName)
+    public static final BlockItem macerator = null;
 
 
     @SubscribeEvent
@@ -57,7 +60,8 @@ public class BlockItems {
                 generateModBlockItem(Blocks.rainbow_glass),
                 generateModBlockItem(Blocks.stained_rainbow_glass),
                 generateModBlockItem(Blocks.generator_rainbow_shard),
-                generateModBlockItem(Blocks.conduit)
+                generateModBlockItem(Blocks.conduit),
+                generateModBlockItem(Blocks.macerator)
         );
     } //registerBlockItems()
 

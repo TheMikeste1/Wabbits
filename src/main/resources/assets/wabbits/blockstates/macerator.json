@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "facing=north,powered=false": { "model": "wabbits:block/macerator" },
+    "facing=south,powered=false": { "model": "wabbits:block/macerator", "y": 180 },
+    "facing=west,powered=false": { "model": "wabbits:block/macerator", "y": -90 },
+    "facing=east,powered=false": { "model": "wabbits:block/macerator", "y": 90  },
+
+    "facing=north,powered=true": { "model": "wabbits:block/macerator_powered" },
+    "facing=south,powered=true": { "model": "wabbits:block/macerator_powered", "y": 180 },
+    "facing=west,powered=true": { "model": "wabbits:block/macerator_powered", "y": -90 },
+    "facing=east,powered=true": { "model": "wabbits:block/macerator_powered", "y": 90  }
+  }
+}

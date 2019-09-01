@@ -33,6 +33,10 @@ public class Config {
     public static ForgeConfigSpec.IntValue GENERATOR_RAINBOW_SHARD_MAXCAP;
     private static int GENERATOR_RAINBOW_SHARD_MAXCAP_DEFAULT = 100000;
 
+    public static final String SUBCATEGORY_MACERATOR = "macerator";
+    public static ForgeConfigSpec.IntValue MACERATOR_MAXCAP;
+    private static int MACERATOR_MAXCAP_DEFAULT = 100000;
+    
     public static final String SUBCATEGORY_CONDUIT = "conduit";
     public static ForgeConfigSpec.IntValue CONDUIT_MAXCAP;
     private static int CONDUIT_MAXCAP_DEFAULT = 2000;
@@ -51,6 +55,7 @@ public class Config {
         COMMON_BUILDER.comment("General Settings").push(CATEGORY_GENERAL);
 
         setupGeneratorRainbowShardConfig();
+        setupMaceratorConfig();
         setupConduitConfig();
         setupWabbitConfig();
 
@@ -65,6 +70,14 @@ public class Config {
         GENERATOR_RAINBOW_SHARD_MAXCAP = COMMON_BUILDER
                 .comment("Rainbow Shard Generator Max Capacity\n" + "Default: " + GENERATOR_RAINBOW_SHARD_MAXCAP_DEFAULT)
                 .defineInRange("maxPower", GENERATOR_RAINBOW_SHARD_MAXCAP_DEFAULT, 0, Integer.MAX_VALUE);
+        COMMON_BUILDER.pop();
+    }
+
+    private static void setupMaceratorConfig() {
+        COMMON_BUILDER.comment("Macerator Settings").push(SUBCATEGORY_MACERATOR);
+        MACERATOR_MAXCAP = COMMON_BUILDER
+                .comment("Macerator Max Capacity\n" + "Default: " + MACERATOR_MAXCAP_DEFAULT)
+                .defineInRange("maxPower", MACERATOR_MAXCAP_DEFAULT, 0, Integer.MAX_VALUE);
         COMMON_BUILDER.pop();
     }
 

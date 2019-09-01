@@ -2,6 +2,7 @@ package com.themikeste1.wabbits.core.blocks;
 
 import com.themikeste1.falconathenaeum.core.blocks.IModHasBlockItem;
 
+import com.themikeste1.wabbits.Constants;
 import com.themikeste1.wabbits.atlas.ItemGroups;
 import com.themikeste1.wabbits.core.blockitems.AutoNamingBlockItem;
 import com.themikeste1.wabbits.core.tileentities.ConduitTileEntity;
@@ -17,13 +18,14 @@ import net.minecraft.world.IBlockReader;
 
 import javax.annotation.Nullable;
 
-public class ConduitBlock extends FacedBlock implements IModHasBlockItem {
+public class ConduitBlock extends Block implements IModHasBlockItem {
     public static final String regName = "conduit";
 
     public ConduitBlock() {
-        super(regName, Properties.create(Material.CLAY)
+        super(Properties.create(Material.CLAY)
                 .hardnessAndResistance(2.5f, 30f)
         );
+        setRegistryName(Constants.MOD_ID, regName);
     }
 
     @Override

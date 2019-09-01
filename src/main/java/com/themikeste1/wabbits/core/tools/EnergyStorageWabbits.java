@@ -51,7 +51,7 @@ public class EnergyStorageWabbits extends net.minecraftforge.energy.EnergyStorag
                     .ifPresent(
                             receiver -> {
                                 if (receiver.canReceive()) {
-                                    int accepted = receiver.receiveEnergy(Math.min(stored.get(), 100), false);
+                                    int accepted = receiver.receiveEnergy(Math.min(Math.min(stored.get(), maxExtract), 100), false);
                                     stored.addAndGet(-accepted);
                                 }
                             }

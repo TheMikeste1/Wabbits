@@ -11,6 +11,7 @@ import com.themikeste1.wabbits.client.renderer.entity.RenderWabbitFactory;
 import com.themikeste1.wabbits.client.renderer.tileentity.RendererChestChangingRainbowTileEntity;
 import com.themikeste1.wabbits.core.entities.WabbitEntity;
 import com.themikeste1.wabbits.core.gui.screen.GeneratorRainbowShardScreen;
+import com.themikeste1.wabbits.core.gui.screen.MaceratorScreen;
 import com.themikeste1.wabbits.core.tileentities.ChestChangingRainbowTileEntity;
 
 //Forge
@@ -98,6 +99,7 @@ public class Wabbits {
         ClientRegistry.bindTileEntitySpecialRenderer(ChestChangingRainbowTileEntity.class, new RendererChestChangingRainbowTileEntity());
         RenderingRegistry.registerEntityRenderingHandler(WabbitEntity.class, RenderWabbitFactory.INSTANCE);
         ScreenManager.registerFactory(ContainerTypes.generator_rainbow_shard, GeneratorRainbowShardScreen::new);
+        ScreenManager.registerFactory(ContainerTypes.macerator, MaceratorScreen::new);
     } //doClientStuff()
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
