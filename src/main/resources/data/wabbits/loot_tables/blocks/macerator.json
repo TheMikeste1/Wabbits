@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "wabbits:macerator",
+      "name": "wabbits:grinder",
       "rolls": 1,
       "entries": [
         {
@@ -20,7 +20,7 @@
               ]
             }
           ],
-          "name": "wabbits:macerator"
+          "name": "wabbits:grinder"
         }
       ],
       "conditions": [

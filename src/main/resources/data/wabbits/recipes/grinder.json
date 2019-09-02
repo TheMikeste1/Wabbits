@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "Energy",
+  "pattern":
+  [
+    "xxx",
+    "xcx",
+    "xxx"
+  ],
+  "key":
+  {
+    "x": { "item": "wabbits:rainbow_bricks" },
+    "c": { "item": "wabbits:conduit" }
+  },
+  "result":
+  {
+    "item": "wabbits:grinder"
+  }
+}

@@ -22,7 +22,7 @@ repositories {
 
 String modVersion = version_major_mod + '.' + version_major_api + '.' + version_minor + '.' + version_patch
 version = mcversion + "-" + modVersion
-group = 'com.themikeste1.wabbits' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'themikeste1.wabbits' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'wabbits'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
@@ -116,7 +116,7 @@ dependencies {
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
-    compile "com.themikeste1:falconathenaeum:" + mcversion + "-0.0.0.1"
+    compile "themikeste1:falconathenaeum:" + mcversion + "-0.0.0.1"
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
