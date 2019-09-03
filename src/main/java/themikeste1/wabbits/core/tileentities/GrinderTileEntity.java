@@ -4,7 +4,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ForgeRegistry;
 import themikeste1.wabbits.Config;
 import themikeste1.wabbits.atlas.RecipeTypes;
 import themikeste1.wabbits.atlas.Recipes;
@@ -61,20 +60,11 @@ public class GrinderTileEntity extends TileEntity implements ITickableTileEntity
         if (world.isRemote)
             return;
 
-        //Nothing to do if we have no energy
-        AtomicBoolean hasEnergy = new AtomicBoolean();
-        energyHandler.ifPresent( e -> hasEnergy.set(e.getEnergyStored() > 0) );
-        if (!hasEnergy.get()) {
-            updateBlockState();
-            return;
-        }
-
-        //Nothing to do if there isn't an item.
-        AtomicReference<ItemStack> inputStack = new AtomicReference<>();
-        itemHandler.ifPresent( h -> inputStack.set(h.getStackInSlot(0).copy()) );
-        if(inputStack.get().isEmpty()) {
-            updateBlockState();
-            ticksUntilFinished = 0;
+        //Nothing to do if we don't have enough energy
+        AtomicBoolean hasEnoughEnergy = new AtomicBoolean(false);
+        energyHandler.ifPresent( e -> hasEnoughEnergy.set(e.getEnergyStored() >= energyCostPerTick) );
+        if (!hasEnoughEnergy.get()) {
+            updatePoweredState(false);
             return;
         }
 
@@ -85,48 +75,42 @@ public class GrinderTileEntity extends TileEntity implements ITickableTileEntity
                 .getRecipe(RecipeTypes.GRINDING, new RecipeWrapper((ItemStackHandler) inventory.get()), world)
                 .orElse(null);
 
+        //No need to do anything if we can't grind
         if (canGrind(recipe)) {
             if (!isGrinding()) {
-                ticksUntilFinished = recipe.getProcessTime();
-                inventory.get().extractItem(0, recipe.getInputAmount(), false);
-                upcomingOutput = recipe.getRecipeOutput().copy();
-                markDirty();
-            }
-
-            AtomicBoolean hasEnoughEnergy = new AtomicBoolean(false);
-            energyHandler.ifPresent( e -> hasEnoughEnergy.set(e.getEnergyStored() >= energyCostPerTick) );
-
-            if (hasEnoughEnergy.get()) {
-                energyHandler.ifPresent( e -> ((EnergyStorageWabbits)e).addEnergy(-energyCostPerTick) );
-                ticksUntilFinished--;
-                markDirty();
-            }
-
-            if (doneGrinding()) {
-                inventory.get().insertItem(1, upcomingOutput, false);
-
-                if (canGrind(recipe)) { //If we can still grind, reset timer
+                if (recipe != null) {
                     ticksUntilFinished = recipe.getProcessTime();
                     inventory.get().extractItem(0, recipe.getInputAmount(), false);
                     upcomingOutput = recipe.getRecipeOutput().copy();
-                } else
-                    upcomingOutput = ItemStack.EMPTY;
-                markDirty();
+                    markDirty(); //An item has been removed, upcoming and ticks have been updated.
+                }
             }
-        }
+            else {
+                ticksUntilFinished--;
+                energyHandler.ifPresent(e -> ((EnergyStorageWabbits) e).addEnergy(-energyCostPerTick));
+                markDirty(); //Energy has been removed and ticks updated
+            }
+
+            //I don't like this statement being here, but I want to output on the same tick we finish processing.
+            if (doneGrinding()) {
+                inventory.get().insertItem(1, upcomingOutput, false);
+
+                if (recipe != null && canGrind(recipe)) { //If we can still grind, reset timer
+                    ticksUntilFinished = recipe.getProcessTime();
+                    inventory.get().extractItem(0, recipe.getInputAmount(), false);
+                    upcomingOutput = recipe.getRecipeOutput().copy();
+                } else {
+                    upcomingOutput = ItemStack.EMPTY;
+                }
+                markDirty(); //At the very least, an item has been inserted.
+            } //if (doneGrinding))
+        } //if (canGrind(recipe))
         else {
-            updateBlockState();
+            updatePoweredState(false);
+            return;
         }
 
-        BlockState state = getBlockState();
-        if (state.get(BlockStateProperties.POWERED) != ticksUntilFinished > 0) {
-            world.setBlockState(
-                    pos,
-                    state.with(BlockStateProperties.POWERED, ticksUntilFinished > 0),
-                    3
-            );
-            markDirty(); //We've changed BlockState
-        }
+        updatePoweredState(ticksUntilFinished > 0);
     }
 
 
@@ -135,24 +119,31 @@ public class GrinderTileEntity extends TileEntity implements ITickableTileEntity
 
 
     protected boolean canGrind(GrindRecipe recipe) {
+        if (!upcomingOutput.isEmpty()) {
+            return isRoomInOutputSlot(upcomingOutput);
+        }
+
         AtomicReference<ItemStack> inputSlotStack = new AtomicReference<>();
         itemHandler.ifPresent( h -> inputSlotStack.set( h.getStackInSlot(0)) );
         if (inputSlotStack.get().isEmpty() || recipe == null || inputSlotStack.get().getCount() < recipe.getInputAmount())
             return false;
 
-        ItemStack recipeOutput = recipe.getRecipeOutput();
-        if (recipeOutput.isEmpty())
+        ItemStack output = recipe.getRecipeOutput();
+        return isRoomInOutputSlot(output);
+    }
+
+    protected boolean isRoomInOutputSlot(ItemStack output) {
+        if (output.isEmpty())
             return false;
 
         AtomicReference<ItemStack> outputSlotStack = new AtomicReference<>();
         itemHandler.ifPresent( h -> outputSlotStack.set( h.getStackInSlot(1)) );
-        if (!outputSlotStack.get().isEmpty()                                 //If the output stack is empty, we can process.
-            && !(outputSlotStack.get().isItemEqual(recipeOutput)             //We're also good if the output slot and the recipe output are the same AND...
-               && outputSlotStack.get().getCount() + recipeOutput.getCount() //... the current amount of items + the recipe output amount ...
-               <= outputSlotStack.get().getMaxStackSize())) {                //... is less than the max stack size of the output.
-                return false;
+        if (!outputSlotStack.get().isEmpty()                            //If the output stack is empty, we can process.
+                && !(outputSlotStack.get().isItemEqual(output)          //We're also good if the output slot and the recipe output are the same AND...
+                && outputSlotStack.get().getCount() + output.getCount() //... the current amount of items + the recipe output amount ...
+                <= outputSlotStack.get().getMaxStackSize())) {          //... is less than the max stack size of the output.
+            return false;
         }
-
 
         return true;
     }
@@ -160,11 +151,12 @@ public class GrinderTileEntity extends TileEntity implements ITickableTileEntity
 
     public boolean isGrinding() { return ticksUntilFinished > 0; }
     public boolean doneGrinding() { return !isGrinding(); }
-    private void updateBlockState() {
-        if (getBlockState().get(BlockStateProperties.POWERED)) {
+
+    private void updatePoweredState(boolean powered) {
+        if (getBlockState().get(BlockStateProperties.POWERED) != powered) {
             world.setBlockState(
                     pos,
-                    getBlockState().with(BlockStateProperties.POWERED, false),
+                    getBlockState().with(BlockStateProperties.POWERED, powered),
                     3
             );
             markDirty(); //We've changed BlockState
