@@ -65,7 +65,7 @@ public class GrinderContainer extends Container {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
             if (index == 0) {
-                if (!this.mergeItemStack(stack, 1, 37, true)) {
+                if (!this.mergeItemStack(stack, 2, 38, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
@@ -78,14 +78,14 @@ public class GrinderContainer extends Container {
                 );
 
                 if (accepted.get()) {
-                    if (!this.mergeItemStack(stack, 0, 1, false)) {
+                    if (!this.mergeItemStack(stack, 0, 1, false)) { //inclusive-exclusive
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 28) {
-                    if (!this.mergeItemStack(stack, 28, 37, false)) {
+                } else if (index < 29) {
+                    if (!this.mergeItemStack(stack, 29, 38, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 37 && !this.mergeItemStack(stack, 1, 28, false)) {
+                } else if (index < 38 && !this.mergeItemStack(stack, 2, 29, false)) {
                     return ItemStack.EMPTY;
                 }
             }

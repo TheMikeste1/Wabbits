@@ -1,7 +1,7 @@
 package themikeste1.wabbits.core.recipe;
 
 import themikeste1.wabbits.atlas.BlockItems;
-import themikeste1.wabbits.atlas.Recipes;
+import themikeste1.wabbits.atlas.RecipeSerializers;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -19,21 +19,23 @@ public class GrindRecipe implements IRecipe<IInventory> {
     protected final String group;
     protected final Ingredient ingredient;
     protected final ItemStack result;
-    protected final int amount;
+    protected final int inputAmount;
     protected final int processTime;
 
-    public GrindRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack result, int amount, int processTime) {
+    public GrindRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack result, int inputAmount, int outputAmount, int processTime) {
         this.id = id;
         this.group = group;
         this.ingredient = ingredient;
         this.result = result;
-        this.amount = amount;
+        this.inputAmount = inputAmount;
+        result.setCount(outputAmount);
         this.processTime = processTime;
     }
 
     public Ingredient getIngredient() { return ingredient; }
     public int getProcessTime() { return processTime; }
-    public int getAmount() { return amount; }
+    public int getInputAmount() { return inputAmount; }
+    public int getOutputAmount() { return result.getCount(); }
 
     @Override
     public String getGroup() { return group; }
@@ -64,7 +66,7 @@ public class GrindRecipe implements IRecipe<IInventory> {
     public ResourceLocation getId() { return id; }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() { return Recipes.grind; }
+    public IRecipeSerializer<?> getSerializer() { return RecipeSerializers.grind; }
 
     @Override
     public IRecipeType<?> getType() { return GRINDING; }

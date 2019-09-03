@@ -67,7 +67,7 @@ public class EnergyStorageWabbits extends net.minecraftforge.energy.EnergyStorag
         int energyUsed = getEnergyStored() - stored.get();
         if (energyUsed != 0) {
             //The default EnergyStorage#extractEnergy would almost work
-            //here, but it has a max amount you can extract at once.
+            //here, but it won't go below 0 (which we want so we can punish cheaters ;P)
             addEnergy(-energyUsed);
             sendingEntity.markDirty(); //We've transferred power
         }

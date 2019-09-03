@@ -65,7 +65,7 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
                         getBlockState().with(BlockStateProperties.POWERED, false),
                         3
                 );
-                markDirty(); //We've changed blockstate
+                markDirty(); //We've changed BlockState
             }
             return;
         }
@@ -98,7 +98,7 @@ public class GeneratorRainbowShardTileEntity extends TileEntity implements ITick
                     state.with(BlockStateProperties.POWERED, counter > 0),
                     3
             );
-            markDirty(); //We've changed blockstate
+            markDirty(); //We've changed BlockState
         }
     }
 

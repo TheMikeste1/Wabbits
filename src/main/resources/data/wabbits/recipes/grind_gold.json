@@ -5,6 +5,7 @@
     "item": "minecraft:gold_ore"
   },
   "result": "minecraft:gold_ore",
-  "amount": 2,
+  "inputamount": 1,
+  "outputamount": 2,
   "processtime": 100
 }

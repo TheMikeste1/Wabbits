@@ -33,7 +33,7 @@ public class RendererChestChangingRainbowTileEntity extends ChestTileEntityRende
         GlStateManager.depthFunc(515);
         GlStateManager.depthMask(true);
 
-        //Get the chest's blockstate if it has one, set it otherwise.
+        //Get the chest's BlockState if it has one, set it otherwise.
         BlockState blockstate = tileEntityIn.hasWorld() ? tileEntityIn.getBlockState() : Blocks.rainbow_chest.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
         //Is the chest Left, Right, or Single?
         ChestType chestType = blockstate.has(ChestBlock.TYPE) ? blockstate.get(ChestBlock.TYPE) : ChestType.SINGLE;
