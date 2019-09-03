@@ -1,0 +1,11 @@
+{
+  "type": "wabbits:grind",
+  "group": "Ore",
+  "ingredient": {
+    "item": "minecraft:gold_ore"
+  },
+  "result": "minecraft:gold_ore",
+  "inputamount": 1,
+  "outputamount": 2,
+  "processtime": 100
+}
