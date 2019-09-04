@@ -79,14 +79,13 @@ public class GeneratorRainbowShardBlock extends HorizontalFacedBlock implements 
 
     @Override
     public boolean removedByPlayer(BlockState state, World world, BlockPos pos, PlayerEntity player, boolean willHarvest, IFluidState fluid) {
-        onBlockHarvested(world, pos, state, player);
         TileEntity tileEntity = world.getTileEntity(pos);
         ItemStack stack = ItemStack.EMPTY;
         if (tileEntity instanceof GeneratorRainbowShardTileEntity) {
             stack = ((GeneratorRainbowShardTileEntity) tileEntity).getStackInSlot(0);
         }
 
-        boolean removed = world.removeBlock(pos, false);
+        boolean removed = super.removedByPlayer(state, world, pos, player, willHarvest, fluid);
         if (removed) {
             InventoryHelper.spawnItemStack(
                     world,
