@@ -10,7 +10,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 public class GeneratorRainbowShardScreen extends ContainerScreen<GeneratorRainbowShardContainer> {
-
     private final ResourceLocation GUI = new ResourceLocation(Constants.MOD_ID, "textures/gui/container/generator_rainbow_shard.png");
 
     public GeneratorRainbowShardScreen(GeneratorRainbowShardContainer screenContainer, PlayerInventory inv, ITextComponent title) {

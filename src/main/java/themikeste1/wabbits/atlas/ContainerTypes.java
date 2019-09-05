@@ -19,9 +19,9 @@ import net.minecraftforge.registries.ObjectHolder;
 public class ContainerTypes {
 
     @ObjectHolder("generator_rainbow_shard")
-    public static ContainerType<GeneratorRainbowShardContainer> generator_rainbow_shard = null;
+    public static final ContainerType<GeneratorRainbowShardContainer> generator_rainbow_shard = null;
     @ObjectHolder("grinder")
-    public static ContainerType<GrinderContainer> grinder = null;
+    public static final ContainerType<GrinderContainer> grinder = null;
 
 
     @SubscribeEvent
